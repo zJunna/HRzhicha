@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>我的上传</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/refactorStyle.css" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/swiper.min.js"></script>
+
+	</head>
+
+	<body class="gggs">
+		<div class="pay_tits">
+			<img src="/HRzhicha/public/images/img/reach_03.jpg" id="back" />
+			<p>我的上传</p>
+		</div>
+
+		<div class="navbar_nex">
+			<div id="topNav" class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide on">全部(9)</div>
+					<div class="swiper-slide">有效(4)</div>
+					<div class="swiper-slide">审核中(3)</div>
+					<div class="swiper-slide">审核拒绝(2)</div>
+					<div class="swiper-slide">有申诉(3)</div>
+					<div class="swiper-slide">已删除(2)</div>
+				</div>
+			</div>
+			<!--<div class="navbar navbar_swiper">
+				<ul>
+					<li class="on">全部 (1)1</li>
+					<li>有效(4) </li>
+					<li>审核中(3)</li>
+					<li>审核拒绝(3)</li>
+					<li>有申诉(3)</li>
+					<li>已删除(3)</li>
+
+				</ul>
+			</div>-->
+		</div>
+		<div class="up_swiper_tab">
+			<div class="fade_list fade_list_users  updata_list_users">
+				<ul>
+
+					<li>
+						<p class="num">编号:111</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>深圳市大疆创新科技有限公司</p>
+								<p>914403007954257495</p>
+								<div class="btn_bg">人际融洽</div>
+							</div>
+							<div class="ueser_time">
+								<div class="deal_with">处理申诉</div>
+
+							</div>
+							<div class="refusal_for" style="display: none;">
+								<div>已提供联系方式给申诉人。</div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_red"></div>
+							<p>待处理</p>
+						</div>
+
+					</li>
+					<li>
+						<p class="num">编号:111</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>王惠仁</p>
+								<p>914403007954257495</p>
+								<div class="btn_bg">人际融洽</div>
+							</div>
+							<div class="ueser_time">
+								<div class="deal_with">有申诉</div>
+
+							</div>
+							<div class="refusal_for" style="display: none;">
+								<div>已提供联系方式给申诉人。</div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_blue"></div>
+							<p>已删除</p>
+						</div>
+						<div class="posll">
+							<div class="dot_red"></div>
+							<p>有申诉</p>
+						</div>
+
+					</li>
+					<li>
+						<p class="num">编号:111</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>王惠仁</p>
+								<p>914403007954257495</p>
+								<div class="btn_bgl">挪用公款</div>
+							</div>
+							<div class="ueser_time">
+								<div class="deal_with">处理申诉</div>
+
+							</div>
+							<div class="refusal_for">
+								<div>拒绝声明：人身攻击</div>
+							</div>
+							<div class="refusal_for_btn">
+								<div class="mit_btn resubmit  fl">重新提交</div>
+								<div class="mit_btn mit_del fl">删除</div>
+								<div class="clear"></div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_blue"></div>
+							<p>已删除</p>
+						</div>
+						<div class="posll">
+							<div class="dot_greenl"></div>
+							<p>审核拒绝</p>
+						</div>
+
+					</li>
+
+				</ul>
+				<ul class="hide">
+					<li>
+						<p class="num">编号:2222</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>深圳市大疆创新科技有限公司</p>
+								<p>914403007954257495</p>
+								<div class="btn_bg">人际融洽</div>
+							</div>
+							<div class="ueser_time">
+								<div class="deal_with">处理申诉</div>
+
+							</div>
+							<div class="refusal_for" style="display: none;">
+								<div>已提供联系方式给申诉人。</div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_red"></div>
+							<p>待处理</p>
+						</div>
+
+					</li>
+
+				</ul>
+				<ul class="hide">
+					<li>
+						<p class="num">编号:3333</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>深圳市大疆创新科技有限公司</p>
+								<p>914403007954257495</p>
+								<div class="btn_bg">人际融洽</div>
+							</div>
+							<div class="ueser_time">
+								<div class="deal_with">删除</div>
+
+							</div>
+							<div class="refusal_for" style="display: none;">
+								<div>已提供联系方式给申诉人。</div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_yellow"></div>
+							<p>审核中</p>
+						</div>
+
+					</li>
+					<li>
+						<p class="num">编号:3333</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>王惠仁</p>
+								<p>914403007954257495</p>
+								<div class="btn_bg">人际融洽</div>
+							</div>
+							<div class="ueser_time">
+								<div class="deal_with">删除</div>
+
+							</div>
+							<div class="refusal_for" style="display: none;">
+								<div>已提供联系方式给申诉人。</div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_yellow"></div>
+							<p>审核中</p>
+						</div>
+
+					</li>
+
+				</ul>
+				<ul class="hide">
+					<li>
+						<p class="num">编号:4414444</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>深圳市大疆创新科技有限公司</p>
+								<p>914403007954257495</p>
+								<div class="btn_bgl">挪用公款</div>
+							</div>
+							<div class="ueser_time">
+								<div class="deal_with hide">处理申诉</div>
+
+							</div>
+							<div class="refusal_for">
+								<div>拒绝声明：人身攻击</div>
+							</div>
+							<div class="refusal_for_btn">
+								<div class="mit_btn resubmit  fl">重新提交</div>
+								<div class="mit_btn mit_del fl">删除</div>
+								<div class="clear"></div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_red"></div>
+							<p>有申诉</p>
+						</div>
+						<div class="posll">
+							<div class="dot_greenl"></div>
+							<p>审核拒绝</p>
+						</div>
+
+					</li>
+					<li>
+						<p class="num">编号:4414444</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>王惠仁</p>
+								<p>914403007954257495</p>
+								<div class="btn_bgl">挪用公款</div>
+							</div>
+							<div class="ueser_time hide">
+								<div class="deal_with">处理申诉</div>
+
+							</div>
+							<div class="refusal_for">
+								<div>拒绝声明：人身攻击</div>
+							</div>
+							<div class="refusal_for_btn">
+								<div class="mit_btn resubmit  fl">重新提交</div>
+								<div class="mit_btn mit_del fl">删除</div>
+								<div class="clear"></div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_red"></div>
+							<p>有申诉</p>
+						</div>
+						<div class="posll">
+							<div class="dot_greenl"></div>
+							<p>审核拒绝</p>
+						</div>
+
+					</li>
+
+				</ul>
+				<ul class="hide">
+					<li>
+						<p class="num">编号:44444</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>深圳市大疆创新科技有限公司</p>
+								<p>914403007954257495</p>
+								<div class="btn_bg">人际融洽</div>
+							</div>
+							<div class="ueser_time">
+								<div class="deal_with">处理申诉</div>
+
+							</div>
+							<div class="refusal_for" style="display: none;">
+								<div>已提供联系方式给申诉人。</div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_red"></div>
+							<p>待处理</p>
+						</div>
+
+					</li>
+
+				</ul>
+				<ul class="hide">
+					<li>
+						<p class="num">编号:555</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>王惠仁</p>
+								<p>914403007954257495</p>
+								<div class="btn_bgl">挪用公款</div>
+							</div>
+							<div class="ueser_time">
+								<div class="deal_with">处理申诉</div>
+
+							</div>
+							<div class="refusal_for">
+								<div>拒绝声明：人身攻击</div>
+							</div>
+							<div class="refusal_for_btn">
+								<div class="mit_btn resubmit  fl">重新提交</div>
+								<div class="mit_btn mit_del fl">删除</div>
+								<div class="clear"></div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_blue"></div>
+							<p>已删除</p>
+						</div>
+						<!--<div class="posll">
+							<div class="dot_greenl"></div>
+							<p>审核拒绝</p>
+						</div>-->
+
+					</li>
+					<li>
+						<p class="num">编号:6666</p>
+						<div class="users">
+
+							<div class="ueser_txtl">
+
+								<p>史蒂夫</p>
+								<p>368565199006255214</p>
+								<div class="btn_bgl">以权谋私</div>
+							</div>
+							<div class="ueser_time">
+								<div class="deal_with">处理申诉</div>
+
+							</div>
+							<div class="refusal_for" style="display: none;">
+								<div>已提供联系方式给申诉人。</div>
+							</div>
+							<div class="time_tow">2019/02/11</div>
+						</div>
+
+						<div class="posl">
+							<div class="dot_blue"></div>
+							<p>已删除</p>
+						</div>
+
+					</li>
+
+				</ul>
+
+			</div>
+
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		var mySwiper = new Swiper('#topNav', {
+			freeMode: true,
+			freeModeMomentumRatio: 0.5,
+			slidesPerView: 'auto',
+
+		});
+
+		swiperWidth = mySwiper.container[0].clientWidth;
+		maxTranslate = mySwiper.maxTranslate();
+		maxWidth = -maxTranslate + swiperWidth / 2
+
+		$(".swiper-container").on('touchstart', function(e) {
+			e.preventDefault()
+		})
+
+		mySwiper.on('tap', function(swiper, e) {
+
+			//	e.preventDefault()
+
+			slide = swiper.slides[swiper.clickedIndex]
+			slideLeft = slide.offsetLeft
+			slideWidth = slide.clientWidth
+			slideCenter = slideLeft + slideWidth / 2
+			// 被点击slide的中心点
+
+			mySwiper.setWrapperTransition(300)
+
+			if(slideCenter < swiperWidth / 2) {
+
+				mySwiper.setWrapperTranslate(0)
+
+			} else if(slideCenter > maxWidth) {
+
+				mySwiper.setWrapperTranslate(maxTranslate)
+
+			} else {
+
+				nowTlanslate = slideCenter - swiperWidth / 2
+
+				mySwiper.setWrapperTranslate(-nowTlanslate)
+
+			}
+
+			$("#topNav  .on").removeClass('on');
+			$("#topNav .swiper-slide").eq(swiper.clickedIndex).addClass('on');
+			$('.fade_list ul').eq(swiper.clickedIndex).show().siblings().hide();
+		})
+	</script>
+
+	<script>
+		/*$('.navbar ul li').click(function() {
+					var n = $(this).index();
+					$(this).addClass('on').siblings().removeClass('on')
+					console.log("two");
+					$('.fade_list ul').eq(n).show().siblings().hide();
+					console.log("1");
+				})*/
+	</script>
+	<script type="text/javascript">
+		$("#back").click(function() {
+			location.href = "@{front.account.AccountHome.home()}";
+		})
+	</script>
+
+</html>

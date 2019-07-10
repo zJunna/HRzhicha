@@ -1,0 +1,441 @@
+	<script type="text/javascript" src="@{'/public/javascripts/webjs/js.js'}"></script>
+
+			<div class="input_labs">
+				<p>职位名称</p>
+				<div class="lab_item" style="margin-top: 30px">
+			<div class="select_box selegos" style="width: 530px;height: 38px;left: 135px" id="positionPostDiv">
+				<p class="htmlw" id="positions_id" mark="${position.position_id}" style="position: relative;margin-top: -40px;font-size: 14px;width: 400px;text-align: left;color: grey">${position.position_name}</p>
+					<div class="sele_covers" id="positionones" style="top: 50px;">
+						<div class="sele_cov_select"  style="width: 200px;">
+							<ul id="PositionOne" > 
+							#{list industries}
+								<li name="industry_name" id="${_?.id}" value="${_?.id}" class="" >${_?.industry_name}</li>
+							#{/list}
+							</ul>
+						</div>
+					</div>
+			</div>
+			<div class="select_box" style="width: 200px;border: inherit;font-size: 13px;color: #757575;padding-left: 10px;line-height: 40px;position: absolute;top: 149px;left: 348px "  >
+					<div class="sele_covers" id="positiontwo" style="padding-left:17%;top: 25px;">
+						<div class="sele_cov_select" style="width: 200px;">
+							<ul id="PositionTwo" > 
+								
+							</ul>
+						</div>
+					</div>
+			</div>
+			<div class="select_box" style="width: 200px;border: inherit;font-size: 13px;color: #757575;padding-left: 10px;line-height: 40px;position: absolute;top: 149px;left: 503px  " >
+					<div class="sele_covers"   id="positionthree" style="padding-left:43%;top: 25px;">
+						<div class="sele_cov_select" style="width: 200px;" >
+							<ul id="PositionThree" > 
+							
+							</ul>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	 <div class="input_labs">
+		<p>薪资范围</p>
+		<div class="lab_item" style="margin-top: 30px">
+			<div class="select_box selegos" style="width: 530px;height: 38px;left: 135px"">
+			#{list operations}
+				#{if _?.id==position?.salary_range_id}
+					<p class="htmlw"  mark="" style="position: relative;margin-top: -40px;font-size: 14px;width: 400px;text-align: left;color: grey">${_?.name}</p>
+				#{/if}
+			#{/list}
+			
+			#{if position?.salary_range_id==0}<p class="htmlw"  mark="" style="position: relative;margin-top: -40px;font-size: 14px;width: 400px;text-align: left;color: grey">请选择</p>#{/if}
+			
+					<div class="sele_covers">
+						<div class="sele_cov_select" style="width: 530px">
+							<ul id=""> 
+							    <li name="salary_expectation_name" value="0" >请选择</li>
+							    #{list operations}
+								 	#{if _?.group_id==6}
+									<li name="salary_expectation_name" value="${_?.id}" #{if _?.id==position?.salary_range_id} class="on"#{/if}>${_?.name}</li>
+									#{/if}
+								#{/list}
+							</ul>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="fr_lable_item">
+		<p class="lab_p" style="height: 40px;width: 130px;margin-left: 32px;margin-top: 40px;">工作地点</p>
+		<div class="lab_item" style="margin-top: 20px;margin-left:-27px">
+			<div class="select_box selegos" style="width: 170px;">
+			 #{list provinces}
+			 	#{if _?.id==nowProvince?.id}
+				<p class="htmlw">${_?.name}</p>
+				#{/if}
+			#{/list}	
+					<div class="sele_covers">
+						<div class="sele_cov_select" style="width: 170px">
+							<ul id="workprovinces_id"> 
+							    <li name="workprovinces_name" value="0" >请选择</li>
+							#{list provinces}
+								<li name="workprovinces_name" value="${_?.id}" style="color: black" #{if _?.id==nowProvince?.id} class="on"#{/if}>${_?.name}</li>
+							#{/list}
+							</ul>
+						</div>
+					</div>
+			</div>
+			<div class="select_box selegos" style="width: 170px;margin-left: 5%;">
+			#{if position?.work_city_id!=0}
+				<p class="htmlw" id="workcity_name">${position?.work_city_name}</p>
+			#{/if}
+			#{else}<p class="htmlw" id="workcity_name">请选择</p>#{/else}
+					<div class="sele_covers">
+						<div class="sele_cov_select">
+							<ul id="workcity_id"> 
+							    <li name="workcity_name" value="0" style="color:grey ">请选择</li>
+							    #{list citys}
+								<li name="workcity_name" value="${_?.id}" #{if _?.id==position?.work_city_id}  class="on" #{/if}>${_?.name}</li>
+								#{/list}
+							</ul>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="input_labs">
+		<p>最低学历</p>
+		<div class="lab_item" style="margin-top: 30px">
+			<div class="select_box selegos" style="width: 530px;height: 38px;left: 135px"">
+			#{list operations}
+				#{if _?.id==position?.education_id}
+				<p class="htmlw" mark="" style="position: relative;margin-top: -40px;font-size: 14px;width: 400px;text-align: left;color: grey">${position.education_name}</p>
+				#{/if}
+			#{/list}
+			#{if position?.education_id==0}<p class="htmlw" mark="" style="position: relative;margin-top: -40px;font-size: 14px;width: 400px;text-align: left;color: grey">请选择</p>#{/if}
+					<div class="sele_covers">
+						<div class="sele_cov_select" style="width: 530px">
+							<ul id=""> 
+							    <li name="education_name" value="0" >请选择</li>
+							    #{list operations}
+								 	#{if _?.group_id==2}
+									<li name="education_name" value="${_?.id}" #{if _?.id==position?.education_id} class="on"#{/if}>${_?.name}</li>
+									#{/if}
+								#{/list}
+							</ul>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="input_labs">
+		<p>性别要求</p>
+		<div class="lab_item" style="margin-top: 30px">
+			<div class="select_box selegos" style="width: 530px;height: 38px;left: 135px"">
+			#{list operations}
+				#{if _?.id==position?.sex_id}
+				<p class="htmlw" mark="" style="position: relative;margin-top: -40px;font-size: 14px;width: 400px;text-align: left;color: grey">${position.sex_name}</p>
+				#{/if}
+			#{/list}
+			#{if position?.sex_id==0}<p class="htmlw" mark="" style="position: relative;margin-top: -40px;font-size: 14px;width: 400px;text-align: left;color: grey">请选择</p>#{/if}
+					<div class="sele_covers">
+						<div class="sele_cov_select" style="width: 530px;height: 175px">
+							<ul id=""> 
+							    <li name="sex_name" value="0" >请选择</li>
+							    #{list operations}
+								 	#{if _?.group_id==4}
+									<li name="sex_name" value="${_?.id}" #{if _?.id==position?.sex_id} class="on"#{/if}>${_?.name}</li>
+									#{/if}
+								#{/list}
+							</ul>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="input_labs">
+		<p>年龄要求</p>
+		<div class="lab_item" style="margin-top: 30px">
+			<div class="select_box selegos" style="width: 530px;height: 38px;left: 135px"">
+			#{list operations}
+				#{if _?.id==position?.age_id}
+				<p class="htmlw" mark="" style="position: relative;margin-top: -40px;font-size: 14px;width: 400px;text-align: left;color: grey">${position.age_name}</p>
+				#{/if}
+			#{/list}
+			#{if position?.age_id==0}<p class="htmlw" mark="" style="position: relative;margin-top: -40px;font-size: 14px;width: 400px;text-align: left;color: grey">请选择</p>#{/if}
+					<div class="sele_covers">
+						<div class="sele_cov_select" style="width: 530px;height: 225px">
+							<ul id=""> 
+							    <li name="age_name" value="0" >请选择</li>
+							    #{list operations}
+								 	#{if _?.group_id==7}
+									<li name="age_name" value="${_?.id}" #{if _?.id==position?.age_id}  class="on" #{/if}>${_?.name}</li>
+									#{/if}
+								#{/list}
+							</ul>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="input_labs">
+		<p>职位状态</p>
+		<div class="lab_item" style="margin-top: 30px">
+			<div class="select_box selegos" style="width: 530px;height: 38px;left: 135px"">
+			
+				
+				<p class="htmlw" mark="" style="position: relative;margin-top: -40px;font-size: 14px;width: 400px;text-align: left;color: grey">#{if position?.status==1}招聘中#{/if}#{if position?.status==2}已停招#{/if}#{if position?.status==0}请选择#{/if}</p>
+				
+					<div class="sele_covers">
+						<div class="sele_cov_select" style="width: 530px;height: 140px">
+							<ul id=""> 
+							    <li name="status_name" value="0" >请选择</li>
+							    #{list operations}
+								 	#{if _?.group_id==5}
+									<li name="status_name" value="${_?.id}" #{if _?.id==position?.status+18}  class="on" #{/if}>${_?.name}</li>
+									#{/if}
+								#{/list}
+							</ul>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="btn_gh" style="margin-top: 55px">
+		<div class="closs" style="cursor:pointer;" id="updatePosition">
+			<a>发布职位</a>
+		</div>
+		<div style="cursor:pointer;">
+			<a id="positionOutPosition" >取消</a>
+		</div>
+	</div>
+	
+	<div class="fade_po land_files" style="display: none" id="proError">
+			<div class="land_filess">
+				<p id="word"></p>
+				<div class="btn_ground">
+					<a class="closs" style="margin-left: 81px;cursor: pointer;" id="iKnow" >确定</a>
+					
+				</div>
+			</div>
+	</div>
+<script type="text/javascript">
+	$("#positionPostDiv").click(function(){
+		if($("#positionones").css("display")=="block"||$("#positionones").css("display")=="flex"){
+		$("#positiontwo").css("display","none");
+		$("#positionthree").css("display","none");
+		}else{
+		$("#positionones").css("display","none");
+		$("#positiontwo").css("display","none");
+		$("#positionthree").css("display","none");
+		}
+	})
+	$("li[name='industry_name']").each(function(){
+		if($(this).mouseenter(function(){
+			var id=$(this).val();
+			$(this).addClass('on').siblings().removeClass('on');
+			 $.ajax({
+		 		url:"@{front.webAccount.AccountHome.ajaxPositionTwo()}",
+				data:{
+				industryeId:id
+				},
+				type:"POST",
+				success:function(data){
+				     var html="";
+					  for(var i in data){
+					  html+="<li name='industryTwo_name' id="+data[i].id+"  value="+data[i].id+" onmouseover='myMouseOver1(this)'>"+data[i].industry_name+"</li>";
+					  }
+					   $("#positionones").css("display","flex"); 
+					  $("#positiontwo").css("display","block");
+					  
+					  $("#PositionTwo").html("");
+					$("#PositionTwo").html(html);
+				}
+		 	});
+		}));
+	});
+	
+    function myMouseOver1(element) {
+       var id=element.value;
+       $("#"+id).addClass('on').siblings().removeClass('on');
+       $.ajax({
+		 		url:"@{front.webAccount.AccountHome.ajaxPositionThree()}",
+				data:{
+				positionId:id
+				},
+				type:"POST",
+				success:function(data){
+				     var html="";
+					  for(var i in data){
+					  html+="<li name='industryThree_name' id="+data[i].id+" value="+data[i].id+" onclick=addPos(this) >"+data[i].position_name+"</li>";
+					  }
+					  $("#positionones").css("display","flex"); 
+					  $("#positiontwo").css("display","block"); 
+					   $("#positionthree").css("display","block"); 
+					  $("#PositionThree").html("");
+					$("#PositionThree").html(html);
+				}
+		 	
+		 	});
+    }
+    
+    
+     function addPos(element){
+     var id=element.value;
+      $("#"+id).addClass('on').siblings().removeClass('on');
+     var value=element.innerHTML;
+     var positions_id= id;
+     var positions_name=value;
+     $("#positions_id").attr("mark",positions_id);
+     $("#positions_id").html(positions_name);
+     $("#positionones").css("display","none"); 
+	$("#positiontwo").css("display","none"); 
+	 $("#positionthree").css("display","none"); 
+    }
+    
+    $("li[name='workprovinces_name']").each(function(){
+					$(this).click(function(){
+					getCity($(this).val());
+					})
+			});
+             function getCity(id){
+			  if(id==""){
+			  var html="<li name='workcity_name' value='0'>请选择</li>";
+			  $("#workcity_id").append(html);
+			  }
+			  $.ajax({
+			  url:"@{front.webAccount.AccountHome.getCity()}",
+			  type:"POST",
+			  data:{
+			  parentid:id
+			  },
+			  success:function(data){
+			  var html="";
+			  html="<li name='workcity_name' value='0'>请选择</li>";
+			  for(var i in data){
+			  html+="<li name='workcity_name' value="+data[i].id+">"+data[i].name+"</li>";
+			  }
+			  $("#workcity_name").html("请选择");
+			  $("#workcity_id").html("");
+			  $("#workcity_id").append(html); 
+			  $("li[name='workcity_name']").each(function(){
+					$(this).click(function(){
+					   $(this).addClass("on").siblings().removeClass('on');
+					   $("#workcity_name").html($(this).html());
+					})
+			});
+			  }
+			  });
+		 }
+</script>
+<script type="text/javascript">
+	$("#updatePosition").click(function(){
+        var  position_id=$("#positions_id").attr("mark");
+        if(position_id==""){
+        	$("#word").html("请选择职位名称");
+        	$("#proError").css("display","block");
+        	return false;
+        }
+        var salary_expectation="";
+        var moneyId="";
+              $("li[name='salary_expectation_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					salary_expectation=$(this).html();
+					moneyId=$(this).val();
+					}
+			});
+		if(moneyId==0){
+			$("#word").html("请选择薪资范围");
+        	$("#proError").css("display","block");
+        	return false;
+		}
+			 var workcity_id="";
+              $("li[name='workcity_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					workcity_id=$(this).val();
+					}
+			});
+		if(workcity_id==0){
+			$("#word").html("请选择工作地点");
+        	$("#proError").css("display","block");
+        	return false;
+		}
+			 var education_name="";
+              $("li[name='education_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					education_name=$(this).val();
+					}
+			});
+		if(education_name==0){
+			$("#word").html("请选择最低学历");
+        	$("#proError").css("display","block");
+        	return false;
+		}
+			var sex_name="";
+              $("li[name='sex_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					sex_name=$(this).val();
+					}
+			});
+		if(sex_name==0){
+			$("#word").html("请选择性别要求");
+        	$("#proError").css("display","block");
+        	return false;
+		}
+			var age_name="";
+			var age="";
+              $("li[name='age_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					age_name=$(this).val();
+					age=$(this).html();
+					}
+			});
+		if(age_name==0){
+			$("#word").html("请选择年龄要求");
+        	$("#proError").css("display","block");
+        	return false;
+		}
+			var status_name="";
+              $("li[name='status_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					status_name=$(this).val();
+					}
+			});
+		var status_name="";
+              $("li[name='status_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					status_name=$(this).val();
+					}
+			});
+			 $.ajax({
+	  	  		url:"@{front.webAccount.AccountHome.positionUpdateMethod()}",
+	  	  		type:"POST",
+	  	  		data:{
+	  	  		id:${position.id},
+	  	  		positionId:position_id,
+	  	  		money:salary_expectation,
+	  	  		moneyId:moneyId,
+	  	  		cityId:workcity_id,
+	  	  		educationId:education_name,
+	  	  		sexId:sex_name,
+	  	  		ageId:age_name,
+	  	  		statusId:status_name,
+	  	  		age:age
+	  	  		},
+	  	  		success:function(data){
+	  	  			if(data.code<0){
+	  	  				$("#word").html("系统故障，请联系客服处理！");
+        			 	$("#proError").css("display","block");
+        			 	return false;
+	  	  			}else{
+	  	  				location.reload();
+	  	  			}	  			
+	  	  		}
+  	  		}); 
+    })
+	$("#positionOutPosition").click(function(){
+		 location.reload();
+		})	
+	$("#iKnow").click(function(){
+		$("#proError").css("display","none");
+	});	
+</script>

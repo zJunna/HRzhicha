@@ -1,0 +1,45 @@
+			
+				<div class="about_fl_box1">
+					<ul>
+						<li id="li_1">
+							<a href="@{front.webAccount.AccountHome.home}"><img id="img_1" src="/public/images/webimg/updata_1.jpg" />我的账户</a>
+						</li>
+						#{if users?.authentication_status!=1}
+						<li id="li_2">
+							<a href="@{front.webAccount.AccountHome.updata}"><img id="img_2" src="/public/images/webimg/left-centers.jpg" />上传信息</a>
+						</li>
+						#{/if}
+						#{if users?.authentication_status!=1}
+						<li id="li_3">
+							<a href="@{front.webAccount.AccountHome.myUpdata}"><img id="img_3" src="/public/images/webimg/updata_3.jpg" />我的上传</a>
+						</li>
+						#{/if}
+						<li id="li_4">
+							<a href="@{front.webAccount.AccountHome.myQuery}"><img id="img_4" src="/public/images/webimg/updata_4.jpg" />我的查询</a>
+						</li>
+						#{if users?.authentication_status!=2&&users?.authentication_status!=3}
+						<li id="li_5">
+							<a href="@{front.webAccount.AccountHome.myComplaint()}"><img id="img_5" src="/public/images/webimg/updata_5.jpg" />我的申诉</a>
+						</li>
+						#{/if}	
+						<li id="li_6">
+							<a href="@{front.webAccount.AccountHome.xManage()}"><img id="img_6" src="/public/images/webimg/updata_6.jpg" />X币管理</a>
+						</li>
+						<li id="li_7">
+							<a href="@{front.webAccount.AccountHome.webRealName()}"><img id="img_7" src="/public/images/webimg/updata_7.jpg" />实名认证</a>
+						</li>
+						#{if users?.authentication_status==0||users?.authentication_status==1||users?.authentication_status==4}
+						<li id="li_8">
+							<a href="@{front.webAccount.AccountHome.userWebResume()}"><img id="img_8" src="/public/images/webimg/updata_8.jpg" />我的简历</a>
+						</li>
+						#{/if}
+						#{if users?.authentication_status==0||users?.authentication_status==2||users?.authentication_status==4}
+						<li id="li_9">
+							<a href="@{front.webAccount.AccountHome.resumeRecommendation()}"><img id="img_9" src="/public/images/webimg/updata_9.jpg" />简历推荐</a>
+						</li>
+						#{/if}
+						<li id="li_10">
+							<a href="@{front.webAccount.AccountHome.safelySetting()}"><img id="img_10" src="/public/images/webimg/updata_10.jpg" />安全设置</a>
+						</li>
+					</ul>
+			</div>

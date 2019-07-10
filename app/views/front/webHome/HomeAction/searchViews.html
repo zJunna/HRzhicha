@@ -1,0 +1,58 @@
+#{if informations.size!=0}
+<p class="tit_seach">共为您查到${informations.size}条信息</p>
+<ul>
+	#{list informations}
+		#{if searchType==0}
+			<a href="@{front.webHome.HomeAction.negativeInforDetail(_?.sign)}">
+		#{/if}
+					<li >
+					#{if _?.inforSex==1}
+						<img src="/public/images/webimg/icon_21.jpg" class="info_logo"  name="img"/>
+					#{/if}
+					#{if  _?.inforSex==2}
+						<img src="/public/images/img/index_21.jpg" class="info_logo"  name="img"/>
+					#{/if}
+						<div class="info_pg">
+							<p>${_?.name}<span>#{if _?.inforSex==1}男#{/if}#{if _?.inforSex==2}女#{/if}</span><em>${_?.inforAge}岁</em></p>
+							<div>
+								<i>${_?.id_number}</i>
+								<i>${_?.company_name}</i>
+								<i>发布时间：${_?.time.format('yyyy-MM-dd')}</i>
+							</div>
+						</div>
+						#{if _?.infor_status==1}
+							<div class="user_btn_on">${_?.negative_type_name}</div>
+						#{/if}
+						#{if _?.infor_status==2}
+							<div class="user_btn_on" style="background:#fae8df;color:#ff6633">${_?.negative_type_name}</div>
+						#{/if}
+					</li>
+		#{if searchType==0}
+			</a>
+		#{/if}
+	#{/list}
+	</ul>
+#{/if}
+#{if informations.size==0}
+	#{if type==0}
+	<p class="tit_seach">共为您查到0条信息</p>
+				<div class="jgjg">
+					<p>未查询到此人员信息！<br />推荐您进行全方位背景调查？</p>
+					<a href="http://wpa.qq.com/msgrd?v=3&uin=2560969896&site=qq&menu=yes" target="_blank"><span>QQ在线咨询</span></a>
+					<em>客服电话：400-6093-818<br />微信咨询：( 扫描下方二维码)</em>
+					<div></div>
+				</div>
+			
+	#{/if}
+	#{if type==1}
+	<p class="tit_seach">共为您查到0条信息</p>
+		   <div class="jgjg">
+				<p>请输入详细人员信息！<br />X职查将为您进行相关查询</p>
+				<a href="http://wpa.qq.com/msgrd?v=3&uin=2560969896&site=qq&menu=yes" target="_blank"><span>QQ在线咨询</span></a>
+				<em>客服电话：400-6093-818<br />微信咨询：( 扫描下方二维码)</em>
+				<div></div>
+			</div>
+	#{/if}	
+	</div>	
+#{/if}
+

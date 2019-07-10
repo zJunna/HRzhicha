@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>信息查询</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta name="renderer" content="webkit">
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/refactorStyle.css" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.scrollTo.js"></script>
+		<style type="text/css">
+			.fixtab {
+				background: red;
+			}
+			
+			.on {
+				color: red;
+			}
+			
+			.tab-active {
+				color: #128bed;
+				/* border-bottom: 2px solid #128bed; */
+			}
+		</style>
+		<!--<script type="text/javascript">
+			function boxScroll(tabBox) {
+				console.log('we=' + tabBox);
+				$('.ggg').scrollTo(tabBox, {
+
+					duration: 300,
+					offset: -300
+
+				});
+				$('#fixtab li').click(function() {
+					$('#fixtab li').removeClass("on");
+					$(this).addClass("on");
+
+				});
+
+			}
+			scollFix();
+
+			function scollFix() {
+				var scrollDom = $('.main_content')[0];
+				hasChangeFix = false;
+				scrollDom.onscroll = function(e) {
+					if(!hasChangeFix) {
+						if(scrollDom.scrollTop > 185) {
+							$('.com_main_listr  .com_main_img').hide()
+						$('.com_main_listr  .com_main_title').css('width', '5rem')
+						$('.com_main_text').css('margin-left', '0')
+						$('.com_main_txtx').hide()
+						$('.com_url_add').hide()
+						$('.topHeight').css('height', '3.8rem')
+						$('.topHeight .com_navbar_list').css('top', '2.5rem')
+						$('.main_com_tab_detail').css('height', '4.3rem')
+							hasChangeFix = true;
+						}
+					} else {
+
+						if(scrollDom.scrollTop < 180) {
+							$('.com_main_listr .com_main_img').show()
+						$('.com_main_listr  .com_main_title').css('width', '4rem')
+						$('.com_main_text').css('margin-left', '0.1rem')
+						$('.com_main_txtx').show()
+						$('.com_url_add').show()
+						$('.topHeight').css('height', '5rem')
+						$('.topHeight .com_navbar_list').css('top', '3.8rem')
+							hasChangeFix = false;
+						}
+					}
+					$('.ct').removeClass('on');
+					if(scrollDom.scrollTop > $('#infoView')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#creditRecordView')[0].offsetTop - 50) {
+						$('#a1').addClass('on');
+					} else if(scrollDom.scrollTop > $('#creditRecordView')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#stockRightView')[0].offsetTop - 50) {
+						$('#a2').addClass('on');
+					} else if(scrollDom.scrollTop > $('#stockRightView')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#recruitInfoView')[0].offsetTop - 50) {
+						$('#a3').addClass('on');
+					} else if(scrollDom.scrollTop > $('#recruitInfoView')[0].offsetTop - 50) {
+						$('#a4').addClass('on');
+					}
+
+				}
+			}
+
+		</script>-->
+		<script type="text/javascript">
+			function collapse(dom) {
+				var collapseDiv = $(dom).parent().next();
+				if(!collapseDiv.is(':hidden')) {
+					collapseDiv.hide();
+					$(dom).attr('src', '/material/theme/mobile/img/wxa-service/right_arrow.png');
+					$(dom).width(7);
+				} else {
+					collapseDiv.show();
+					$(dom).attr('src', '/material/theme/mobile/img/wxa-service/arrow_down.png');
+					$(dom).width(13);
+				}
+			}
+
+			scollFix();
+
+			function scollFix() {
+				var scrollDom = $('.ggg')[0];
+				hasChangeFix = false;
+				scrollDom.onscroll = function(e) {
+					if(!hasChangeFix) {
+						if(scrollDom.scrollTop > 185) {
+							$('.com_main_listr  .com_main_img').hide()
+							$('.com_main_listr  .com_main_title').css('width', '5rem')
+							$('.com_main_text').css('margin-left', '0')
+							$('.com_main_txtx').hide()
+							$('.com_url_add').hide()
+							$('.topHeight').css('height', '3.8rem')
+							$('.topHeight .com_navbar_list').css('top', '2.5rem')
+							$('.main_com_tab_detail').css('height', '4.3rem')
+							hasChangeFix = true;
+						}
+					} else {
+
+						if(scrollDom.scrollTop < 180) {
+							$('.com_main_listr .com_main_img').show()
+							$('.com_main_listr  .com_main_title').css('width', '4rem')
+							$('.com_main_text').css('margin-left', '0.1rem')
+							$('.com_main_txtx').show()
+							$('.com_url_add').show()
+							$('.topHeight').css('height', '5rem')
+							$('.topHeight .com_navbar_list').css('top', '3.8rem')
+							hasChangeFix = false;
+						}
+					}
+					
+						$('.tab').removeClass('on');
+					if(scrollDom.scrollTop > $('#base')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#partners')[0].offsetTop - 50) {
+						$('#baseTab').addClass('on');
+					} else if(scrollDom.scrollTop > $('#partners')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#employees')[0].offsetTop - 50) {
+						$('#partnersTab').addClass('on');
+					} else if(scrollDom.scrollTop > $('#employees')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#changeRecord')[0].offsetTop - 50) {
+						$('#employeesTab').addClass('on');
+					} else if(scrollDom.scrollTop > $('#changeRecord')[0].offsetTop - 50) {
+						$('#changeRecordTab').addClass('on');
+					}
+					
+					/*$('.tab').removeClass('on');
+					if(scrollDom.scrollTop > $('#base')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#partners')[0].offsetTop - 50) {
+						$('#baseTab').addClass('on');
+					} else if(scrollDom.scrollTop > $('#partners')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#employees')[0].offsetTop - 50) {
+						$('#partnersTab').addClass('on');
+					} else if(scrollDom.scrollTop > $('#employees')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#changeRecord')[0].offsetTop - 50) {
+						$('#employeesTab').addClass('on');
+					} else if(scrollDom.scrollTop > $('#changeRecord')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#aTab')[0].offsetTop - 50) {
+
+						$('#changeRecordTab').addClass('on');
+					} else if(scrollDom.scrollTop > $('#aTab')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#bTab')[0].offsetTop - 50) {
+
+						$('#aTab1').addClass('on');
+					} else if(scrollDom.scrollTop > $('#bTab')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#cTab')[0].offsetTop - 50) {
+
+						$('#bTab1').addClass('on');
+					} else if(scrollDom.scrollTop > $('#cTab')[0].offsetTop - 50 && scrollDom.scrollTop <= $('#dTab')[0].offsetTop - 50) {
+
+						$('#cTab1').addClass('on');
+					} else if(scrollDom.scrollTop > $('#dTab')[0].offsetTop - 50) {
+
+						$('#dTab1').addClass('on');
+					}*/
+
+				}
+			}
+
+			function boxScroll(tabBox) {
+				$('.ggg').scrollTo(tabBox, {
+					duration: 500,
+					offset: -272
+				});
+			}
+		</script>
+	</head>
+
+	<body class="ggg">
+		<div class="pay_tits" id="pay_tits" style="position: fixed; ">
+			<img src="/HRzhicha/public/images/img/reach_03.jpg" onclick="out()" />
+			<p>信息详情</p>
+		</div>
+		<div id="" class="contentt">
+
+			<div class="main_content main_content_com" style="" id="div">
+				<div class="topHeight" id="topHeight" style="background:#FAFAFA; margin-top: .9rem;height: 5rem;position: fixed;width: 6.9rem;z-index: 9999999999999999999999999999;">
+
+					<div class="com_main_listr " style="position: fixed;width: 6.9rem;z-index: 999;margin-top: .29rem;">
+						<ul>
+
+							<li>
+								<div class="com_main_img fl">
+									<img src="/HRzhicha/public/images/img/com_01.png" />
+								</div>
+								<div class="fl com_main_text">
+
+									<p class="com_main_title" style="line-height: .34rem;width: 4rem;">
+										深圳市大疆创新科技有限公司科技有限公司
+									</p>
+
+									<div class="com_main_txtx">
+										<div class="txtx1">
+											<p>法人</p>
+											<span>罗镇华</span>
+										</div>
+										<div class="txtx2">
+											<p>注册资本</p>
+											<span>3000亿</span>
+										</div>
+										<div class="txtx3">
+											<p>成立日期</p>
+											<span>2010-12-07</span>
+										</div>
+
+									</div>
+									<p class="com_url_add">
+										公司地址：www.dji.com
+									</p>
+
+								</div>
+
+								<div class="clear"></div>
+
+								<div class="com_right_btn">
+									存续
+								</div>
+
+							</li>
+							<div class="clear"></div>
+						</ul>
+					</div>
+
+					<div class="com_navbar_list  nav" id="" style="position: fixed;top: 3.8rem;z-index: 9999;width: 6.9rem;height: auto;">
+						<div class="navbar">
+							<ul id="fixtab" class="tab-wrap">
+								<li id="baseTab" onclick="boxScroll('#base');" class="tab on">
+									基本信息
+								</li>
+								<li id="partnersTab" onclick="boxScroll('#partners');" class="tab">
+									信用记录
+								</li>
+								<li id="employeesTab" onclick="boxScroll('#employees');" class="tab">
+									股权关系
+								</li>
+								<li id="changeRecordTab" onclick="boxScroll('#changeRecord');" class="tab">
+									招聘信息
+								</li>
+								<li id="aTab1" onclick="boxScroll('#aTab');" class="tab">
+									知识产权
+								</li>
+								<li id="bTab1" onclick="boxScroll('#bTab');" class="tab">
+									新闻资讯
+								</li>
+								<li id="cTab1" onclick="boxScroll('#cTab');" class="tab">
+									联系方式
+								</li>
+								<li id="dTab1" onclick="boxScroll('#dTab');" class="tab">
+									公司评价
+								</li>
+							</ul>
+							<div class="clear">
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="" style="margin-top: 4rem;">
+
+				</div>
+				<div style="">
+
+					<div class="main_com_tab_detail" id="main_com_tab_detail" style="position: absolute;top: 5.6rem;width: 6.9rem;">
+
+						<div class="fade_list">
+
+							<div class="fade_list_detail fade_detail_credit box" id="base">
+
+								<h3>基本信息</h3>
+								<div class="padding_table">
+
+									111
+								</div>
+
+							</div>
+
+							<div class="fade_list_detail fade_detail_credit box" id="partners">
+								<h2>信用记录</h2>
+
+								<h3>负面记录</h3>
+
+								<div class="credit_negative">
+
+									<ul class="showMoreNChildren1" pagesize="1">
+
+										2222
+
+									</ul>
+									<!--<div class="expand_more1 expand_more">
+									展开更多信息
+								</div>-->
+
+								</div>
+
+								<h3>正面记录</h3>
+
+								<div class="credit_negative">
+
+									<ul class="showMoreNChildren2" pagesize="1">
+
+										22211
+									</ul>
+
+								</div>
+
+							</div>
+
+							<div class="fade_list_detail fade_equity box" id="employees">
+
+								<div class="fade_equity_detail">
+									<h2>股权关系</h2>
+									<h3>股东信息</h3>
+									<div class="fade_equity_table">
+
+										33333
+									</div>
+
+								</div>
+								<div class="fade_equity_detail">
+									<!--<h2>股权关系</h2>-->
+									<h3>对外投资</h3>
+									<div class="fade_equity_table">
+
+										4444
+									</div>
+									<!--<div class="expand_more expand_more4">
+									展开更多信息
+								</div>-->
+								</div>
+								<div class="fade_equity_detail">
+									<!--<h2>股权关系</h2>-->
+									<h3>分支机构</h3>
+									<div class="fade_equity_table">
+
+										5555
+									</div>
+
+								</div>
+							</div>
+
+							<div class="fade_list_detail fade_equity box" id="changeRecord">
+								<div class="fade_equity_detail">
+									<!--<h2>招聘信息</h2>-->
+									<h3>招聘信息</h3>
+									<div class="fade_equity_table">
+
+										666
+									</div>
+									<div class="expand_more expand_more6">
+										展开更多信息
+									</div>
+								</div>
+							</div>
+
+							<div class="fade_list_detail fade_equity box" id="aTab">
+
+								<div class="fade_equity_detail">
+									<h2>知识产权</h2>
+									<h3>商标信息</h3>
+									<div class="fade_equity_table">
+
+										6667
+									</div>
+
+								</div>
+								<div class="fade_equity_detail ">
+									<!--<h2>专利信息</h2>-->
+									<h3>专利信息</h3>
+									<div class="fade_equity_table">
+
+										8888
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="fade_list_detail fade_equity box" id="bTab">
+								<div class="fade_equity_detail">
+									<!--<h2>新闻资讯</h2>-->
+									<h3>新闻资讯</h3>
+									<div class="fade_new">
+
+										<div class="fade_new_div">
+
+											<div class="new_txt_time">
+												<p>道通智能诉大疆侵权</p>
+												<span>2018-09-28</span>
+											</div>
+
+											<div class="new_text">
+												在8月30日，美国AutelRoboticsUSALLCofBothell,Washington依据《美国1930年关税法》第
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+
+							<div class="fade_list_detail fade_equity box" id="cTab">
+								<div class="fade_equity_detail">
+									<!--	<h2>联系方式</h2>-->
+									<h3>联系方式</h3>
+									<div class="fade_equity_table">
+
+										<table border="" cellspacing="0" cellpadding="0">
+											<colgroup>
+												<col width="30%">
+												<col width="70%">
+											</colgroup>
+											999999
+
+										</table>
+									</div>
+									<!--<div class="expand_more expand_more10">
+									展开更多信息-->
+									<!--<div class="fenye">
+										<p>共<span>2</span>页</p>
+										<p>当前第<span>1</span>页</p>
+										<div class="ttts">首页</div>
+										<div>下一页</div>
+										<div class="on">上一页</div>
+										<div>尾页</div>
+									</div>
+
+								</div>-->
+
+								</div>
+							</div>
+							<div class="fade_list_detail fade_equity box" id="dTab">
+								<div class="fade_equity_detail com_appraisal" style="padding-bottom: .34rem;">
+									<!--<h2>公司</h2>-->
+									<div class="com_appraisal_head">
+										<h3 class="fl">公司评价</h3>
+										<div class="com_appraisal_head_img fr">
+											<img src="/HRzhicha/public/images/img/dp1@2x.png" class="fl" />
+											<span class="fl">去点评</span>
+											<div class="clear"></div>
+										</div>
+										<div class="clear"></div>
+									</div>
+
+									<div class="fade_new">
+
+										<div class="fade_new_div ">
+
+											<div class="appraisal_txt">
+												<div class="fl appraisal_txt_round">
+													<img src="/HRzhicha/public/images/img/nan@2x.png" />
+												</div>
+												<div class="fl appraisal_txt_name">
+													匿名用户
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div class="appraisal_text">
+												公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+											</div>
+
+										</div>
+
+									</div>
+
+									<div class="fade_new">
+
+										<div class="fade_new_div ">
+
+											<div class="appraisal_txt">
+												<div class="fl appraisal_txt_round">
+													<img src="/HRzhicha/public/images/img/nv@2x.png" />
+												</div>
+												<div class="fl appraisal_txt_name">
+													匿名用户
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div class="appraisal_text">
+												公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+											</div>
+
+										</div>
+
+									</div>
+									<div class="fade_new">
+
+										<div class="fade_new_div ">
+
+											<div class="appraisal_txt">
+												<div class="fl appraisal_txt_round">
+													<img src="/HRzhicha/public/images/img/nv@2x.png" />
+												</div>
+												<div class="fl appraisal_txt_name">
+													匿名用户
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div class="appraisal_text">
+												公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+											</div>
+
+										</div>
+
+									</div>
+									<div class="fade_new">
+
+										<div class="fade_new_div ">
+
+											<div class="appraisal_txt">
+												<div class="fl appraisal_txt_round">
+													<img src="/HRzhicha/public/images/img/nv@2x.png" />
+												</div>
+												<div class="fl appraisal_txt_name">
+													匿名用户
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div class="appraisal_text">
+												公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+											</div>
+
+										</div>
+
+									</div>
+									<div class="fade_new">
+
+										<div class="fade_new_div ">
+
+											<div class="appraisal_txt">
+												<div class="fl appraisal_txt_round">
+													<img src="/HRzhicha/public/images/img/nv@2x.png" />
+												</div>
+												<div class="fl appraisal_txt_name">
+													匿名用户
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div class="appraisal_text">
+												公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+											</div>
+
+										</div>
+
+									</div>
+									<div class="fade_new">
+
+										<div class="fade_new_div ">
+
+											<div class="appraisal_txt">
+												<div class="fl appraisal_txt_round">
+													<img src="/HRzhicha/public/images/img/nv@2x.png" />
+												</div>
+												<div class="fl appraisal_txt_name">
+													匿名用户
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div class="appraisal_text">
+												公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+											</div>
+
+										</div>
+
+									</div>
+									<div class="fade_new">
+
+										<div class="fade_new_div ">
+
+											<div class="appraisal_txt">
+												<div class="fl appraisal_txt_round">
+													<img src="/HRzhicha/public/images/img/nv@2x.png" />
+												</div>
+												<div class="fl appraisal_txt_name">
+													匿名用户
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div class="appraisal_text">
+												公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+											</div>
+
+										</div>
+
+									</div>
+									<div class="fade_new">
+
+										<div class="fade_new_div ">
+
+											<div class="appraisal_txt">
+												<div class="fl appraisal_txt_round">
+													<img src="/HRzhicha/public/images/img/nv@2x.png" />
+												</div>
+												<div class="fl appraisal_txt_name">
+													匿名用户
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div class="appraisal_text">
+												公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+											</div>
+
+										</div>
+
+									</div>
+									<div class="fade_new">
+
+										<div class="fade_new_div ">
+
+											<div class="appraisal_txt">
+												<div class="fl appraisal_txt_round">
+													<img src="/HRzhicha/public/images/img/nv@2x.png" />
+												</div>
+												<div class="fl appraisal_txt_name">
+													匿名用户
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div class="appraisal_text">
+												公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+											</div>
+
+										</div>
+
+									</div>
+									<div class="fade_new">
+
+										<div class="fade_new_div ">
+
+											<div class="appraisal_txt">
+												<div class="fl appraisal_txt_round">
+													<img src="/HRzhicha/public/images/img/nv@2x.png" />
+												</div>
+												<div class="fl appraisal_txt_name">
+													匿名用户
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div class="appraisal_text">
+												公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+											</div>
+
+										</div>
+
+									</div>
+
+									<div class="expand_more expand_more9">
+										展开更多信息
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		</script>
+		<script type="text/javascript">
+			$('.fenye div').click(function() {
+				$(this).addClass('on').siblings().removeClass('on')
+			})
+		</script>
+
+		<script>
+		</script>
+
+		<script type="text/javascript">
+		</script>
+	</body>
+
+</html>

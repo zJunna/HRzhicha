@@ -1,0 +1,23 @@
+<!-- 申诉详情弹窗 -->
+<div class="xf_ht_jr_obu_width" style="width:600px;height:500px;">
+  <div class="xf_ht_damem_hy_box">
+    
+    <div class="xf_ht_damem_hy_bott xf_ht_damem_hy_bott6">
+    #{list appeal_informations}
+      <div class="xf_ht_damem_hy_bott_ta3" style="border-color: #FFFFFF;">
+       <span style="display: inline-block;width: 100px;text-align: right;">申诉人手机号：</span>
+       <input type="text" id="appeal_mobile" name="appeal_mobile" value="${_?.appeal_mobile}" style="margin-left: 30px;width: 280px;height: 30px;"/><br/><br/>
+        <span style="display: inline-block;width: 100px;text-align: right;">申诉详情：</span>
+        <textarea name="appeal_details" id="appeal_details"  style="width:400px;height:150px;margin-left: 30px;">${_?.appeal_details}</textarea>
+       <!-- <input type="text" id="appeal_details" name="appeal_details" value="${_?.appeal_details}" style="margin-left: 30px;width: 280px;height: 30px;"/> -->
+      </div>
+      #{/list}
+     <input class="xf_ht_tcc_button_ok" type="button" id="submitBack" value="确定" style="margin-left: 250px;margin-top: 30px;width: 80px;height: 30px;">
+    </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+$("#submitBack").click(function(){
+        parent.location.reload();	
+	})
+</script>

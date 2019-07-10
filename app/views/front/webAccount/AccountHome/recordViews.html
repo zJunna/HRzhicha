@@ -1,0 +1,28 @@
+<ul>
+			             #{list page?.page}
+			             <li>
+							<div class="last_fl">
+								<img src="/public/images/webimg/icon_21.jpg" />
+								<p>${_?.name}</p>
+								<span>${_?.id_number}</span>
+							</div>
+							<div class="last_fr">
+								<p>最后查询时间：${_?.time.format('yyyy-MM-dd')}</p>
+								<div>
+									<a href="#" mark1="${_?.name}" mark2="${_?.id_number}" name="freeSelect">免费再查</a>
+								</div>
+							</div>
+						</li>
+						   #{/list}
+					</ul>
+		#{page funMethod:"recordInfo",currPage:page.currPage,pageSize:page.pageSize,totalCount:page.totalCount,theme:2,style:5/}
+		
+<script type="text/javascript">
+
+	$("a[name='freeSelect']").click(function(){
+    var name=$(this).attr("mark1");
+    var id_number=$(this).attr("mark2");
+    location.href="@{front.webHome.HomeAction.search()}?name="+name+"&id_number="+id_number+"&mark=free";
+    });
+    
+</script>

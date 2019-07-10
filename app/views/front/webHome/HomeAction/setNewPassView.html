@@ -1,0 +1,85 @@
+<div class="land_box" style="margin-top: 2%;display: none;" id="setNewPassDiv">
+	<h5 style="margin-bottom: 100px;line-height: 45px;font-size: 48px">通过验证<br />
+	请设置新密码</h5>
+	<div class="land_lable">
+		<input type="password" id="newPassword" placeholder="请设置新密码（6-16位字母数字组合）" name="newPassword"  value="" />
+	</div>
+	<div class="land_lable">
+		<input type="password" id="newPasswordAgain" placeholder="请重复输入密码" name="newPasswordAgain" value="" />
+		<img src="/public/images/webimg/pass_10.jpg" class="show_word" id="passwordEyes"/>
+		<img src="/public/images/webimg/pass_07.jpg" class="cleahs hide" id="passwordClear"/>
+	</div>
+	<p class="gsaw" id="passwordErrorInfo"></p>
+	<div class="seng" style="margin-top: 100px;margin-bottom: 130px;" id="passwordSubmit">提交</div>
+</div>
+
+<script type="text/javascript">
+$("#newPasswordAgain").bind('input propertychange', function() {
+				var bal = $(this).val();
+				if(bal != '') {
+					$('#passwordClear').show()
+				} else {
+					$('#passwordClear').hide()
+				}
+			})
+			$('#passwordClear').click(function() {
+				$('#newPasswordAgain').val('')
+			})
+			$('#passwordEyes').click(function() {
+				if($(this).hasClass('a')) {
+					$(this).removeClass('a')
+					$('#newPasswordAgain').attr('type', 'password')
+					$(this).attr('src', '/public/images/webimg/pass_10.jpg')
+				} else {
+					$(this).addClass('a')
+					$('#newPasswordAgain').attr('type', 'text')
+					$(this).attr('src', '/public/images/webimg/pass_13.jpg')
+				}
+			})
+</script>
+<script type="text/javascript">
+$("#passwordSubmit").click(function(){
+		var password=$("#newPassword").val();
+	    var confirmPassword=$("#newPasswordAgain").val();
+	    
+		if (password == "") {
+		$("#passwordErrorInfo").html("请设置新密码");
+			return false;
+		}else if (password.length < 6){
+			$("#passwordErrorInfo").html("密码长度为6-16个字符");
+			return false;
+		}else if (password.length > 16){
+			$("#passwordErrorInfo").html("密码长度为6-16个字符");
+			return false;
+		}else if (!/^([^\s'‘’]{6,20})$/.test(password)){
+			$("#passwordErrorInfo").html("密码由6-16位字符组成(不含')");
+			return false;
+		}
+		if(confirmPassword == ""){
+			$("#passwordErrorInfo").html("请重复输入密码");
+		      return false;
+		 }else if(confirmPassword != password ){
+			 $("#passwordErrorInfo").html("两次输入的密码不一致");
+		      return false;
+		 }
+		 $.ajax({
+   	 		url:"@{front.webHome.RegisterAndLogin.savePasswords()}",
+   	 		type:"POST",
+			dataType:"JSON",
+			data:{
+				mobile:$("#forgetMobile").val(),
+				password:password
+			},
+			success:function(data){
+				if(data.code<0){
+					$("#passwordErrorInfo").html(data.msg);
+				}else{
+					$("#setNewPassDiv").css("display","none");
+					$("#allDiv").css("display","block");
+					$("#passSuccessDiv").css("display","block");
+				}
+			}
+   	 	});
+		 
+});
+</script>

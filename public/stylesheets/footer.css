@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+
+/* footer */
+.f_cooperate_partner{width:1198px;border:1px solid #e6e6e6;background-color:#fff;border-radius:4px;margin:0 auto 30px;overflow:hidden;}
+.f_cooperate_partner_title{height:50px;border-bottom:1px solid #e6e6e6}
+.f_cooperate_partner_txt{width:145px;height:35px;background:url(../images/f_new_icons02.png) -270px -1333px repeat-x;margin: 7px 0 0 30px;float:left}
+.f_cooperate_partner_list{width:100%; overflow:hidden;margin:20px 0 0 0; padding:0 0 10px 0; text-align:center;}
+.f_cooperate_partner_list a{}
+.f_cooperate_partner_list img{margin:0 15px; margin:0 13px;}
+.f_footer_con{width:100%;min-width:1200px;border-top:5px solid #323232;background-color:#333333;}
+.f_footer_up_con{width:100%;min-width:1200px;height:210px;border-bottom:1px solid #5a5a5a}
+.f_footer_up{width:1200px;height:210px;margin:0 auto;}
+.f_footer_menu_con{width:440px;height:145px;float:left;margin-top:29px;border-right:1px dotted #787878}
+.f_footer_menu_con dl{width:108px;height:145px;float:left;margin:0 10px 0 26px}
+.f_footer_menu_con dt{margin-bottom:13px;height:18px;line-height:16px}
+.f_footer_menu_con dt a{font-family: 'Microsoft YaHei';font-size:16px;color:#ffffff;padding-left:27px;}
+.f_footer_menu_con dd{height:24px;line-height:24px;padding-left:27px}
+.f_footer_menu_con dd a{font-family: 'Microsoft YaHei';font-size:12px;color:#999999}
+.f_footer_menu_con .f_footer_menu_about dt{}/*background:url(/public/images/footer_icons-01.png) left top no-repeat;*/
+.f_footer_menu_con .f_footer_menu_server dt{}/*background:url(/public/images/footer_icons-02.png) left  no-repeat;*/
+.f_footer_menu_con .f_footer_menu_help dt{}/*background:url(/public/images/footer_icons-03.png) left  no-repeat;*/
+.f_down_app_links_con{width:460px;height:145px;border-right:1px dotted #787878;float:left;margin-top:29px}
+.f_down_app_links_con .f_down_down_code{width:110px;height:145px;float:left;margin-left:105px}
+.f_down_app_links_con .f_down_down_code b{width:110px;height:110px;background:url(/public/images/footer_icons-04.png) left -2px no-repeat;display:block}
+.f_down_app_links_con .f_down_down_code span{font-family: 'Microsoft YaHei';width:110px;height:30px;line-height:30px;text-align:center;font-size:12px;color:#969696;display:block}
+.f_down_app_links_con .f_android_btn{float:left;width:110px;height:42px;;background:url(/public/images/footer_icons-05.png) left 0px no-repeat;margin:5px 0 0 20px;}
+.f_down_app_links_con .f_ios_btn{float:left;width:110px;height:42px;background:url(/public/images/footer_icons-06.png) left 0px no-repeat;margin:16px 0 0 20px;}
+.f_down_contact_con{width:290px;height:145px;float:left;margin-top:29px}
+.f_down_server_line{margin-left:35px}
+.f_down_server_line dt{font-family: 'Microsoft YaHei';font-size:14px;color:#969696;height:14px;line-height:14px;margin-top:10px;}
+.f_down_server_line dd{font-family: 'Microsoft YaHei';font-size:25px;height:25px;line-height:25px;color:#ff6700;font-weight:bold;margin-top:15px}
+.f_down_server_email{font-family: 'Microsoft YaHei';margin:16px 0 0 35px;font-size:14px;color:#969696}
+.f_down_server_others_end{height:32px;margin:15px 0 0 35px}
+.f_down_server_others_end .f_down_weibo{width:32px;height:32px;float:left;position:relative;}
+.f_down_server_others_end .f_down_weibo dt{width:32px;height:32px;background:url(/public/images/footer_icons-07.png) left -305px no-repeat;cursor:pointer;}
+.f_down_server_others_end .f_down_weibo dd{position:absolute;width:128px;height:130px;background:url(/public/images/footer_icons-07.png) left -30px no-repeat;left:-46px;top:33px;z-index:999;display:none;}
+.f_down_server_others_end .f_down_weibo dd span{display:block;width: 95px;height: 95px; background:url(/public/images/footer_icons-07.png) -330px -100px no-repeat;margin: 19px auto 0 16px;}
+.f_down_server_others_end .f_down_weibo dd em{display:block;font-size:12px;text-align:center;line-height:22px;}
+.f_down_server_others_end .f_down_weibo:hover dd{display:block}
+.f_down_server_others_end .f_down_weixin{width:32px;height:32px;float:left;position:relative;}
+.f_down_server_others_end .f_down_weixin dt{width:32px;height:32px;background:url(/public/images/footer_icons-08.png) left -345px no-repeat;cursor:pointer;}
+.f_down_server_others_end .f_down_weixin dd{position:absolute;width:128px;height:130px;background:url(/public/images/footer_icons-08.png) left -30px no-repeat;left:-46px;top:33px;z-index:999;display:none;}
+.f_down_server_others_end .f_down_weixin dd span{display:block;width:95px;height:95px;background:url(/public/images/footer_icons-08.png) -130px top no-repeat;margin: 19px auto 0 16px;}
+.f_down_server_others_end .f_down_weixin dd em{display:block;font-size:12px;text-align:center;line-height:14px;}
+.f_down_server_others_end .f_down_weixin:hover dd{display:block}
+.f_down_server_others_end .f_down_qq{width:32px;height:32px;float:left;background:url(/public/images/footer_icons-09.png) left -385px no-repeat;margin-left:20px}
+
+.f_down_server_others_end .f_down_items{float:left; position:relative; margin:0 15px 0 0;}
+.f_down_server_others_end .f_down_items .f_down_icon{width:32px; height:32px; display:block; overflow:hidden;}
+.f_down_server_others_end .f_down_items .tip{position:absolute; top:35px; width:200px; left:-85px; text-align:center; display:none;}
+.f_down_server_others_end .f_down_items .tip .arrow{width:0; height:0; display:block; margin:0 auto;
+	border-bottom:5px solid #969696;
+	border-top:none;
+	border-left:5px solid transparent;
+	border-right:5px solid transparent;
+}
+.f_down_server_others_end .f_down_items .tip p{padding:0 8px; margin:0; height:22px; line-height:22px; display:inline-block; overflow:hidden; background:#969696;color:#666 !important;
+	border-radius:13px;
+	-webkit-border-radius:13px;
+	-moz-border-radius:13px;
+	-o-border-radius:13px;
+}
+.f_down_server_others_end .f_down_items .f_down_icon{background-image:url(/public/images/footer_icons-07.png); background-repeat:no-repeat;}
+.f_down_server_others_end .f_down_items:hover .tip{display:block;}
+.f_down_server_others_end .f_down_items.weixin .f_down_icon{background-position:0 -345px; background-repeat: no-repeat;}
+
+.f_down_server_others_end .f_down_items.weixin .tip{width:128px;height:130px;background:url(/public/images/footer_icons-07.png) left -30px no-repeat;z-index:999; left:-48px;}
+.f_down_server_others_end .f_down_items.weixin .tip span.code{display:block;width: 95px;height: 95px; background:url(/public/images/footer_icons-07.png) -230px 0 no-repeat;margin: 19px auto 0 16px;}
+.f_down_server_others_end .f_down_items.server .f_down_icon{background-position:0 -385px;}
+
+.f_down_server_others_end .f_down_items.qq .f_down_icon{background-position:0 -427px;}
+
+
+
+
+.f_footer_down_con{width:1200px;height:153px;margin:0 auto;}
+.f_down_copyright{font-family: 'Microsoft YaHei';height:50px;line-height:50px;text-align:center;font-size:12px;color:#969696}
+.f_down_copyright em{font-family: 'Microsoft YaHei';font-style:normal;color:#c8c8c8;margin-left:25px}
+.f_down_safe{width:380px;height:45px; margin:0px auto;}
+.f_down_safe a{width:116px;height:45px;padding-left:30px}
+.f_down_safe .lasta{margin-right:0}
+.f_down_copyright a:hover {
+	color: white; /*鼠标经过的颜色变化*/
+}

@@ -1,0 +1,140 @@
+<div class="land_box" style="margin-top: 2%;display: none" id="yzmLoginDiv" >
+		<img src="/public/images/webimg/lo_1.png" class="logo" />
+		<h5 style="font-size: 34px">登录</h5>
+		<div class="land_lable">
+			<input type="text" placeholder="请输入手机号/邮箱" name="yzmLoginMobile" id="yzmLoginMobile" value="" />
+		</div>
+		<div class="land_lable">
+			<input type="text" placeholder="请输入图片验证码" name="yzmLoginPhoto" id="yzmLoginPhoto" value="" />
+			<img id="yzmLoginImg" src="/public/images/登录页面-02_r2_c2.gif" style="position:absolute;width: 8rem;height:3.7rem;border-radius:0.4rem;right: 0px;top: -1%" >
+	        <input type="hidden" name="yzmLoginRandomID" id="yzmLoginRandomID" /><br/>
+		</div>
+		<div class="land_lable">
+				<input type="text" placeholder="请输入手机验证码" id="yzmLoginMobileCode" value="" name="yzmLoginMobileCode"/>
+				<p class="sends" id="yzmLoginCodeTimes" onclick="yzmLoginsendCode();">发送验证码</p>
+		</div>
+		<div class="remsa">
+			<a class="fl" id="passwordLogin" style="cursor:pointer;">密码登录</a>				
+			<a href="#" class="fr" id="yzmLoginForgetPass">忘记密码？</a>
+		</div>
+		<p class="gsaw" id="yzmLoginErrorInfo" style="bottom: 315px"></p>
+		<div class="land_btner" id="yzmLoginButton">登录</div>
+		<p class="name_good1">
+			<a href="#" id="yzmGoRegister">注册</a>
+		</p>
+		<div class="qq">
+			<p>OR</p>
+			<div>
+				<img src="/public/images/webimg/pass_23.jpg"/>
+				<img src="/public/images/webimg/pass_26.jpg"/>
+				<img src="/public/images/webimg/pass_32.jpg"/>
+			</div>
+		</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	    var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+		$.post(setCode({}),function(data){
+			var arr=eval(data);
+			var img = arr.img;
+			$("#yzmLoginImg").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img);	
+			$("#yzmLoginRandomID").val(img);
+		});
+	});
+//改变验证码(登录)
+	$("#yzmLoginImg").click(function(){
+		var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+		$.post(setCode({}),function(data){
+		var arr=eval(data);
+		var img = arr.img;
+		$("#yzmLoginImg").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img)	
+		$("#yzmLoginRandomID").val(img);
+		});
+	});	
+</script>
+<script type="text/javascript">
+		var remain = 60;
+		function countDown2() {
+		  if (remain == 0) {
+		    remain = 60;
+		    $("#yzmLoginCodeTimes").html("点击发送");
+		    $("#yzmLoginCodeTimes").attr("onclick", "yzmLoginsendCode();");
+		    return;
+		  }
+		  $("#yzmLoginCodeTimes").html("" + remain-- + "秒后重发");
+		  setTimeout("countDown2()",1000);
+		}
+			
+		function yzmLoginsendCode(){
+			var mobile = $("#yzmLoginMobile").val();
+			$.ajax({
+			  url:"@{front.webHome.RegisterAndLogin.codeVerification()}",
+			  type:"POST",
+			  dataType:"JSON",
+			  data:{
+			  	  mobile:$("#yzmLoginMobile").val(),
+				  code:$("#yzmLoginPhoto").val(),
+				  randomID:$("#yzmLoginRandomID").val()
+			  },
+			  success:function(data){
+			       if(data.code<0){
+			        	 $("#yzmLoginErrorInfo").html(data.msg);
+			        	 	var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+							$.post(setCode({}),function(data){
+							var arr=eval(data);
+							var img = arr.img;
+							$("#yzmLoginImg").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img)	
+							$("#yzmLoginRandomID").val(img);
+							});
+			        	 return false;
+			       }else{
+				       	var verifyMobileUserByLogin = #{jsAction @verifyMobileUserByLogin(':mobile')/}
+				$.post(verifyMobileUserByLogin({mobile:mobile}),function(data){
+				    if(data.error.code < 0){
+					    $("#yzmLoginErrorInfo").html(data.error.msg);
+					    return false;
+				    }else{
+				    	$("#yzmLoginErrorInfo").html("");
+						countDown2();
+						$("#yzmLoginCodeTimes").attr("onclick", "void(0);");
+					}
+				},'json'); 
+			       }
+			  }
+		  });
+		    }
+  </script>
+  <script type="text/javascript">
+  	$("#yzmLoginButton").click(function(){
+		if($("#yzmLoginMobile").val() == ''){
+				$("#yzmLoginErrorInfo").html("请输入手机号码"); 
+				return false;
+	 	}
+		/* 
+			验证验证码
+			*/
+			var verifySmsCodeForReg = #{jsAction @verifySmsCodeForReg(':mobile',':smsCode')/}
+		  		$.post(verifySmsCodeForReg({mobile:$("#yzmLoginMobile").val().trim(),smsCode:$("#yzmLoginMobileCode").val()}),function(data){
+				   if(data.code<0){
+			    	  $("#yzmLoginErrorInfo").html(data.msg);
+				   }else{
+				   		$("#yzmLoginErrorInfo").html("");
+				   	 	$.ajax({
+				   	 		url:"@{front.webHome.RegisterAndLogin.loginMobileByCode()}",
+				   	 		type:"POST",
+			  				dataType:"JSON",
+			  				data:{
+			  					mobile:$("#yzmLoginMobile").val()
+			  				},
+			  				success:function(data){
+			  					if(data.code<0){
+			  						$("#yzmLoginErrorInfo").html(data.msg);
+			  					}else{
+			  						location.href="@{front.webHome.HomeAction.home()}";
+			  					}
+			  				}
+				   	 	});
+		  			 }
+	  		});		
+	});
+  </script>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>我的简历-X职查</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/layui/css/layui.css'}" />
+		<link href="@{'/public/stylesheets/webcss/public.css'}" rel="stylesheet" type="text/css" />
+		<link href="@{'/public/stylesheets/webcss/style.css'}" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="@{'/public/javascripts/common.js'}"></script>
+	    <script type="text/javascript" src="@{'/public/javascripts/ajaxfileupload.js'}"></script>
+	    <script type="text/javascript" src="@{'/public/javascripts/index.js'}"></script>
+	    <script type="text/javascript" src="@{'/public/javascripts/jquery.json-2.4.min.js'}"></script>
+	    <script type="text/javascript" src="@{'/public/stylesheets/layui/layui.js'}"></script>
+		<style>
+			form {
+				margin-top: 25px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+
+	<body class="bgf">
+		#{include "common/webHeader.html"/}
+		<div class="about_content">
+			<div class="fl">
+				<div class="page_menu">
+					<ul>
+						<li>
+							<a href="@{front.webHome.HomeAction.home()}">首页</a>
+						</li>
+						<li>/</li>
+						<li>
+							<a href="@{front.webAccount.AccountHome.home}">用户中心</a>
+						</li>
+						<li>/</li>
+						<li>
+							<a href="#">我的简历</a>
+						</li>
+					</ul>
+				</div>
+				<!-- 左边导航区域 -->
+	#{include "front/webAccount/AccountHome/homeLeft.control"/}
+			</div>
+			<div class="fr" style="padding: 0 0 38px 0;">
+				<div class="dress_tops">
+					<div class="fl_user_logo">
+						<img src="${information?.photo}" id="smallImag"/>
+						<input  style="width: 6.10rem;line-height: 2.5rem;opacity: 0;position: absolute;cursor: pointer;" 
+		             type="file"  name="imgFile" id="imgFile"  mark="smallImag" onchange="uploadImage(this);" />
+						<p>修改头像</p>
+					</div>
+					<div class="fr_user_log" style="width: 80%;">
+						<div class="forms ">
+							<div class="xys">
+								<p>${users?.reality_name}</p>
+								<div class="xys_fr">
+									<span>完整度100%</span>
+									<div class="xys_box">
+										<div></div>
+									</div>
+								</div>
+							</div>
+							<ul>
+								<li>#{if users?.userSex==1}男 #{/if}#{if users?.userSex==2}女 #{/if}</li>
+								<li>${users?.userAge}岁</li>
+								<li>${information?.city_name}</li>
+								#{if information?.race_name!=null}<li>${information?.race_name}</li>#{/if}
+						#{if information?.marital_name!=null}<li>${information?.marital_name}</li>#{/if}
+						#{if information?.height!=null}<li>${information?.height}cm</li>#{/if}
+						#{if information?.weight!=null}<li>${information?.weight}kg</li>#{/if}
+							</ul>
+							<div class="icon_phs">
+								<div>
+									<img src="/public/images/webimg/my_icons_03.jpg" />
+									<p>${users?.mobile}</p>
+								</div>
+								<div>
+									<img src="/public/images/webimg/my_icons_06.jpg" />
+									#{if users?.email==null}<p>请设置邮箱</p>#{/if}
+					#{else}<p>${users?.email}</p>#{/else}
+								</div>
+							</div>
+						</div>
+						<form class="layui-form hide" id="userInfo">
+							
+						</form>
+						<img src="/public/images/webimg/jjicon_03.jpg" class="bjs" id="${_?.sign}" mark="infoImg"/>
+					</div>
+				</div>
+				<div class="qzyx">
+					<h1>求职意向</h1>
+					<div class="forms ">
+						<ul style="padding-right: 100px;">
+							<li style="width: 50%;"><em>期望职位</em>#{if information?.position_id!=null}<span>${positionname}</span>#{/if}#{else}<span>未填写</span>#{/else}</li>
+							<li style="width: 50%;"><em>期望薪资</em>#{if information?.position_id!=null}<span>${information?.salary_expectation_name}</span>#{/if}#{else}<span>未填写</span>#{/else}</li>
+							<li style="width: 50%;"><em>工作地点</em>#{if information?.position_id!=null}<span>${cityname}</span>#{/if}#{else}<span>未填写</span>#{/else}</li>
+							<li style="width: 50%;"><em>目前状态</em>#{if information?.position_id!=null}<span>${information?.status_name}</span>#{/if}#{else}<span>未填写</span>#{/else}</li>
+						</ul>
+					</div>
+					<form action="" class="layui-form hide" method="post" id="Position" style="height:400px;">
+					</form>
+					#{if information?.position_id==null}
+					<div class="bj_add">
+						<p>添加</p>
+						<img src="/public/images/webimg/jjicon_07.jpg"  id="addPosition" />
+					</div>#{/if}
+					#{if information?.position_id!=null}<img src="/public/images/webimg/jjicon_03.jpg" class="bjs"  id="pos_bjs"/>#{/if}
+				</div>
+				<div class="qzyx">
+					<h1>教育背景</h1>
+					 #{if background?.size()>0}		
+		        #{list background}
+					<div class="schoolbg forms">
+						<p>${_?.name}</p>
+						<p>${_?.schoolTime} - ${_?.schoolEndTime}</p>
+						<p>${_?.education_name}</p>
+						<p style="margin-right: inherit;">${_?.specialty}</p>
+						<img src="/public/images/webimg/jjicon_03.jpg" class="bjss" mark="eduImg" style="margin-top: 20px;top: initial;"id="${_?.sign}"/>
+					</div>
+						#{/list}#{/if}
+						<form action="" class="layui-form hide" method="post" id="Educational">
+						
+					</form>
+					<div class="bj_add">
+						<p>添加</p>
+						<img src="/public/images/webimg/jjicon_07.jpg"  id="addBackground" />
+					</div>
+				</div>
+				<div class="qzyx">
+					<h1>工作经历</h1>
+					#{if experiences?.size()>0}		 
+		       #{list experiences}
+					<div class="forms ">
+						<p class="qzyx_box">
+							${_?.name}
+							<span>${_?.workTime} - ${_?.workEndTime}</span>
+						</p>
+						<span class="db_span">${_?.position_name}</span>
+						<div class="font_boxs">
+							 ${_?.work_content.raw()} 
+						</div>
+					</div>
+					<img src="/public/images/webimg/jjicon_03.jpg" class="bjss"   mark="workImg" style="margin-top: -100px;top: initial;"id="${_?.sign}"/>
+					#{/list}#{/if}
+					<form action="" class="layui-form hide" method="post" id="Work">
+						
+					</form>
+					<div class="bj_add">
+						<p>添加</p>
+						<img src="/public/images/webimg/jjicon_07.jpg" id="addWork"/>
+					</div>
+				</div>
+				<div class="qzyx">
+					<h1>自我评价</h1>
+					 #{if information?.self_appraise!=null} 
+					<div class="font_boxs forms">
+						${information?.self_appraise.raw()}
+					</div>
+					#{/if}
+					<form class="layui-form hide" id="Self_Appraise">
+						
+					</form>#{if information?.self_appraise==null}
+					<div class="bj_add">
+						<p>添加</p>
+						<img src="/public/images/webimg/jjicon_07.jpg"  id="addSelfAppraise"/>
+					</div>#{/if}#{else}
+					<img src="/public/images/webimg/jjicon_03.jpg" class="bjs"  id="${information?.sign}"  mark="selfImg"/>#{/else}
+				</div>
+				<p class="text_span_font">简历更新时间：${information?.time.format('yyyy-MM-dd')}</p>
+			</div>
+		</div>
+		#{include "common/webBottom.html"/}
+		<div class="fade_po land_files" style="display: none" id="realNameError">
+			<div class="land_filess">
+				<p>未实名认证，请先实名！</p>
+				<div class="btn_ground">
+					<a href="@{front.webAccount.AccountHome.webRealName()}" class="closs" >去实名</a>
+					<a href="#" class="closss" id="realNameCancel">取消</a>
+				</div>
+			</div>
+		</div>
+	    <div class="fade_po land_files" style="display: none" id="error">
+			<div class="land_filess">
+				<p id="errorMes"></p>
+				<div class="btn_ground">
+					<a class="closss" id="cancel" style="cursor: pointer;margin-left: 80px;">我知道了</a>
+				</div>
+			</div>
+		</div>
+		<!--[if !IE]><!-->
+		<!-- <script src="@{'/public/javascripts/webjs/jquery-2.1.1.min.js'}" type="text/javascript"></script> -->
+		
+		<script>
+			/*layui.use('form', function() {
+				 var form = layui.form;
+				 //监听提交
+				form.on('submit(formDemo)', function(data) {
+					layer.msg(JSON.stringify(data.field));
+					return false;
+				});
+				
+			
+			});*/ 
+			$("#cancel").click(function(){
+				$("#error").css("display","none");
+			});			
+		
+			layui.use('laydate', function() {
+				var laydate = layui.laydate;
+
+				laydate.render({
+					elem: '#test1', //指定元素
+					type: "month"
+				});
+				laydate.render({
+					elem: '#test2', //指定元素
+					type: "month"
+				});
+				laydate.render({
+					elem: '#test3',//指定元素
+					type: "month"
+				});
+				laydate.render({
+					elem: '#test4',//指定元素
+					type: "month"
+				});
+			});
+			$('.closss').click(function() {
+				$('.asx').hide()
+			})
+			$('.bjs').click(function() {
+			if($(this).attr("mark")=="infoImg"){
+				$.ajax({
+	  	  		url:"@{front.webAccount.AccountHome.userInfoViews()}",
+	  	  		type:"POST",
+	  	  		data:{
+	  	  		},
+	  	  		success:function(data){
+	  	  			if(data.code<0){
+	  	  			 $("#errorMes").html(data.msg);
+	  	  			 $("#error").css("display","block");
+	  	  			}else{
+	  	  			$("#userInfo").html(data);
+	  	  			}  	  			
+	  	  		}
+	  	  		});
+			}
+			if($(this).attr("mark")=="selfImg"){
+			$.ajax({
+	  	  		url:"@{front.webAccount.AccountHome.updataSelfAppraise()}",
+	  	  		type:"POST",
+	  	  		data:{
+	  	  		  sign:$(this).attr("id")
+	  	  		},
+	  	  		success:function(data){
+	  	  			if(data.code<0){
+	  	  			 $("#errorMes").html(data.msg);
+	  	  			 $("#error").css("display","block");
+	  	  			}else{
+	  	  			$("#Self_Appraise").html(data);
+	  	  			}  	  			
+	  	  		}
+	  	  		});
+			}
+			
+  	  			$(this).hide()
+				$(this).parents('.fr_user_log').children('form').show()
+				$(this).parents('.fr_user_log').children('.forms').hide()
+				
+				$(this).parents('.qzyx').children('form').show()
+				$(this).parents('.qzyx').children('.forms').hide()
+			})
+				$("#addSelfAppraise").click(function() { 
+					$.ajax({
+		  	  		url:"@{front.webAccount.AccountHome.selfAppraiseViews()}",
+		  	  		type:"POST",
+		  	  		data:{
+		  	  		},
+		  	  		success:function(data){
+		  	  			if(data.code<0){
+		  	  			 $("#errorMes").html(data.msg);
+	  	  			 	 $("#error").css("display","block");
+		  	  			}else{
+		  	  			$("#Self_Appraise").html(data);
+		  	  			}  	  			
+		  	  		}
+		  	  		});
+			
+  	  			$(this).hide()
+				$(this).parents('.fr_user_log').children('form').show()
+				$(this).parents('.fr_user_log').children('.forms').hide()
+				
+				$(this).parents('.qzyx').children('form').show()
+				$(this).parents('.qzyx').children('.forms').hide()
+			})
+			$("#addPosition").click(function() {
+				$.ajax({
+	  	  		url:"@{front.webAccount.AccountHome.positionViews()}",
+	  	  		type:"POST",
+	  	  		data:{
+	  	  		},
+	  	  		success:function(data){
+	  	  			if(data.code<0){
+	  	  			 $("#errorMes").html(data.msg);
+	  	  			 $("#error").css("display","block");
+	  	  			}else{
+	  	  			$("#Position").html(data);
+	  	  			}  	  			
+	  	  		}
+	  	  		});
+				$(this).parents('.qzyx').children('form').show()
+				$(this).parents('.qzyx').children('.forms').hide()
+			})
+			$("#pos_bjs").click(function() {
+			$.ajax({
+  	  		url:"@{front.webAccount.AccountHome.updataPosition()}",
+  	  		type:"POST",
+  	  		data:{
+  	  		},
+  	  		success:function(data){
+  	  			if(data.code<0){
+  	  			 $("#errorMes").html(data.msg);
+	  	  	     $("#error").css("display","block");
+  	  			}else{
+  	  			$("#Position").html(data);
+  	  			}  	  			
+  	  		}
+  	  		});
+				$(this).parents('.qzyx').children('form').show()
+				$(this).parents('.qzyx').children('.forms').hide()
+			})
+			$('.bjss').click(function() {
+			if($(this).attr("mark")=="eduImg"){
+			$.ajax({
+		  	  		url:"@{front.webAccount.AccountHome.updateEducational()}",
+		  	  		type:"POST",
+		  	  		data:{
+		  	  		sign:$(this).attr("id")
+		  	  		},
+		  	  		success:function(data){
+		  	  			if(data.code<0){
+		  	  			 $("#errorMes").html(data.msg);
+	  	  			 	 $("#error").css("display","block");
+		  	  			}else{
+		  	  			$("#Educational").html(data);
+		  	  			}  	  			
+		  	  		}
+	  	  		});
+			}
+			if($(this).attr("mark")=="workImg"){
+			$.ajax({
+		  	  		url:"@{front.webAccount.AccountHome.updataWork()}",
+		  	  		type:"POST",
+		  	  		data:{
+		  	  		sign:$(this).attr("id")
+		  	  		},
+		  	  		success:function(data){
+		  	  			if(data.code<0){
+		  	  			 $("#errorMes").html(data.msg);
+	  	  			 	 $("#error").css("display","block");
+		  	  			}else{
+		  	  			$("#Work").html(data);
+		  	  			}  	  			
+		  	  		}
+	  	  		});
+			}
+				
+				$(this).hide()
+				$(this).parents('.qzyx').children('form').show()
+				$(this).parents('.qzyx').children('.forms').hide()
+			})
+			$("#addBackground").click(function(){
+				$.ajax({
+			  	  		url:"@{front.webAccount.AccountHome.educationalViews()}",
+			  	  		type:"POST",
+			  	  		data:{
+			  	  		},
+			  	  		success:function(data){
+			  	  			if(data.code<0){
+			  	  			 $("#errorMes").html(data.msg);
+	  	  			 		 $("#error").css("display","block");
+			  	  			}else{
+			  	  			$("#Educational").html(data);
+			  	  			}  	  			
+			  	  		}
+		  	  		});
+			    $(this).hide()
+				$(this).parents('.qzyx').children('form').show()
+				$(this).parents('.qzyx').children('.forms').hide()
+			})
+			$("#addWork").click(function(){
+				$.ajax({
+			  	  		url:"@{front.webAccount.AccountHome.workViews()}",
+			  	  		type:"POST",
+			  	  		data:{
+			  	  		},
+			  	  		success:function(data){
+			  	  			if(data.code<0){
+			  	  			 $("#errorMes").html(data.msg);
+	  	  			 		 $("#error").css("display","block");
+			  	  			}else{
+			  	  			$("#Work").html(data);
+			  	  			}  	  			
+			  	  		}
+		  	  		});
+			    $(this).hide()
+				$(this).parents('.qzyx').children('form').show()
+				$(this).parents('.qzyx').children('.forms').hide()
+			})
+			 $('.btn_regs div').click(function() {
+				$(this).parents('.fr_user_log').children('.bjs').show()
+				$(this).parents('.fr_user_log').children('form').hide()
+				$(this).parents('.fr_user_log').children('.forms').show()
+
+				$(this).parents('.qzyx').children('.bjs').show()
+				$(this).parents('.qzyx').children('.bjss').show()
+				$(this).parents('.qzyx').children('form').hide()
+				$(this).parents('.qzyx').children('.forms').show()
+			}) 
+		</script>
+		<script type="text/javascript">
+		 $(function(){
+		       $("#li_8").addClass("on");
+		       $("#li_8").prevAll().removeClass("on");
+		       $("#li_8").nextAll().removeClass("on");
+		        $("#img_8").attr("src","/public/images/webimg/myresume.png");
+		       
+		       if(${users.authentication_status}==0){
+		       	$("#realNameError").css("display","block");
+		       }
+		 })
+		 function uploadImage(element) {
+		 var fileElementId=element.id;
+         var imageElementId=$(element).attr("mark");
+         var path = $("#" + fileElementId).val();
+		if(path == "") {
+			$("#errorMes").html("请选择上传的图片");
+	  	    $("#error").css("display","block");
+			return;
+		}
+		$.ajaxFileUpload({
+			url : http_path + "/FileUpload/uploadImageByResume",
+			secureuri : false,
+			fileElementId : fileElementId,
+			dataType : 'text',
+			success : function(data) {
+				data = $.evalJSON(data);
+				if (data.code < 0) {
+					$("#errorMes").html(data.msg);
+	  	    		$("#error").css("display","block");
+					return;
+				}
+				$("#" + imageElementId).attr("src", data.filename);
+			},
+			error : function(data, status, e) {
+				$("#errorMes").html("上传图片失败");
+	  	    	$("#error").css("display","block");
+	  	    	return;
+			}
+		})
+}
+		</script>
+	</body>
+
+</html>

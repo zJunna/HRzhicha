@@ -1,0 +1,39 @@
+<!--修改VIP时间弹窗 -->
+<div class="xf_ht_jr_obu_width">
+  <div class="xf_ht_damem_hy_box">
+    
+    <div class="xf_ht_damem_hy_bott xf_ht_damem_hy_bott6">
+      <div class="xf_ht_damem_hy_bott_ta3" style="margin-left:50px;border-color: #FFFFFF;">
+       <span style="display: inline-block;width: 100px;text-align: right;">姓名：</span>
+       <input type="text" id="username" name="username" value="${vip_users_info?.name}" disabled="disabled" style="margin-left: 30px;width: 280px;height: 30px;"/><br/><br/>
+       <span class="search_timesp" style="display: inline-block;width: 100px;text-align: right;">修改时间：</span>
+          <input name="vip_expirationTime" type="text" id="vip_expirationTime" class="search_time" onclick="laydate()" style="cursor: pointer;margin-left: 30px;width: 80px;height: 30px;" value="${vip_users_info?.vip_expirationTime?.format('yyyy-MM-dd')}" />
+      </div>
+     <input class="xf_ht_tcc_button_ok" type="button" id="sumbit" onClick="addVipTime()" value="确定" style="margin-left: 250px;margin-top: 30px;width: 80px;height: 30px;">
+     <input type="hidden" id="userId" name="userId" value="${sign}" />
+    </div>
+  
+    </div>
+  </div>
+  <script type="text/javascript">
+function addVipTime() {//修改VIP到期时间
+		var vip_expirationTime = $("#vip_expirationTime").val();
+		var userId = $("#userId").val();
+		$.ajax({
+			url : "@{supervisor.usersManager.VIPUser.addVipTime()}",
+			type : "POST",
+			data : {
+				"time" : vip_expirationTime,
+				"userId" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.error.msg);
+					return;
+				}
+				alert(data.error.msg);
+				parent.location.reload();
+			}
+		});
+	}
+</script>

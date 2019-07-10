@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>企业认证</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/refactorStyle.css" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+	</head>
+
+	<body class="gggs">
+		<div class="pay_tits " style="background: none;">
+			<img src="/HRzhicha/public/images/img/land_icon_03.png" id="back" />
+			<p style="color: #333;">企业认证</p>
+		</div>
+		<div class="renz_fild">
+			<div class="renz_box">
+				<img src="/HRzhicha/public/images/img/center_03.jpg" class="fl" />
+				<div class="fr">
+					<div class="tits">
+						<p>山东准安互联网科技有限公司</p>
+					</div>
+					<img src="/HRzhicha/public/images/img/qiye_34.png" class="icons" />
+					<!--  <img src="/HRzhicha/public/images/img/ings_03.png" class="icons"/>-->
+					<!-- <img src="/HRzhicha/public/images/img/ings_03.png" class="icons hide"/> -->
+					<span>统一社会信用代码</span>
+					<em>91370202MA3C71D4XM</em>
+					<img src="/HRzhicha/public/images/img/qiye_31.png" class="logos" />
+					<div class="chakan">
+						<a href="#">查看营业执照</a>
+					</div>
+				</div>
+			</div>
+			<div class="font_box">
+				<p>企业授权人信息</p>
+				<span>HR联系人：战三</span>
+				<span>联系电话：18654548785</span>
+			</div>
+			<p class="resg">如需修改企业认证信息，请联系客服。</p>
+		</div>
+		<div style="height: .98rem;"></div>
+
+		<div class="shuru" style="display: none">
+			<img style="width: 80%;height: 60%;margin-top: 35%;margin-left: 10.6%" src="${image.image_filename}" />
+		</div>
+	</body>
+	<script type="text/javascript">
+		$("#back").click(function() {
+			location.href = "@{front.account.AccountHome.home()}";
+		})
+		$(".chakan").click(function() {
+			$(".shuru").css("display", "block");
+		});
+		$(".shuru").click(function() {
+			$(".shuru").css("display", "none");
+		});
+	</script>
+
+</html>

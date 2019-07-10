@@ -1,0 +1,146 @@
+<script type="text/javascript"> 
+/*向下拉框中填入数据*/
+	$(function(){
+	var year=${year};
+	var month=${month};
+		var dd = new Date();
+		var currentYear = dd.getFullYear();
+		var size = currentYear - 2002 + 1;
+		//$("#years").append($("<option value="+999+">"+"全部"+"</option>"));
+		for( var i=0; i<size; i++ ){
+			var yearOld = currentYear-i;
+			if(year==yearOld){
+			$("#years").append($("<option value="+yearOld+" selected='selected'>"+yearOld+"年"+"</option>"));
+			}else{
+			$("#years").append($("<option value="+yearOld+">"+yearOld+"年"+"</option>"));
+			}
+		}
+		
+        var startMonth=12;//月份
+		
+		 for( var i=0; i<startMonth+1; i++ ){
+		 var monthOld = i+1;
+		 if(month==monthOld){
+				 if(monthOld<10){
+				 $("#month").append($("<option value=0"+monthOld+" selected='selected'>"+monthOld+"月"+"</option>"));
+				 }else{
+				  $("#month").append($("<option value="+monthOld+" selected='selected'>"+monthOld+"月"+"</option>"));
+				 }
+		 }else{
+			  if(monthOld<10){
+			 $("#month").append($("<option value=0"+monthOld+">"+monthOld+"月"+"</option>"));
+			 }else{
+			  $("#month").append($("<option value="+monthOld+">"+monthOld+"月"+"</option>"));
+			 }
+		 }
+		 
+		}
+	})
+	/* 获取选中的下拉框的值 */
+	function yearSelected(){
+		var valueSel = $("#years").find("option:selected").val();
+		var textSel = $("#years").find("option:selected").text();
+		console.info("选中的option的value值为："+valueSel);/* value值，如2017 */
+		console.info("选中的option的text值为："+textSel);/* text值，如2017年 */
+	}
+</script> 
+<!-- 修改详情弹窗 -->
+<div class="xf_ht_jr_obu_width">
+  <div class="xf_ht_damem_hy_box" style="margin-top:-5%;">
+    
+    <div class="xf_ht_damem_hy_bott xf_ht_damem_hy_bott6">
+    #{list negative_informations}
+      <div class="xf_ht_damem_hy_bott_ta3" style="margin-left:50px;border-color: #FFFFFF;">
+       <span style="display: inline-block;width: 100px;text-align: right;">姓名：</span>
+       <input type="text" id="name" name="name" value="${_?.name}" style="width: 280px;height: 30px;"/><br/><br/>
+        <span style="display: inline-block;width: 100px;text-align: right;">身份证号：</span>
+        <input type="text" id="idnumber" name="idnumber" value="${_?.id_number}" style="width: 280px;height: 30px;"/><br/><br/>
+      <span style="display: inline-block;width: 100px;text-align: right;">信息状态：</span>
+     <select id="status" name="status" class="xfht_t_j_td_1" style="width: 120px;background-color: #FFFFFF;">
+				    <option #{if _?.status==1} selected="selected"  #{/if} value="1">有效</option>
+				    <option #{if _?.status==2} selected="selected"  #{/if}  value="2">下线</option>
+		</select><br/><br/>
+		<span style="display: inline-block;width: 100px;text-align: right;">曝光分类：</span>
+       <select id="negative_type_id" name="negative_type_id" class="xfht_t_j_td_1" style="width: 120px;background-color: #FFFFFF;">
+               #{list information_types,as:"type"}
+				    <option  value="${type?.id}" #{if _?.negative_type_id==type?.id} selected="selected" #{/if} >${type?.name}</option>
+				  #{/list}
+		</select><br/><br/>
+       <span style="display: inline-block;width: 100px;text-align: right;">曝光信息：</span>
+        <textarea name="event_description" id="event_description"  style="width:400px;height:150px;">${_?.event_description}</textarea><br/><br/>
+        <span style="display: inline-block;width: 100px;text-align: right;">发生时间：</span>
+        <select id="years" onchange="yearSelected()"class="xfht_t_j_td_1" style="width: 120px;background-color: #FFFFFF;">
+		</select>
+		<select id="month" name="status" class="xfht_t_j_td_1" style="width: 120px;background-color: #FFFFFF;">
+		</select>
+		<br/><br/>
+       <span style="display: inline-block;width: 100px;text-align: right;">申诉内容：</span>
+        <textarea name="appeal_details" id="appeal_details"  style="width:400px;height:150px;">${appeal_information?.appeal_details}</textarea><br/><br/>
+        <span style="display: inline-block;width: 100px;text-align: right;">申诉结果：</span>
+        <textarea name="appeal_result" id="appeal_result"  style="width:400px;height:120px;">${appeal_information?.appeal_result}</textarea>
+      </div>
+      #{/list}
+     <input class="xf_ht_tcc_button_ok" type="button" id="sumbit" onClick="addAppeal()" value="确定" style="margin-left: 250px;margin-top: 30px;width: 80px;height: 30px;">
+        <input type="hidden" id="negativeId" name="negativeId" value="${negativesign}" />
+         <input type="hidden" id="appealId" name="appealId" value="${sign}" />
+    </div>
+    </div>
+  </div>
+<script type="text/javascript">
+function addAppeal() {//保存负面信息
+		var name = $("#name").val();
+		var idnumber = $("#idnumber").val();
+		var status = $("#status").val();
+		var negative_type_id = $("#negative_type_id").val();
+		var event_description = $("#event_description").val();
+		var valueSel = $("#years").find("option:selected").val();
+		var valueMonth = $("#month").find("option:selected").val();
+		var appeal_details=$("#appeal_details").val();
+		var appeal_result=$("#appeal_result").val();
+		var negativeId = $("#negativeId").val();
+		var appealId = $("#appealId").val();
+		if (name == "") {
+			alert("姓名不能为空");
+			return false;
+		}
+		if (idnumber == "") {
+			alert("身份证号不能为空");
+			return false;
+		}
+		if (negative_type_id == 1) {
+			alert("请选择曝光分类");
+			return false;
+		} 
+		if (event_description == "") {
+			alert("曝光信息不能为空");
+			return false;
+		}
+		var event_occur_time=valueSel+valueMonth;
+		$.ajax({
+			url : "@{supervisor.informationManager.AppealManager.addAppeal()}",
+			type : "POST",
+			data : {
+				"name" : name,
+				"idnumber" : idnumber,
+				"status" : status,
+				"negative_type_id" : negative_type_id,
+				"event_description" : event_description,
+				"event_occur_time" : event_occur_time,
+				"appeal_details" : appeal_details,
+				"appeal_result" : appeal_result,
+				"negativeId" : negativeId,
+				"appealId" : appealId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.error.msg);
+					return;
+				}
+				alert(data.error.msg);
+				parent.location.reload();
+			}
+		});
+	}
+
+
+</script>

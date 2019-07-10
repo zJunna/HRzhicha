@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>权责声明-X职查</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="@{'/HRzhicha/public/stylesheets/webcss/public.css'}" rel="stylesheet" type="text/css" />
+		<link href="@{'/HRzhicha/public/stylesheets/webcss/style.css'}" rel="stylesheet" type="text/css" />
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		
+	</head>
+
+	<body class="bgf">
+		#{include "common/webHeader.html"/}
+		<div class="about_content">
+			#{include "front/webHome/HomeAction/companyLeft.control"/}
+			<div class="fr">
+				<div class="qz_title">权责说明</div>
+				<div class="quanzed">
+					<p>尊敬的用户，本平台是一个职场信用信息的共享和查询平台，涉及到隐私权、名誉权等法律要点，在使用本站前敬请详细阅读本说明，从而了解各种用户、平台之间的权利和义务，以更好地使用本平台。</p>
+					<div>
+						<span>问题一、个人有没有权利把他人的失信行为的事实告知第三方？</span>
+						<em>答案：是的，但前提是本失信行为真实可靠。</em>
+					</div>
+					<div>
+						<span>问题二、把实事信息共享给第三方构不构成对隐私权的侵犯？</span>
+						<em>答案：不构成。</em>
+					</div>
+					<div>
+						<span>问题三、捏造实事，对他人的信誉造成了影响承担私募责任？</span>
+						<em>答案：不构成。</em>
+					</div>
+					<div>
+						<span>问题四、互联网平台对用户发布的信息负有什么责任？</span>
+						<em>答案：</em>
+					</div>
+				</div>
+			</div>
+		</div>
+		#{include "common/webBottom.html"/}
+		<!--[if !IE]><!-->
+		<script src="@{'/public/javascripts/js/jquery-2.1.1.min.js'}" type="text/javascript"></script>
+		<!-- <![endif]-->
+
+		<!--[if lte IE 8]>
+        <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <![endif]-->
+
+		<!--[if gt IE 8]>
+        <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <![endif]-->
+
+	</body>
+	<script type="text/javascript">
+		  $(document).ready(function(){
+		  	$("li[name='leftLi2']").addClass("on");
+		  });
+	</script>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>信息查询</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta name="renderer" content="webkit">
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/refactorStyle.css" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+	</head>
+
+	<body class="ggg">
+		<div class="pay_tits">
+			<img src="/HRzhicha/public/images/img/reach_03.jpg" onclick="out()" />
+			<p>信息查询</p>
+		</div>
+		<div class="top_header" style="margin: 0 auto;top: .9rem;">
+			<img src="/HRzhicha/public/images/img/index_03.png"" class="main_logo" />
+			<div class="main_seach">
+				<div class="fl">
+					<div class="line_none">
+						<input type="text" class="in1" placeholder="山东万德丰有限公司" name="name" id="name" value="" />
+					</div>
+					<img src="/HRzhicha/public/images/img/index_07.png" id="xImg" />
+				</div>
+				<div class="fr" id="search">
+					<a href="#">查询</a>
+				</div>
+			</div>
+			
+		</div>
+		<div class="main_content " style="margin-top: 2rem;" id="div">
+			<div class="infos_rea">
+				<p>未查询到此企业的信息 !</p>
+				<img src="/HRzhicha/public/images/img/index_11.jpg"/>
+			</div>
+			
+			<!--<div class="com_main_listr">
+
+				
+			</div>-->
+		</div>
+		<div style="height: .98rem;"></div>
+		<footer>
+			<div>
+			<a href="@{front.home.HomeAction.home()}">
+				<img src="/HRzhicha/public/images/img/index.jpg"/>
+				<p>查个人</p>
+			</a>
+			</div>
+			<div>
+			<a href="#">
+				<img src="/HRzhicha/public/images/img/index.jpg"/>
+				<p>查企业</p>
+			</a>
+			</div>
+			<div>
+			<a href="@{front.home.UploadInformation.upload()}">
+				<img src="/HRzhicha/public/images/img/center_1010.jpg"/>
+				<p>上传</p>
+			</a>
+			</div>
+			<div>
+			<a href="@{front.account.AccountHome.home()}">
+				<img src="/HRzhicha/public/images/img/qiye_313.jpg"/>
+				<p>我的</p>
+			</a>
+			</div>
+		</footer>
+		<div class="shuru" id="shuru">
+			<div class="shuru_box" id="shuru_box" >
+			<!-- 	<p>您的输入有误或不完善，请修改后再提交！</p> -->
+				<p id="P"></p>
+				<div style="color: #6e3cff" id="sure">（<span class="gs">3</span>S）</div>
+			</div>
+		</div>
+
+		<div class="shuru" id="searchSure">
+			<div class="shuru_box" id="searchSure_box" >
+				<p>操作将扣除1X币,确定要继续吗?</p>
+				<div style="color: #6e3cff" id="sure">
+					<div style="color: #6e3cff;width: 50%;height: 1.19rem;font-size: .28rem;background: #eeeeee;margin-top: .02rem;text-align: center;line-height: .8rem;float: left;" onclick="sure()">确定</div>
+					<div style="color: #6e3cff;width: 49.6%;height: 1.19rem;font-size: .28rem;background: #eeeeee;margin-top: .02rem;text-align: center;line-height: .8rem;float: left;color: #585858;border-left:1px solid rgba(0, 0, 0, 0.5);" onclick="cancel()">再看看</div>
+				</div>
+			</div>
+		</div>
+		<div class="pro_fade" style="display: none">
+					<div class="fade_mid" >
+						<p id="error">完成认证，即可查询</p>
+						<div class="img_cet">
+							<img src="/HRzhicha/HRzhicha/public/images/img/tost3.png" id="ejectImg"/>
+						</div>
+						<div class="btn_grow">
+							<div class="fl"><a href="@{front.home.HomeAction.home()}">返回首页</a></div>
+							<div class="fr"><a href="@{front.account.AccountHome.authenticationPage()}">去认证</a></div>
+						</div>
+					</div>
+		</div>
+		<script>
+			$(function(){
+				$('.pay_tits').removeClass('on')
+					$('.top_header').css({
+						'width': '100%',
+						'border-radius': 0,
+						'background': '#9875fe'
+					})
+					$('.pay_tits').css('position', 'fixed')
+					$('.top_header').css('position', 'fixed')
+					$('.main_seach .fl').css('width', '5.26rem')
+					$('.main_seach .fr').css('width', '1.44rem')
+					$('.main_logo').hide();
+					$('.uks').hide();
+					$('.top_header').css('padding', '.08rem')
+					$('.main_seach').css('width', '6.9rem')
+			})
+					
+			$('.main_seach img').click(function(){
+				$('.main_seach .fl').find('input').val('')
+			})
+		</script>
+		<script type="text/javascript">
+			function sure(){//扣费提示框确认
+					var name=$("#name").val();
+					var id_number=$("#id_number").val();
+					  $.ajax({
+						url:"@{front.home.HomeAction.balanceDiscrimination}",
+						type:"POST",
+						data:{
+						name:name,
+						id_number:id_number
+						},
+						success:function(data){
+							if(data.code<0){
+								$("#searchSure").hide();//扣费提示框隐藏
+								$("#shuru").show();//错误信息显现
+								$("#shuru_box").children("div").html("确定");
+		 						$("#P").html(data.msg);
+		 						return false;
+							}else{
+								   location.href="@{front.home.HomeAction.search()}?name="+name+"&id_number="+id_number+"&mark=charge";
+							}
+						}
+						}); 
+					
+				};
+                   $(function(){
+                     var name=$("#name").val();
+                     var id_number=$("#id_number").val();
+                     searchInfor(name,id_number);
+                  })  
+                  
+                 /* function searchInfor(name,id_number){
+                         $.ajax({
+                           url : "@{front.home.HomeAction.searchViews()}",
+                           type : "POST",
+                           data : {
+                           name : name,
+                           id_number : id_number
+                           },
+                             success : function(data) {
+						     $("#div").html(data);
+						  },
+							   error : function() {
+								$("#shuru").show();
+								$("#shuru_box").children("div").html("确定");
+					   			$("#P").html("对不起，出现错误");
+								return false;
+							}
+                         })
+                  }*/
+                  $("#submit").click(function(){
+                    var name=$("#name").val();
+                     var id_number=$("#id_number").val();
+                     var idcardReg = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+						if(name==""&&id_number!=""){
+							$("#shuru").show();
+							$("#shuru_box").children("div").html("确定");
+					   		$("#P").html("请输入查询人姓名");
+					   		return false;
+						}
+						if(name!=""&&id_number==""){
+							$("#shuru").show();
+							$("#shuru_box").children("div").html("确定");
+					   		$("#P").html("请输入查询人身份证号");
+					   		return false;
+						}
+						if(name==""&&id_number==""){
+							 location.href="@{front.home.HomeAction.search()}?name="+name+"&id_number="+id_number+"&mark=charge";
+							}
+						if(name!=""&&id_number!=""){
+							//身份证正则表达式
+							if(idcardReg.test(id_number)) {
+						      $.ajax({
+								url:"@{front.home.HomeAction.deductionJudgment}",
+								type:"POST",
+								data:{
+								name:name,
+								id_number:id_number
+								},
+								success:function(data){
+								     if(data.code==1){
+								     location.href="@{front.account.RegisterAndLogin.login()}";
+								     }
+									if(data.code==0){//免费查询,不弹窗
+										sure();
+										//location.href="@{front.home.HomeAction.search()}?name="+name+"&id_number="+id_number+"&mark=charge";
+									}
+									if(data.code==-1){//账户余额不足,余额不足弹窗
+										$("#shuru").show();//错误信息显现
+										$("#shuru_box").children("div").html("确定");
+				 						$("#P").html(data.msg);
+				 						return false;
+									}
+									if(data.code==-2){
+										$("#searchSure").show();
+									}
+									if(data.code==2){
+										/* location.href="@{front.account.AccountHome.authenticationPage()}"; */
+										$(".pro_fade").css("display","flex");
+									}
+								}
+								}); 
+							}else{
+							$("#shuru").show();
+							$("#shuru_box").children("div").html("确定");
+		   					$("#P").html("身份证格式有误");
+		   					return false;
+							}
+				}
+                  })
+                $("#xImg").click(function(){
+					$("#name").val("");
+					$("#id_number").val("");
+					});
+				$("#sure").click(function(){
+						$("#shuru").hide();
+				});
+				
+		function cancel(){
+			$("#searchSure").hide();//扣费提示框隐藏
+		};
+		function out(){
+			location.href="@{front.home.HomeAction.home()}";
+		}
+  </script>
+	</body>
+
+</html>

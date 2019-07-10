@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>X职查-职场信用共享查询平台</title>
+		<meta name="keywords" content="职场信用，职信，员工征信，职场征信查询">
+		<meta name="description" content="X职查是一个职场信用共享与查询平台。在X职查平台企业可以把员工的守信和失信行为在系统里共享，也可以在雇佣前或雇佣中查询员工的职场征信。X职查是一个专业的区块链职业信用查询平台。">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="@{'/public/stylesheets/webcss/public.css'}" rel="stylesheet" type="text/css" />
+		<link href="@{'/public/stylesheets/webcss/style.css'}" rel="stylesheet" type="text/css" />
+		<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/layui/css/layui.css'}" />
+		<script type="text/javascript" src="/public/javascripts/js/jquery.1.9.1.js"></script>
+		<style type="text/css">
+		.up{
+		    width: 1020px;
+    height: 600px;
+    border: 1px solid silver;
+    position: absolute;
+    display: none;
+    z-index: 9999;
+    background: #fff;
+		}
+		.mask{
+		    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.6;
+    top: 0;
+    filter: alpha(opacity=60);
+    left: 0;
+    display: none;
+    position: fixed;
+    z-index: 10;
+		}
+		</style>
+	</head>
+
+	<body>
+		<div class="banner">
+			<div class="banner_center">
+			<div class="banner_top">
+				<h1><img src="/public/images/webimg/pg_2.png"/></h1>
+				<ul>
+					<li><a href="@{front.webHome.HomeAction.home()}">首页</a></li>
+					<li><a href="@{front.webHome.HomeAction.search()}?name=&id_number=&mark=charge">查询信息</a></li>
+					<li><a href="@{front.webAccount.AccountHome.updata()}">上传信息</a></li>
+					<li><a href="@{front.webHome.HomeAction.quanze()}">权责说明</a></li>
+					<li><a href="@{front.webAccount.AccountHome.vipBuy()}">VIP服务</a></li>
+					<li><a href="@{front.webHome.HomeAction.aboutUs()}">关于我们</a></li>
+				</ul>
+				#{if user==null}
+				<div class="btn">
+					<a href="#" class="fl" id="login">登录</a>
+					<a href="#" class="fr" id="register">注册</a>
+				</div> 
+				#{/if}
+				#{if user!=null}
+				<div class="land_user">
+				<img src="${user.photo}" style="width: 40px;height: 40px;float: right;border-radius:50%;position: absolute;right: 20px;cursor: pointer;"  id="picture" />
+					<div class="esc_land" style="margin-top: -25px">
+						<img src="/public/images/webimg/xs_07.jpg"/>
+						<p id="loginBack">退出登录</p>
+					</div>
+				</div>
+				#{/if}
+			</div>
+			<h2>查询职场信用<br />就上X职查</h2>
+			#{if jobs.HomeData.dailyAdding!=0}
+			<ul class="nav">
+				<li>
+					<p>今日新增</p>
+					<span>${jobs.HomeData.dailyAdding}</span>
+				</li>
+				<li>
+					<p>今日查询</p>
+					<span>${jobs.HomeData.dailySelect}</span>
+				</li>
+				<li>
+					<p>总记录数</p>
+					<span>${jobs.HomeData.countSum}</span>
+				</li>
+				<li>
+					<p>加入HR人数</p>
+					<span>${jobs.HomeData.hrCount}</span>
+				</li>
+			</ul>
+			#{/if}
+			
+			#{if jobs.HomeData.dailyAdding==0}
+			<ul class="nav">
+				<li>
+					<p>今日新增</p>
+					<span>${homeDate.dailyAdding}</span>
+				</li>
+				<li>
+					<p>今日查询</p>
+					<span>${homeDate.dailySelect}</span>
+				</li>
+				<li>
+					<p>总记录数</p>
+					<span>${homeDate.countSum}</span>
+				</li>
+				<li>
+					<p>加入HR人数</p>
+					<span>${homeDate.hrCount}</span>
+				</li>
+			</ul>
+			#{/if}
+			<div class="search">
+				<div class="fl">
+					<div class="sea_inp">
+						<input type="text" class="first_input" placeholder="姓名" name="searchName" id="searchName" value="" />
+						<input type="text" class="last_input" placeholder="身份证号" name="searchIdNumber" id="searchIdNumber" value="" />
+						<input type="text" name="webError" id="webError" value="" style="margin-top: -64px;margin-left: 650px;width: 200px;color: red;font-size: 18px;" readonly="readonly"/>
+					</div>
+					<input type="submit" name="webSearch" id="webSearch" value="查询" />
+				</div>
+				<a href="@{front.webAccount.AccountHome.updata()}"><div class="fr">上传信息</div></a>
+			</div>
+		</div>
+		</div>
+		
+		<div class="pic_info">
+			<div class="new_seach">
+				<p>最新查询</p>
+				<div class="fr">
+					<div class="txtMarquee-left">
+			<div class="bd">
+				<ul class="infoList">
+				#{list newSelectInfor}
+					<li><span>${_?.name}</span>${_?.id_number}</li>
+				#{/list}
+				</ul>
+			</div>
+					</div>
+				</div>
+			</div>
+			<h4>产品介绍</h4>
+			<ul>
+				<li>
+					<img src="/public/images/webimg/icon_214.png"/>
+					<p>实名共享</p>
+					<span>X职查用户全部需要实名认证才能够使用发布、查询、申诉等操作。</span>
+				</li>
+				<li>
+					<img src="/public/images/webimg/icon_213.png"/>
+					<p>可申诉机制</p>
+					<span>申诉与系统惩罚机制确保信息真实性、容错性、客观性。</span>
+				</li>
+				<li>
+					<img src="/public/images/webimg/icon_211.png"/>
+					<p>区块链数据技术</p>
+					<span>X职查在信息存储与加密上使用区块链技术，让信息更安全、更权威。</span>
+				</li>
+				<li>
+					<img src="/public/images/webimg/icon_212.png"/>
+					<p>VIP服务</p>
+					<span>VIP尊享服务，让企业查询服务放心用。</span>
+				</li>
+			</ul>
+		</div>
+		<div class="new_updata">
+			<h2>最新上传</h2>
+			<ul>
+		#{if jobs.HomeData.dailyAdding!=0}
+			#{list jobs.WebHomeData.informations}
+				<li>
+					<div class="new_user">
+						#{if _?.inforSex==1}
+							<img src="/public/images/webimg/icon_21.jpg" class="info_logo"  name="img"/>
+						#{/if}
+						#{if  _?.inforSex==2}
+							<img src="/public/images/webimg/icon_21.jpg" class="info_logo"  name="img"/>
+						#{/if}	
+						<div>
+							<p>${_?.name}</p>
+							<span>${_?.id_number}</span>
+						</div>
+					</div>
+					<p class="font">${_?.event_description}</p>
+					<div class="box_dress">
+						<p>${_?.company_name}</p>
+						<p>${_?.city_name}</p>
+					</div>
+					
+					#{if _?.infor_status==1}
+					<div class="icon_text">${_?.negative_type_name}</div>
+					#{/if}
+					#{if _?.infor_status==2}
+					<div class="icon_text" style="background:#fae8df;color:#ff6633">${_?.negative_type_name}</div>
+					#{/if}
+				</li>
+			#{/list}
+		#{/if}
+		#{if jobs.HomeData.dailyAdding==0}
+			#{list informa}
+				<li>
+					<div class="new_user">
+						#{if _?.inforSex==1}
+							<img src="/public/images/webimg/icon_21.jpg" class="info_logo"  name="img"/>
+						#{/if}
+						#{if  _?.inforSex==2}
+							<img src="/public/images/webimg/icon_21.jpg" class="info_logo"  name="img"/>
+						#{/if}
+						<div>
+							<p>${_?.name}</p>
+							<span>${_?.id_number}</span>
+						</div>
+					</div>
+					<p class="font">${_?.event_description}</p>
+					<div class="box_dress">
+						<p>${_?.company_name}</p>
+						<p>${_?.city_name}</p>
+					</div>
+					
+					#{if _?.infor_status==1}
+					<div class="icon_text">${_?.negative_type_name}</div>
+					#{/if}
+					#{if _?.infor_status==2}
+					<div class="icon_text" style="background:#fae8df;color:#ff6633">${_?.negative_type_name}</div>
+					#{/if}
+				</li>
+			#{/list}
+		#{/if}
+			</ul>
+		</div>
+		<div class="next_gg">
+			<h2>平台公告</h2>
+			 <ul>
+			 #{list items:news,as:'news'}
+			 	<li name="newname" id="${news?.id}">
+			 		<span>新闻</span>
+			 		<p>${news.title}</p>
+			 		<!-- <em>信用是市场经济的基石。去年5月中共中央办公厅、国务院办公厅印发的《关于深入推进审批服务便民化的指导意见》提出，加快建立以信用承诺、信息公示为特点的......</em> -->
+			         <em>${news?.content}</em>   
+			    </li>
+			 	#{/list}
+			 </ul>
+			 <div style="clear: both;"></div>
+			 <a href="@{front.webHome.HomeAction.officialAnnounce()}" class="bot_link">NEXT></a>
+		</div>
+		<div class="Consultation">
+			<h2>行业新闻资讯</h2>
+			<div class="consu_box">
+				<div class="fl" id="news">
+					<a href="####" onclick="showView('/data/xuanchuanpian.mp4')"><img src="/public/images/webimg/pic_new.png" />
+					<img src="/public/images/webimg/pic_logo.png" style="position: absolute;margin-top: -228px;margin-left: 185px;width: 36%;height: 21%;" id="newLogo"/>
+						<img src="/public/images/webimg/pic_bg.png" style="position: absolute;margin-top: -248px;margin-left: 234px;width: 19%;height: 29%;" id="newStart"/>
+						</a>
+					<p style="display: none" id="propagandaLang">X职查企业宣传片</p>
+				</div>
+				<div class="fr">
+					<ul>
+					#{list contentNews}
+						<li><a href="@{front.webHome.HomeAction.newsInfoDetails(_?.id)}">
+							<p>${_?.title}</p>
+							<p>${_?.time?.format('yyyy-MM-dd')}</p>
+						</a></li>
+						#{/list}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="Partner">
+			<h2>合作伙伴</h2>
+			<ul>
+				<li><img src="/public/images/webimg/icon_34.jpg"/></li>
+				<li><img src="/public/images/webimg/icon_37.jpg"/></li>
+				<li><img src="/public/images/webimg/icon_28.jpg"/></li>
+				<li><img src="/public/images/webimg/icon_31.jpg"/></li>
+				<li><img src="/public/images/webimg/icon_40.jpg"/></li>
+			</ul>
+		</div>
+		#{include "common/webBottom.html"/}
+	<div style="height: 100%;width: 100%;position: fixed;top: 0;left: 0;z-index: 210;display: none" id="allDiv">	
+		<div style="background:#000;height: 100%;width: 100%;opacity: .4;position: absolute;top: 0;left: 0" id="shadowDiv"></div>
+		  <!--注册 -->
+		  #{include "front/webHome/HomeAction/registerView.html"/}
+		  <!--登录 -->
+		  #{include "front/webHome/HomeAction/loginView.html"/} 
+		  <!--验证码登录 -->
+		  #{include "front/webHome/HomeAction/yzmLoginView.html"/}
+	  	  <!--忘记密码  -->
+		  #{include "front/webHome/HomeAction/forgetPassView.html"/}
+	  	  <!--重新设置密码  -->
+		  #{include "front/webHome/HomeAction/setNewPassView.html"/}
+		  <!--设置密码成功  -->
+		  #{include "front/webHome/HomeAction/passSuccessView.html"/}
+	</div>	
+	<div class="fade_po asx" style="display: none" id="deductionError">
+			<div class="fade_po_nbox">
+				<h2>此次查看将消耗1X币，是否查看？</h2>
+				<p id="freeTimes">剩余免费查询：次</p>
+				<p id="balanceX">您的X币余额：X币</p>
+				<div class="btn_ground">
+					<a href="#" class="closs" id="searchInfor" onclick="sure()">查看</a>
+					<a href="#" class="closss" id="searchCancel">取消</a>
+				</div>
+				<div class="readys_item">
+					<img src="/public/images/webimg/readys_03.jpg"/>
+					<span>我已得到信息主体的授权</span>
+				</div>
+			</div>
+	</div>
+	<div class="fade_po asx" style="display: none" id="noXError">
+			<div class="fade_po_nbox">
+				<h2>此次查看将消耗1X币，您的X币不足？</h2>
+				<p>剩余免费查询：0次</p>
+				<p>您的X币余额：0X币</p>
+				<div class="btn_ground">
+					<a href="#" class="closs">购买vip</a>
+					<a href="#" class="closss" id="buyVipCancel">取消</a>
+				</div>
+				<div class="readys_item">
+					<img src="/public/images/webimg/readys_03.jpg"/>
+					<span>我已得到信息主体的授权</span>
+				</div>
+			</div>
+	</div>
+	<div class="fade_po land_files" style="display: none" id="loginError">
+			<div class="land_filess">
+				<p>未登录，请先登录！</p>
+				<div class="btn_ground">
+					<a href="#" class="closs" id="willLogin">登录</a>
+					<a href="#" class="closss" id="willCancel">取消</a>
+				</div>
+			</div>
+	</div>
+		<div class="fade_po land_files" style="display: none" id="realNameError">
+			<div class="land_filess">
+				<p>未实名认证，请先实名！</p>
+				<div class="btn_ground">
+					<a href="@{front.webAccount.AccountHome.webRealName()}" class="closs" >去实名</a>
+					<a href="#" class="closss" id="realNameCancel">取消</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="fade_po land_files" style="display: none" id="proError">
+			<div class="land_filess">
+				<p>系统错误,请联系客服处理！</p>
+				<div class="btn_ground">
+					<a href="@{front.webHome.HomeAction.home()}" class="closs" >回首页</a>
+					<a href="#" class="closss" id="proErrorCancel">取消</a>
+				</div>
+			</div>
+		</div>
+		<div class="sidebar">
+			<ul>
+				<li><a href="http://wpa.qq.com/msgrd?v=3&uin=2560969896&site=qq&menu=yes" target="_blank">
+					<img src="/public/images/webimg/actnavbar_101.jpg" class="icc"/>
+					<p>在线客服</p>
+				</a></li>
+				<li><a href="@{app.AppController.download()}">
+					<img src="/public/images/webimg/actnavbar_103.jpg" class="icc"/>
+					<p>APP下载</p>
+					<div>
+						<em>安卓系统下载</em>
+						<img src="/public/images/yingyongbao.png" style="width:89px;height:89px;"/>
+					<!-- 	<em style="width: 112px;border-top: 1px dashed #e4e4e4;margin: 0 auto;margin-top: 16px;padding-top: 16px;margin-bottom: 12px;">苹果系统下载</em>
+						<img src="/public/images/webimg/cxx_06.jpg"/> -->
+					</div>
+				</a></li>
+				<li><a href="#">
+					<img src="/public/images/webimg/actnavbar_10.jpg" class="icc"/>
+					<p>微信服务</p>
+					<div>
+						<em>关注微信公众号</em>
+						<img src="/public/images/zhichaWX.jpg" style="width:89px;height:89px;"/>
+					</div>
+				</a></li>
+			</ul>
+			<div class="downs_box">
+				<img src="/public/images/webimg/actnavbar_14.jpg"/>
+				<p>TOP</p>
+			</div>
+		</div>
+		<script type="text/javascript">
+	//两种方式实现div居中：1：用css方式：top：50%，left：50%； margin-let:-divwidth/2 margin-top:divheight/2; 2:用js实现：获取窗口的高宽，top=（屏幕高-div高）/2,为了随时的监听浏览器的改变，需要用到浏览器事件
+	function getScrollTop() {
+		var scrollTop = 0;
+		if (document.documentElement && document.documentElement.scrollTop) {
+			scrollTop = document.documentElement.scrollTop;
+		} else if (document.body) {
+			scrollTop = document.body.scrollTop;
+		}
+		return scrollTop;
+	}
+
+	function showView(PlaySrc) {
+		document.getElementById("open").onclick();
+		//设置数据源，播放器开始播放
+		var mediaImageObj = document.getElementById("mediaImage");
+		mediaImageObj.src = PlaySrc;
+		mediaImageObj.play();
+
+		return false;
+	}
+
+	window.onload = function() {
+		function $(id) {
+			return document.getElementById(id);
+		}
+		//将div的位置封装在一个函数内部，直接调用
+
+		function myDiv() {
+			var mTop = getScrollTop();
+
+			var windowsHeight = window.innerHeight;
+			var addHeight = (windowsHeight - 540) / 2;
+
+			var windowsHeight = window.innerWidth;
+			var addWidth = (windowsHeight - 1020) / 2;
+
+			mTop = mTop + addHeight;
+			var mleft = (document.documentElement.clientWidth - 400) / 2;
+			$("up").style.top = mTop + "px";
+			$("up").style.left = addWidth + "px";
+		}
+
+		$("open").onclick = function() {
+			myDiv();
+			$("up").style.display = "block";
+			mask.style.display = "block";
+
+		}
+		$("close").onclick = function() {
+			$("up").style.display = "none";
+			mask.style.display = "none"
+			//播放器停止播放
+			var mediaImageObj = document.getElementById("mediaImage");
+			mediaImageObj.pause();
+
+		}
+		//创建一个DIV
+		var mask = document.createElement("div");
+		// //给这个DIV一个id和class属性
+		// mask.id="mask";
+		mask.className = "mask";
+		mask.style.width = document.documentElement.clientWidth;
+		mask.style.height = document.documentElement.clientHeight;
+		//将这个DIV放置到body里面--》一般是：父节点.appendChild(子节点)
+		//这里注意的是absolute，要设置top和left；
+		document.body.appendChild(mask);
+
+		//屏幕改变大小的时候，div不会自动的改变，需要添加窗口改变事件
+		window.onresize = function() {
+			myDiv();
+			mask.style.width = document.documentElement.clientWidth;
+			mask.style.height = document.documentElement.clientHeight;
+		}
+	}
+</script> <span id="open"></span>
+
+<div class="up" id="up">
+
+	<div style="float: right; padding-right: 10px;">
+		<img id='close' src="public/images/close.png" onclick="divClose()" />
+	</div>
+	<section id="player">
+		<video id="mediaImage" width="1020" controls poster="">
+			<source id="mediaMp4" src="" />
+
+		</video>
+	</section>
+</div>
+<!-- 视频展示结束 -->
+		<!--[if !IE]><!-->
+		<script src="@{'/public/javascripts/js/jquery-2.1.1.min.js'}" type="text/javascript"></script>
+		<script type="text/javascript" src="/public/javascripts/js/jquery.SuperSlide.2.1.js" ></script>
+		<script type="text/javascript" src="/public/javascripts/webjs/js.js" ></script>
+		<script type="text/javascript">
+			jQuery(".txtMarquee-left").slide({mainCell:".bd ul",autoPlay:true,effect:"leftMarquee",vis:1,interTime:15});
+		</script>
+
+	</body>	
+		<script type="text/javascript">
+		     $(function(){
+		       var id="${conNews?.id}";
+		         $("#"+id).addClass('on').siblings().removeClass('on');
+		     })
+		      $("li[name='newname']").each(function(){
+					$(this).click(function(){
+					var id=$(this).attr("id");
+					location.href="@{front.webHome.HomeAction.mediaCoverage()}?typeid="+id;
+					})
+			});
+		</script>
+		<script type="text/javascript">
+		$("#news").mouseenter(function(){
+			$("#propagandaLang").css("display","block");
+			$("#newLogo").css("margin-top","-257px");
+			$("#newStart").css({
+				"width":"16%",
+				"height":"24%",
+				"margin-top":"-267px",
+				"margin-left": "243px"
+			});
+			
+		});
+		$("#news").mouseleave(function(){
+			$("#propagandaLang").css("display","none");
+			$("#newLogo").css("margin-top","-228px");
+			$("#newStart").css({
+				"width":"19%",
+				"height":"29%",
+				"margin-top":"-248px",
+				"margin-left": "234px"
+			});
+		});
+		$('.land_box .x_xy div').click(function(){
+			if($(this).hasClass('a')) {
+				$(this).removeClass('a')
+				$(this).children().hide()
+			} else {
+				$(this).addClass('a')
+				$(this).children().show()
+			}
+		})
+		$("#shadowDiv").click(function(){
+			$("#allDiv").css("display","none");
+		});
+		$("#login").click(function(){
+			$("#loginDiv").css("display","block");
+			$("#registerDiv").css("display","none");
+			$("#allDiv").css("display","block");
+			$("#yzmLoginDiv").css("display","none");
+			$("#forgetPasswordDiv").css("display","none");
+			$("#setNewPassDiv").css("display","none");
+			$("#passSuccessDiv").css("display","none");
+		});
+		$("#register").click(function(){
+			$("#registerDiv").css("display","block");
+			$("#loginDiv").css("display","none");
+			$("#allDiv").css("display","block");
+			$("#yzmLoginDiv").css("display","none");
+			$("#forgetPasswordDiv").css("display","none");
+			$("#setNewPassDiv").css("display","none");
+			$("#passSuccessDiv").css("display","none");
+		});
+		$("#goLogin").click(function(){
+			$("#loginDiv").css("display","block");
+			$("#registerDiv").css("display","none");
+			$("#allDiv").css("display","block");
+		});
+		$("#willLogin").click(function(){
+			$("#loginError").css("display","none");
+			$("#loginDiv").css("display","block");
+			$("#registerDiv").css("display","none");
+			$("#allDiv").css("display","block");
+		});
+		$("#willCancel").click(function(){
+			$("#loginError").css("display","none");
+		});
+		$("#searchCancel").click(function(){
+			$("#deductionError").css("display","none");
+		});
+		$("#goRegister").click(function(){
+			$("#registerDiv").css("display","block");
+			$("#loginDiv").css("display","none");
+			$("#allDiv").css("display","block");
+			$("#yzmLoginDiv").css("display","none");
+			$("#forgetPasswordDiv").css("display","none");
+		});
+		$("#yzmLogin").click(function(){
+			$("#loginDiv").css("display","none");
+			$("#yzmLoginDiv").css("display","block");
+			$("#allDiv").css("display","block");
+			$("#registerDiv").css("display","none");
+		});
+		$("#passwordLogin").click(function(){
+			$("#loginDiv").css("display","block");
+			$("#yzmLoginDiv").css("display","none");
+			$("#allDiv").css("display","block");
+		});
+		$("#yzmLoginForgetPass").click(function(){
+			$("#yzmLoginDiv").css("display","none");
+			$("#forgetPasswordDiv").css("display","block");
+			$("#allDiv").css("display","block");
+		});
+		$("#loginForgetPass").click(function(){
+			$("#loginDiv").css("display","none");
+			$("#forgetPasswordDiv").css("display","block");
+			$("#allDiv").css("display","block");
+		});
+		$("#comeLogin").click(function(){
+			$("#passSuccessDiv").css("display","none");
+			$("#loginDiv").css("display","block");
+			$("#allDiv").css("display","block");
+		});
+		$("#toHome").click(function(){
+			$("#passSuccessDiv").css("display","none");
+			$("#allDiv").css("display","none");
+		});
+		$("#buyVipCancel").click(function(){
+			$("#noXError").css("display","none");
+		});
+		$("#realNameCancel").click(function(){
+			$("#realNameError").css("display","none");
+		});
+		$("#proErrorCancel").click(function(){
+			$("#proError").css("display","none");
+		});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var a=GetRequest();
+    		var order_id = a['sign'];
+    		if(order_id=="login"){
+    			$("#loginDiv").css("display","block");
+				$("#allDiv").css("display","block");
+    		}else if(order_id=="register"){
+    		$("#registerDiv").css("display","block");
+    		$("#allDiv").css("display","block");
+    		}else if(order_id=="loginPass"){
+    		$("#forgetPasswordDiv").css("display","block");
+    		$("#allDiv").css("display","block");
+    		}		
+			});
+		</script>
+		
+		<script language="javascript">  
+    function GetRequest() {  
+       var url = location.search; //获取url中"?"符后的字串  
+       var theRequest = new Object();  
+       if (url.indexOf("?") != -1) {  
+          var str = url.substr(1);  
+          strs = str.split("&");  
+          for(var i = 0; i < strs.length; i ++) {  
+             theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+          }  
+       }  
+       return theRequest;  
+    }  
+    </script> 
+		<script type="text/javascript">
+		$("#webSearch").click(function(){
+		var name=$("#searchName").val();
+		var id_number=$("#searchIdNumber").val();
+		var idcardReg = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+		if(name==""&&id_number!=""){
+		   		$("#webError").val("请输入查询人姓名");
+		   		return false;
+		}
+		if(name!=""&&id_number==""){
+		   		$("#webError").val("请输入查询人身份证号");
+		   		return false;
+		}
+		if(name!=""&&id_number!=""){
+			//身份证正则表达式
+			if(idcardReg.test(id_number)) {
+				$("#webError").val("");
+		    		$.ajax({
+				url:"@{front.webHome.HomeAction.deductionJudgment}",
+				type:"POST",
+				data:{
+				name:name,
+				id_number:id_number
+				},
+				success:function(data){
+				     if(data.code==1){//未登录弹窗
+				     	$("#loginError").css("display","block");
+				     }
+				     if(data.code==2){//登陆未实名
+						$("#realNameError").css("display","block");
+						return false;
+					 }
+					 if(data.code==-1){//账户余额不足,余额不足弹窗
+						$("#noXError").css("display","block");
+ 						return false;
+					}
+					if(data.code==0){//免费查询(vip免费次数)
+					 getFreeTimes();
+					 getBalance();
+					$("#deductionError").css("display","block");
+					return false;
+					}
+					
+					if(data.code==-2){//扣费查询
+						 getFreeTimes();
+						 getBalance();
+						$("#deductionError").css("display","block");
+						return false;
+					}
+					if(data.code==3){//之前查询过该信息
+						sure();
+					}
+				}
+				});
+			}else{
+		   		$("#webError").val("身份证格式有误");
+		   		return false;
+			}
+		}
+		if(name==""&&id_number==""){
+			location.href="@{front.webHome.HomeAction.search()}?name="+name+"&id_number="+id_number+"&mark=charge";
+		}
+});
+
+function sure(){//扣费提示框确认
+				var name=$("#searchName").val();
+				var id_number=$("#searchIdNumber").val();
+				  $.ajax({
+					url:"@{front.webHome.HomeAction.balanceDiscrimination}",
+					type:"POST",
+					data:{
+					name:name,
+					id_number:id_number
+					},
+					success:function(data){
+						if(data.code<0){
+							alert("发生错误");
+	 						return false;
+						}else{
+							location.href="@{front.webHome.HomeAction.search()}?name="+name+"&id_number="+id_number+"&mark=charge";
+						}
+					}
+					}); 
+					
+			};
+		function getFreeTimes(){
+			$.ajax({
+					url:"@{front.webHome.HomeAction.selectFreeTimes}",
+					type:"POST",
+					data:{
+					},
+					success:function(data){
+						$("#freeTimes").html("剩余免费查询："+data+"次");
+					}
+					}); 
+		}
+		function getBalance(){
+			$.ajax({
+					url:"@{front.webHome.HomeAction.selectBalance}",
+					type:"POST",
+					data:{
+					},
+					success:function(data){
+						$("#balanceX").html("您的X币余额："+data+"X币");
+					}
+					}); 
+		}
+		$("#picture").click(function(){
+			location.href="@{front.webAccount.AccountHome.home()}";
+		});
+		$("#loginBack").click(function(){
+			location.href="@{front.webHome.HomeAction.exitLogin()}";
+			
+		});
+		</script>
+</html>

@@ -1,0 +1,131 @@
+<script type="text/javascript" src="@{'/public/javascripts/webjs/js.js'}"></script>
+						<div class="fr_lable_item">
+							<p class="lab_p">学校名称</p>
+							<div class="lab_item">
+								<div class="all_change"><input type="text" name="Schoolname" id="Schoolname" value="${background?.name}" /></div>
+							</div>
+						</div>
+						<div class="fr_lable_item">
+							<p class="lab_p">学历</p>
+							<div class="select_box selegos" style="width: 160px;">
+									#{list operations}
+									#{if _?.id==background?.education_id}
+									<p class="htmlw">${_?.name}</p>
+									#{/if}
+									#{/list}
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id=""> 
+												    <li name="education_name" value="0" >请选择</li>
+												#{list operations}
+											 #{if _?.group_id==2}
+													<li name="education_name" value="${_?.id}" #{if _?.id==background?.education_id} class="on"#{/if}>${_?.name}</li>
+													#{/if}
+											#{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+						</div>
+						<div class="fr_lable_item">
+							<p class="lab_p">所学专业</p>
+							<div class="lab_item">
+								<div class="all_change"><input type="text" name="specialty" id="specialty" value="${background?.specialty}" /></div>
+							</div>
+						</div>
+						<div class="fr_lable_item">
+							<p class="lab_p">在校时间</p>
+							<div class="lab_item">
+								<div class="all_sele" style="margin-right: 25px;">
+									<div class="all_datas">
+										<input type="text" name="" id="test1" value="${background?.schoolTime}" />
+										<img src="/public/images/webimg/updata_31.jpg" />
+									</div>
+								</div>
+								<div class="all_sele">
+									<div class="all_datas">
+										<input type="text" name="" id="test2" value="${background?.schoolEndTime}" />
+										<img src="/public/images/webimg/updata_31.jpg" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="btn_regs">
+							<div class="sacr" id="addEduvational" style="cursor: pointer;">保存</div>
+							<div  id="outEducational" style="cursor: pointer;">取消</div>
+						</div>
+				<script type="text/javascript">
+      layui.use('laydate', function() {
+				var laydate = layui.laydate;
+
+				laydate.render({
+					elem: '#test1', //指定元素
+					type: "month"
+				});
+				laydate.render({
+					elem: '#test2', //指定元素
+					type: "month"
+				});
+			});
+			$("#addEduvational").click(function(){
+            var name=$("#Schoolname").val();
+              var education_id=""
+              $("li[name='education_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					education_id=$(this).val();
+					}
+			});
+			 var specialty=$("#specialty").val();
+			  var time=$("#test1").val();
+           var expirationtime=$("#test2").val();
+			 if(name==""){
+			  $("#errorMes").html("请填写学校名称！");
+	  	  	  $("#error").css("display","block");
+	  	  	return false;
+			}
+			if(education_id==0){
+			  $("#errorMes").html("请选择学历！");
+	  	  	  $("#error").css("display","block");
+	  	  	return false;
+			}
+			if(specialty==""){
+			  $("#errorMes").html("请填写专业！");
+	  	  	  $("#error").css("display","block");
+	  	  	return false;
+			}
+			if(time==""){
+			  $("#errorMes").html("请选择入学时间！");
+	  	  	  $("#error").css("display","block");
+	  	  	return false;
+			}
+			if(expirationtime==""){
+			  $("#errorMes").html("请选择毕业时间！");
+	  	  	  $("#error").css("display","block");
+	  	  	return false;
+			}
+				$.ajax({
+  	  		url:"@{front.webAccount.AccountHome.updateEducationals()}",
+  	  		type:"POST",
+  	  		data:{
+  	  		sign:"${sign}",
+  	  		name:name,
+  	  		education_id:education_id,
+  	  		specialty:specialty,
+  	  		time:time,
+  	  		expirationtime:expirationtime
+  	  		},
+  	  		success:function(data){
+  	  			if(data.code<0){
+  	  			 $("#errorMes").html(data.msg);
+		  	  	 $("#error").css("display","block");
+		  	  	 return false;
+  	  			}else{
+  	  				location.reload(); 
+  	  			}  	  			
+  	  		}
+  	  		}); 
+           })
+			 $("#outEducational").click(function() {
+				location.reload(); 
+			}) 
+</script>

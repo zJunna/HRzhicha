@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>信息详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<!--<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover" />-->
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/refactorStyle.css" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+	</head>
+
+	<body class="ggg">
+		<div class="pay_tits">
+			<img src="/HRzhicha/public/images/img/reach_03.jpg" onclick="javascript:history.back(-1);" />
+			<p>信息详情</p>
+		</div>
+		<div class="infoa com_negative">
+			<div class="fade_list1">
+				<ul>
+					<li>
+						<p class="num">个人信息</p>
+						<input type="text" value="${negative_infor?.information_number}" id="inforInforNum" style="display: none" />
+						<div class="users">
+
+							<img src="/HRzhicha/public/images/img/com_01.png" class="info_logo" name="img" />
+
+							
+							<div class="fr">
+								<div class="name">
+									<p name="name">深圳市大疆创新科技有限公司</p>
+								</div>
+								<p class="card_dress" name="id_number">信用代码：914403007954257495</p>
+								
+							</div>
+						</div>
+					</li>
+				</ul>
+
+				<div class="fa_info">
+					<p>上传者信息</p>
+					<span name="company_name">上传者：张**</span>
+					<span name="hr_mobile">手机号：135*******256</span>
+					<span name="">发布日期：2019/01/06</span>
+				</div>
+				<div class="mos">
+					<p class="mos_t">事件描述</p>
+
+					<div class="nrs">
+
+						<p>拖欠工资</p>
+
+						
+						<span>不履行合同协议，不按时发工资。</span>
+					</div>
+
+					<p class="fonta">已上传证明材料</p>
+					<div class="list_boxs">
+
+						<div>身份证</div>
+
+						<div>劳动合同</div>
+
+						<div>其他材料</div>
+					</div>
+				</div>
+
+				<div class="ssinfo">
+					<div class="ss_tit">
+						<p>申诉信息</p>
+						<div>此条信息正处在异议处理中 ！</div>
+					</div>
+					<div class="text_gs">
+						<div class="text_gsp">
+							<p>该公司上传信息失实，本人已经诉诸法律。</p>
+							<span>2019/01/02</span>
+						</div>
+						<div class="text_gspt">
+							<p>申诉处理：信息准确，拒绝申诉。</p>
+							<span>2019/01/02</span>
+						</div>
+						
+					</div>
+				</div>
+
+				<div class="buttons" name="${negative_infor?.sign}" id="willAppeal">
+					<a href="#">信息失实，我要申诉</a>
+				</div>
+			
+          <div class="font_testare">
+					<h4>规则声明:</h4>
+					<p>1，所有信息均为上传者实名上传，上传者对信息的真实性负责。</p>
+					<p>2，如个人用户对涉及到本人的信息有异议，可以申诉，申诉后我们会提供双方的协商通道，发布者有权决定信息有效或下线。</p>
+					<p>3，如果双方不能达成协议，且相关人员认为信息为不实信息，我们推荐通过法律途径进行解决。有胜诉文书证明，平台可介入删除相关信息。</p>
+					<p>4，X查平台会设立机制保证发布者身份真实，且可联络，当不能联系到发布者时，我们收到申诉会直接删除信息。</p>
+					<p>5，发布人违反规则发布虚假信息，会进入本平台使用者黑名单。</p>
+					<p>6，创建信用社会，从自我做起，请尊守规则，尊重事实！</p>
+				</div>
+			</div>
+		</div>
+		<div class="pro_fade" style="display: none">
+			<div class="fade_mid">
+				<p id="error" style="font-size: .35rem;"></p>
+				<div class="img_cet">
+					<img src="/HRzhicha/public/images/img/tost3.png" id="ejectImg" />
+				</div>
+				<div class="btn_grow">
+					<div class="fl">
+						<a href="@{front.home.HomeAction.home()}">返回首页</a>
+					</div>
+					<div class="fr">
+						<a href="@{front.account.AccountHome.home()}">返回用户中心</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//我要申诉
+
+		$("#willAppeal").click(function() {
+			var sign = $(this).attr("name");
+			if($("#userJudgement").val() == undefined) {
+				location.href = "@{front.account.RegisterAndLogin.login()}";
+			} else {
+				$.ajax({
+					url: "@{front.home.HomeAction.isAppealUser}",
+					type: "POST",
+					data: {
+						inforInforNum: $("#inforInforNum").val()
+					},
+					success: function(data) {
+						if(data.code == 0) {
+							location.href = "@{front.home.HomeAction.informationAppeal()}?appealInfor_id=" + sign;
+						} else {
+							$("#error").text(data.msg);
+							$("#ejectImg").attr("src", "/public/images/img/tost2.png")
+							$(".pro_fade").css("display", "flex");
+						}
+					}
+				});
+			}
+		})
+	</script>
+
+</html>

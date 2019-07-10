@@ -1,0 +1,97 @@
+#{extends 'common/supervisor.html' /} #{set title:'待认证企业列表' /}
+
+<div class="xn_c_contentwarp">
+	<div class="xn_c_contentlist">
+		#{include 'supervisor/usersManager/userLeft.control'/}
+		<!--右-->
+		#{include 'supervisor/usersManager/PendingCertifiedCompany/pendingCertifiedCompanyContent.control'/}
+	</div>
+</div>
+<!--弹出层-->
+<div id="kefu" style="display:none;"></div>
+<div class="xn_c_ban_jox xn_c_ban_jox_hyxq" id="xf_ht_fkzh_ttc"
+	style="display: none;"></div>
+<div class="xn_c_ban_jox xn_c_ban_jox_hyxq" id="edit_user_info"
+	style="display: none;"></div>
+<div class="xn_c_ban_jox xn_c_ban_jox_hyxq" id="edit_recommend_user"
+	style="display: none;"></div>
+
+<script type="text/javascript">
+	/* 高亮显示 */
+(10, 3, 'lab_usr_', null);
+
+	$("#close1").click(function() {
+		$("#xf_ht_fkzh_ttc").hide();
+	});
+
+
+function details(userId) {//已认证企业详情
+		$.ajax({
+			url : "@{supervisor.usersManager.PendingCertifiedCompany.detail()}",
+			type : "POST",
+			data : {
+				"sign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.msg);
+
+					return;
+				}
+				$("#xf_ht_fkzh_ttc").html(data);
+				$.layer({
+					type : 1,
+					area : [ '700px', '600px' ],
+					title : '待认证企业详情',
+					page : {
+						dom : '#xf_ht_fkzh_ttc'
+					}
+				});
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+	function auditDetails(userId) {//审核
+		$.ajax({
+			url : "@{supervisor.usersManager.PendingCertifiedCompany.auditDetails()}",
+			type : "POST",
+			data : {
+				"sign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.error.msg);
+					return;
+				}
+				alert(data.error.msg);
+				location.reload();
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+	function auditDetailsCase(userId) {//审核
+		$.ajax({
+			url : "@{supervisor.usersManager.PendingCertifiedCompany.auditDetailsCase()}",
+			type : "POST",
+			data : {
+				"sign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.error.msg);
+					return;
+				}
+				alert(data.error.msg);
+				location.reload();
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+	
+</script>

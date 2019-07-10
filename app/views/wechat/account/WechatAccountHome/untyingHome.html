@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/public/stylesheets/footer.css" />
+		<script type="text/javascript" src="/public/javascripts/js/jquery.1.9.1.js" ></script>
+		<script type="text/javascript" src="/public/javascripts/js/js.js"></script>
+	</head>
+
+	<body class="ggg">
+	<div class="pro_fade" id="pro_unty">
+					<div class="fade_mid" >
+						<p>解除绑定</p>
+						<div class="img_cet">
+							<img src="/public/images/img/tost3.png"/>
+						</div>
+						<div class="btn_grow">
+							<div class="fl"><a href="@{front.account.AccountHome.system()}">取消</a></div>
+							<div class="fr"  id="untying">
+							<a>
+							解绑</a></div>
+						</div>
+					</div>
+		</div>
+		<div class="pro_fade" id="pro_fade" style="display: none">
+					<div class="fade_mid" >
+						<p id="error">解绑成功！</p>
+						<div class="img_cet">
+							<img src="/public/images/img/tost3.png" id="ejectImg"/>
+						</div>
+						<div class="btn_grow">
+							<div class="fl"><a  id="back" href="@{front.home.HomeAction.home()}">返回首页</a></div>
+							<div class="fr"><a  id="backhome"href="@{front.account.AccountHome.home()}">返回用户中心</a></div>
+						</div>
+					</div>
+		</div>
+	</body>
+<script type="text/javascript">
+$("#untying").click(function(){
+              $.ajax({
+			  	  		url:"@{wechat.account.WechatAccountHome.untyingOpen()}",
+			  	  		type:"POST",
+			  	  		data:{
+			  	  		},
+			  	  		success:function(data){
+			  	  		if(data.code<0){
+			  	  		$("#error").html("解绑失败！");
+			  	  		}
+			  	  		var time=new Date();
+			  	  		$("#pro_unty").css("display","none");
+			  	  	    $("#backhome").attr("href","@{front.account.AccountHome.home()}?time="+time);
+			  	  		$("#pro_fade").css("display","flex");
+			  	}
+			});
+
+ })
+</script>
+</html>

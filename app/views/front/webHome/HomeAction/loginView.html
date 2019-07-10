@@ -1,0 +1,110 @@
+<div class="land_box" style="margin-top: 2%;display: none" id="loginDiv" >
+		<img src="/public/images/webimg/lo_1.png" class="logo" /> 
+		<h5 style="font-size: 34px">登录</h5>
+		<div class="land_lable">
+			<input type="text" placeholder="请输入手机号/邮箱" name="loginMobile" id="loginMobile" value="" />
+		</div>
+		<div class="land_lable">
+			<input type="password" id="loginPassword" placeholder="请输入密码" name="loginPassword"  value="" />
+			<img src="/public/images/webimg/pass_10.jpg" class="show_word" id="loginEyes"/>
+			<img src="/public/images/webimg/pass_07.jpg" class="cleahs hide" id="loginClear"/>
+		</div>
+		<div class="land_lable">
+			<input type="text" placeholder="请输入图片验证码" name="loginYanzhengma" id="loginYanzhengma" value="" />
+			<img id="loginImg" src="/public/images/登录页面-02_r2_c2.gif" style="position:absolute;width: 8rem;height:3.7rem;border-radius:0.4rem;right: 0px;top: -1%" >
+	        <input type="hidden" name="loginRandomID" id="loginRandomID" /><br/>
+		</div>
+		<div class="remsa">
+			<a class="fl" id="yzmLogin" style="cursor:pointer;">验证码登录</a>				
+			<a href="#" class="fr" id="loginForgetPass">忘记密码？</a>
+		</div>
+		<span id="errorInfo" style="color: #f85d7a; font-size:.26rem;position: absolute;top: 61%;left: 38%;padding: 0.2rem 0.2rem 0;">${flash?.error}</span>
+		<p class="gsaw" id="loginErrorInfo" style="bottom: 315px"></p>
+		<div class="land_btner" id="loginButton">登录</div>
+		<p class="name_good1">
+			<a href="#" id="goRegister">注册</a>
+		</p>
+		<div class="qq">
+			<p>OR</p>
+			<div>
+				<!-- <img src="/public/images/webimg/pass_23.jpg"/> -->
+				<a  style="cursor:pointer;" href="" target="_blank">
+				 <img src="/public/images/webimg/pass_26.jpg"/></a>
+				<!-- <img src="/public/images/webimg/pass_32.jpg"/> -->
+			</div>
+		</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	    var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+		$.post(setCode({}),function(data){
+			var arr=eval(data);
+			var img = arr.img;
+			$("#loginImg").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img);	
+			$("#loginRandomID").val(img);
+		});
+	});
+//改变验证码(登录)
+	$("#loginImg").click(function(){
+		var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+		$.post(setCode({}),function(data){
+		var arr=eval(data);
+		var img = arr.img;
+		$("#loginImg").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img)	
+		$("#loginRandomID").val(img);
+		});
+	});	
+</script>
+<script type="text/javascript">
+			$("#loginPassword").bind('input propertychange', function() {
+				var bal = $(this).val();
+				if(bal != '') {
+					$('#loginClear').show()
+				} else {
+					$('#loginClear').hide()
+				}
+			})
+			$('#loginClear').click(function() {
+				$('#loginPassword').val('')
+			})
+			$('#loginEyes').click(function() {
+				if($(this).hasClass('a')) {
+					$(this).removeClass('a')
+					$('#loginPassword').attr('type', 'password')
+					$(this).attr('src', '/public/images/webimg/pass_10.jpg')
+				} else {
+					$(this).addClass('a')
+					$('#loginPassword').attr('type', 'text')
+					$(this).attr('src', '/public/images/webimg/pass_13.jpg')
+				}
+			})
+			$("#loginButton").click(function(){
+			
+				$.ajax({
+				  url:"@{front.webHome.RegisterAndLogin.loginMobile()}",
+				  type:"POST",
+				  dataType:"JSON",
+				  data:{
+					  name:$("#loginMobile").val(),
+					  password:$("#loginPassword").val(),
+					  code:$("#loginYanzhengma").val(),
+					  randomID:$("#loginRandomID").val()
+				  },
+				  success:function(data){
+				       if(data.code<0){
+				        	 $("#loginErrorInfo").html(data.msg);
+				        	 var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+							 $.post(setCode({}),function(data){
+							 var arr=eval(data);
+							 var img = arr.img;
+							 $("#loginImg").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img)	
+							 $("#loginRandomID").val(img);
+							});
+				       }else{
+				       	location.href="@{front.webHome.HomeAction.home()}";
+				       }
+			       
+			  }
+		  });
+			});
+</script>

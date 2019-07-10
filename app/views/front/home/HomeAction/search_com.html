@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>信息查询</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta name="renderer" content="webkit">
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/refactorStyle.css" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+
+	</head>
+
+	<body class="ggg">
+		<div class="pay_tits">
+			<img src="/HRzhicha/public/images/img/reach_03.jpg" onclick="out()" />
+			<p>信息查询</p>
+		</div>
+		<ul class="home_com home_com2 home_com3" id="home_com" style="display:none;">
+			<i style="display:none;"></i>
+			<li>今日头条</li>
+			<li>百度一下3</li>
+			<li>今日头条</li>
+			<li>百度一下3</li>
+
+		</ul>
+		<ul class="home_com1 home_com2 home_com3" id="home_com1" style="display:none;">
+			<i style="display:none;"></i>
+			<li>2222</li>
+			<li>百度44</li>
+
+		</ul>
+		<div class="top_header" style="margin: 0 auto;top: .9rem;">
+			<img src="/HRzhicha/public/images/img/index_03.png" class="main_logo" />
+			<div class="main_seach ">
+				<div class="fl seachCom">
+					<div class="line_none">
+						<input type="text" class="in1" placeholder="企业名称 " name="name" id="name" value=" " />
+					</div>
+					<img src="/HRzhicha/public/images/img/index_07.png" id="xImg" />
+				</div>
+				<div class="fr" id="search">
+					<a href="# ">查询</a>
+				</div>
+			</div>
+
+			<!--<ul class="uks">
+				<li>
+					<p>556</p>
+					<span>今日新增</span>
+				</li>
+				<li>
+					<p>786</p>
+					<span>今日查询</span>
+				</li>
+				<li>
+					<p>512256</p>
+					<span>总收录数</span>
+				</li>
+				<li>
+					<p>1556</p>
+					<span>计入的HR</span>
+				</li>
+			</ul>-->
+		</div>
+
+		<div class="main_content" style="margin-top: 2rem;" id="div">
+			<div class="com_main_listr">
+
+				<ul>
+					<a href="#">
+						<li>
+							<div class="com_main_img fl">
+								<img src="/HRzhicha/public/images/img/center_06.jpg" />
+							</div>
+							<div class="fl com_main_text">
+
+								<p class="com_main_title">
+									小米科技有限责任公司
+								</p>
+
+								<div class="com_main_txtx">
+									<div class="txtx1">
+										<p>法人</p>
+										<span>雷军</span>
+									</div>
+									<div class="txtx2">
+										<p>注册资本</p>
+										<span>18.5亿</span>
+									</div>
+									<div class="txtx3">
+										<p>成立日期</p>
+										<span>2010-12-07</span>
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="clear"></div>
+
+							<div class="com_right_btn">
+								开业
+							</div>
+
+						</li>
+					</a>
+					<li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								河南小米新能源科技有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>卢志强</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>2000万</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2014-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							存续
+						</div>
+
+					</li>
+					<li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li>
+					<li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li><li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li><li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li><li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li><li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li><li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li><li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li><li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li><li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li><li>
+						<div class="com_main_img fl">
+							<img src="/HRzhicha/public/images/img/center_06.jpg" />
+						</div>
+						<div class="fl com_main_text">
+
+							<p class="com_main_title">
+								今日头条有限公司
+							</p>
+
+							<div class="com_main_txtx">
+								<div class="txtx1">
+									<p>法人</p>
+									<span>张利东</span>
+								</div>
+								<div class="txtx2">
+									<p>注册资本</p>
+									<span>1亿</span>
+								</div>
+								<div class="txtx3">
+									<p>成立日期</p>
+									<span>2017-12-07</span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="com_right_btn">
+							开业
+						</div>
+
+					</li>
+				</ul>
+
+			</div>
+		</div>
+		<div style="height: .98rem;"></div>
+		<footer>
+			<div>
+				<a href="@{front.home.HomeAction.home()}">
+					<img src="/HRzhicha/public/images/img/index.jpg" />
+					<p>查个人</p>
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="/HRzhicha/public/images/img/index.jpg" />
+					<p>查企业</p>
+				</a>
+			</div>
+			<div>
+				<a href="@{front.home.UploadInformation.upload()}">
+					<img src="/HRzhicha/public/images/img/center_1010.jpg" />
+					<p>上传</p>
+				</a>
+			</div>
+			<div>
+				<a href="@{front.account.AccountHome.home()}">
+					<img src="/HRzhicha/public/images/img/qiye_313.jpg" />
+					<p>我的</p>
+				</a>
+			</div>
+		</footer>
+		<div class="shuru" id="shuru">
+			<div class="shuru_box" id="shuru_box">
+				<!-- 	<p>您的输入有误或不完善，请修改后再提交！</p> -->
+				<p id="P"></p>
+				<div style="color: #6e3cff" id="sure">（<span class="gs">3</span>S）</div>
+			</div>
+		</div>
+
+		<div class="shuru" id="searchSure">
+			<div class="shuru_box" id="searchSure_box">
+				<p>操作将扣除1X币,确定要继续吗?</p>
+				<div style="color: #6e3cff " id="sure ">
+					<div style="color: #6e3cff;width: 50%;height: 1.19rem;font-size: .28rem;background: #eeeeee;margin-top: .02rem;text-align: center;line-height: .8rem;float: left; " onclick="sure() ">确定</div>
+					<div style="color: #6e3cff;width: 49.6%;height: 1.19rem;font-size: .28rem;background: #eeeeee;margin-top: .02rem;text-align: center;line-height: .8rem;float: left;color: #585858;border-left:1px solid rgba(0, 0, 0, 0.5); " onclick="cancel() ">再看看</div>
+				</div>
+			</div>
+		</div>
+		<div class="pro_fade" style="display: none">
+			<div class="fade_mid ">
+				<p id="error ">完成认证，即可查询</p>
+				<div class="img_cet ">
+					<img src="/HRzhicha/HRzhicha/public/images/img/tost3.png " id="ejectImg " />
+				</div>
+				<div class="btn_grow ">
+					<div class="fl ">
+						<a href="@{front.home.HomeAction.home()} ">返回首页</a>
+					</div>
+					<div class="fr ">
+						<a href="@{front.account.AccountHome.authenticationPage()} ">去认证</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript ">
+			$(".in1 ").focus(function() {
+				$(".home_com ").show()
+			});
+
+			$('body').click(function(e) {
+				var target = $(e.target);
+				// 如果#overlay或者#btn下面还有子元素，可使用
+				// !target.is('#btn *') && !target.is('#overlay *')
+				if(!target.is('.in1') && !target.is('.home_com2')) {
+					if($('.home_com2').is(':visible')) {
+						$('.home_com2').hide();
+					}
+				}
+			});
+
+			function homeClick(element) {
+				$("input ").val($(element).html());
+
+			}
+			$(".home_com li ").click(function() {
+				$('.home_com').css('display', 'none');
+				var text = $(this).text();
+
+				$("input ").val(text);
+			});
+
+			$('.in1').on('input', function() {
+				$('.home_com1').show();
+				$('.home_com').hide();
+			})
+
+			$('.in1').click(function() {
+				if($(".in1 ").val() == " ") {
+					$('.home_com').show();
+					$('.home_com1').hide();
+				} else {
+					$('.home_com1').show();
+					$('.home_com').hide();
+
+				}
+
+			})
+
+			$('.in1').bind('input propertychange', function() {
+				if($(this).val()) {
+					$('.home_com1').show();
+					$('.home_com').hide();
+				} else {
+					$('.home_com').show();
+					$('.home_com1').hide();
+				}
+			})
+		</script>
+
+		<script>
+			$(function() {
+				$('.pay_tits').removeClass('on')
+				$('.top_header').css({
+					'width': '100%',
+					'border-radius': 0,
+					'background': '#9875fe'
+				})
+				$('.pay_tits').css('position', 'fixed')
+				$('.top_header').css('position', 'fixed')
+				$('.main_seach .fl').css('width', '5.26rem')
+				$('.main_seach .fr').css('width', '1.44rem')
+				$('.main_logo').hide();
+				$('.uks').hide();
+				$('.top_header').css('padding', '.08rem')
+				$('.main_seach').css('width', '6.9rem')
+			})
+
+			$('.main_seach img').click(function() {
+				$('.main_seach .fl').find('input').val('')
+			})
+		</script>
+
+	</body>
+
+</html>

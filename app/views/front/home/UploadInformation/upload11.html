@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>已上传信息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/pike.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/refactorStyle.css" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/pike.js"></script>
+		<script type="text/javascript" src="@{'/HRzhicha/public/javascripts/common.js'}"></script>
+		<script type="text/javascript" src="@{'/HRzhicha/public/javascripts/ajaxfileupload.js'}"></script>
+		<script type="text/javascript" src="@{'/HRzhicha/public/javascripts/index.js'}"></script>
+		<script type="text/javascript" src="@{'/HRzhicha/public/javascripts/jquery.json-2.4.min.js'}"></script>
+
+		<script type="text/javascript">
+			window.onload = function() {
+				isWeixinBrowser();
+			}
+			//判断是否微信浏览器
+			function isWeixinBrowser() {
+				var ua = navigator.userAgent.toLowerCase();
+				var result = (/micromessenger/.test(ua)) ? true : false;
+				if(result) {
+					console.log('你正在访问微信浏览器');
+					var time = new Date();
+					$("#home").attr("href", "@{front.account.AccountHome.home()}?time=" + time);
+					$("#accountHome").attr("href", "@{front.account.AccountHome.home()}?time=" + time);
+				} else {
+					console.log('你访问的不是微信浏览器');
+				}
+				return result;
+			}
+		</script>
+
+		<style type="text/css">
+			.navbar_bg .navbar {
+				background: none;
+			}
+			
+			.navbar_bg .navbar ul li {
+				color: #B3B2C0;
+				font-size: .32rem;
+				font-weight: bold;
+			}
+			
+			.navbar_bg .navbar ul li:nth-of-type(2) {
+				margin-left: -1.3rem;
+			}
+			
+			.navbar ul li::after {
+				content: '';
+				width: 1.6rem;
+				height: 0.06rem;
+				background: #6e3cff;
+				border-radius: 0.1rem;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.navbar ul .on {
+				color: #63617D!important;
+				font-size: .32rem;
+				font-weight: bold;
+			}
+		</style>
+
+	</head>
+
+	<body class="gggs">
+		<div class="pay_tits bgNone">
+			<p>上传信息</p>
+		</div>
+		<div class="navbar_bg">
+			<div class="navbar">
+				<ul>
+					<li class="on">企业信息</li>
+					<li>个人信息 </li>
+					<li> </li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="main_conter" style="padding-top: .2rem;">
+
+			<div class="main_fade">
+				<div class="main_slides ">
+					<div class="main_change">
+						<h2>企业信息</h2>
+						<div class="main_lables">
+							<input type="text" placeholder="今日头条有限公司" name="name" id="name" value="" />
+						</div>
+						<div class="main_lables">
+							<input type="text" placeholder="91110108MA007R7P8D" name="id_number" id="id_number" value="" />
+						</div>
+					</div>
+					<div class="main_change">
+						<h2>信息类型</h2>
+						<h2 style="font-size: .25rem;margin-top: 15px;">负面事件</h2>
+						<ul class="ul_cost" style="margin-top: 10px">
+
+							<li name="inforNeg">
+								<p>可口工资</p>
+								<img src="/HRzhicha/public/images/img/infos_09.png" />
+							</li>
+							<li name="inforNeg">
+								<p>拖欠工资</p>
+								<img src="/HRzhicha/public/images/img/infos_09.png" />
+							</li>
+							<li name="inforNeg">
+								<p>不买社保</p>
+								<img src="/HRzhicha/public/images/img/infos_09.png" />
+							</li>
+							<li name="inforNeg">
+								<p>霸王协议</p>
+								<img src="/HRzhicha/public/images/img/infos_09.png" />
+							</li>
+							<li name="inforNeg">
+								<p>不签合同</p>
+								<img src="/HRzhicha/public/images/img/infos_09.png" />
+							</li>
+						</ul>
+						<h2 style="font-size: .25rem;margin-top: 15px;">正面事件</h2>
+						<ul class="ul_costss" style="margin-top: 10px">
+
+							<li name="inforJust">
+								<p>培训众多</p>
+								<img src="/HRzhicha/public/images/img/infos_10.png" />
+							</li>
+							<li name="inforJust">
+								<p>人际融洽</p>
+								<img src="/HRzhicha/public/images/img/infos_10.png" />
+							</li>
+							<li name="inforJust">
+								<p>环境优异</p>
+								<img src="/HRzhicha/public/images/img/infos_10.png" />
+							</li>
+							<li name="inforJust">
+								<p>待遇好</p>
+								<img src="/HRzhicha/public/images/img/infos_10.png" />
+							</li>
+							<li name="inforJust">
+								<p>休假多</p>
+								<img src="/HRzhicha/public/images/img/infos_10.png" />
+							</li>
+						</ul>
+					</div>
+					<div class="main_change">
+						<h2>事件描述</h2>
+						<div class="main_textare">
+							<textarea class="textares" placeholder="请如实描述事件经过" id="event_description"></textarea>
+						</div>
+					</div>
+					<div class="main_change">
+						<h2>事件发生时间</h2>
+						<div class="mins">
+							<div id="year">
+								<input placeholder="年" class="form-control js-month-picker bb" value="" id="occur_time_year">
+								<img src="/HRzhicha/public/images/img/infos_15.png" />
+							</div>
+							<div id="month">
+								<input type="text" class="form-control js-month-picker aa" value="" placeholder="月" id="occur_time_month">
+								<img src="/HRzhicha/public/images/img/infos_15.png" />
+							</div>
+						</div>
+
+					</div>
+					<div class="main_change">
+						<h2>上传证明材料<span>(选填)</span></h2>
+
+						<div id="uploaded_labor">
+							<div class="addpic">
+								<!--<input type="hidden" name="image_filenameLabor" id="image_filename" />-->
+								<img src="/HRzhicha/public/images/img/qiye11A4.png" style="height: 2.06rem;width: 2.06rem" class="fl" id="smallImagLabor" mark="smallfileLabor" name="labor_img" onclick="laborClick(this)" />
+								<img src="/HRzhicha/public/images/img/qiye11A4.png" style="height: 2.06rem;width: 2.06rem" class="fl" id="smallImagLabor" mark="smallfileLabor" name="labor_img" onclick="laborClick(this)" />
+								<img src="/HRzhicha/public/images/img/qiye13A4.png" style="height: 2.06rem;width: 2.06rem" class="fr ld" name="addImgLabor" onclick="laborAdding(this)" />
+
+							</div>
+						</div>
+
+					</div>
+					<div class="main_rz2">
+						<a href="#" id="submit">提交</a>
+					</div>
+					<div class="font_testare">
+						<h4>规则声明:</h4>
+						<p>1，作为信息的实名上传者，您需要对信息的真实性负责，请确保信息真实客观的前提下谨慎填写。</p>
+						<p>2，如被上传个人对此信息有异议，可能会发起申诉，申诉后经过双方协商您有权修改信息的有效或下线。</p>
+						<p>3，如果双方不能达成协议，且相关方认为信息为不实信息，可能会引起法律纠纷。当申诉者有胜诉文书证明，平台将介入删除相关信息。</p>
+						<p>4，当您在系统的联系方式不能联系到您的时候（电话无法接通，且邮件信息5个工作日无人回复），我们收到异议申诉会直接删除信息。</p>
+						<p>5，发布人违反规则发布虚假信息，会进入本平台使用者黑名单。</p>
+						<p>6，创建信用社会，从自我做起，请尊守规则，尊重事实！</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="main_fade hide">
+				<div class="main_slides ">
+					<div class="main_change">
+						<h2>个人信息</h2>
+						<div class="main_lables">
+							<input type="text" placeholder="姓名" name="name" id="name" value="" />
+						</div>
+						<div class="main_lables">
+							<input type="text" placeholder="身份证号" name="id_number" id="id_number" value="" />
+						</div>
+					</div>
+					<div class="main_change">
+						<h2>信 息类型</h2>
+						<h2 style="font-size: .25rem;margin-top: 15px;">负面事件</h2>
+						<ul class="ul_cost" style="margin-top: 10px">
+
+							<li name="inforNeg">
+								<p>可口工资</p>
+								<img src="/HRzhicha/public/images/img/infos_09.png" />
+							</li>
+							<li name="inforNeg">
+								<p>拖欠工资</p>
+								<img src="/HRzhicha/public/images/img/infos_09.png" />
+							</li>
+							<li name="inforNeg">
+								<p>不买社保</p>
+								<img src="/HRzhicha/public/images/img/infos_09.png" />
+							</li>
+							<li name="inforNeg">
+								<p>霸王协议</p>
+								<img src="/HRzhicha/public/images/img/infos_09.png" />
+							</li>
+							<li name="inforNeg">
+								<p>不签合同</p>
+								<img src="/HRzhicha/public/images/img/infos_09.png" />
+							</li>
+
+						</ul>
+						<h2 style="font-size: .25rem;margin-top: 15px;">正面事件</h2>
+						<ul class="ul_costss" style="margin-top: 10px">
+
+							<li name="inforJust">
+								<p>培训众多</p>
+								<img src="/HRzhicha/public/images/img/infos_10.png" />
+							</li>
+							<li name="inforJust">
+								<p>人际融洽</p>
+								<img src="/HRzhicha/public/images/img/infos_10.png" />
+							</li>
+							<li name="inforJust">
+								<p>环境优异</p>
+								<img src="/HRzhicha/public/images/img/infos_10.png" />
+							</li>
+							<li name="inforJust">
+								<p>待遇好</p>
+								<img src="/HRzhicha/public/images/img/infos_10.png" />
+							</li>
+							<li name="inforJust">
+								<p>休假多</p>
+								<img src="/HRzhicha/public/images/img/infos_10.png" />
+							</li>
+
+						</ul>
+					</div>
+					<div class="main_change">
+						<h2>事件描述</h2>
+						<div class="main_textare main_textarel">
+							<textarea class="textares" placeholder="请如实描述事件经过" id="event_description">单位老板故意乱扣工资。</textarea>
+						</div>
+					</div>
+					<div class="main_change">
+						<h2>事件发生时间</h2>
+						<div class="mins">
+							<div id="year">
+								<input placeholder="年" class="form-control js-month-picker bb" value="" id="occur_time_year">
+								<img src="/HRzhicha/public/images/img/infos_15.png" />
+							</div>
+							<div id="month">
+								<input type="text" class="form-control js-month-picker aa" value="" placeholder="月" id="occur_time_month">
+								<img src="/HRzhicha/public/images/img/infos_15.png" />
+							</div>
+						</div>
+
+					</div>
+					<div class="main_change">
+						<h2>上传证明材料<span>(选填)</span></h2>
+
+						<div id="uploaded_labor">
+							<div class="addpic">
+								<input type="hidden" name="image_filenameLabor" id="image_filename" />
+								<img src="/HRzhicha/public/images/img/qiye11A4.png" style="height: 2.06rem;width: 2.06rem" class="fl" id="smallImagLabor" mark="smallfileLabor" name="labor_img" onclick="laborClick(this)" />
+								<img src="/HRzhicha/public/images/img/qiye11A4.png" style="height: 2.06rem;width: 2.06rem" class="fl" id="smallImagLabor" mark="smallfileLabor" name="labor_img" onclick="laborClick(this)" />
+								<img src="/HRzhicha/public/images/img/qiye13A4.png" style="height: 2.06rem;width: 2.06rem" class="fr ld" name="addImgLabor" onclick="laborAdding(this)" />
+
+							</div>
+						</div>
+
+					</div>
+					<!--<div class="main_change">
+						<h2>被上传者信息</h2>
+						<p class="lop">身份证</p>
+
+						<div class="addpic" id="id_card_photo">
+							<input type="hidden" name="image_filenameId_card" id="image_filename" />
+							<img src="/HRzhicha/public/images/img/ac_11.jpg" style="width: 2.3rem;height: 1.0rem;" class="fl aa" id="smallImagId_card" name="id_card_img" />
+							<img src="/HRzhicha/public/images/img/ac_13.jpg" class="fl bb" style="width: 2.3rem;height: 1.0rem;" id="smallImagId_card2" name="id_card_img" />
+						</div>
+
+						<p class="lop">劳动合同<span>(可上传多张)</span></p>
+						<div id="uploaded_labor">
+							<div class="addpic">
+								<input type="hidden" name="image_filenameLabor" id="image_filename" />
+								<img src="/HRzhicha/public/images/img/qiye11A4.png" style="height: 1.58rem;width: 1.15rem;" class="fl" id="smallImagLabor" mark="smallfileLabor" name="labor_img" onclick="laborClick(this)" />
+								<img src="/HRzhicha/public/images/img/qiye13A4.png" style="height: 1.58rem;width: 1.0rem;" class="fr ld" name="addImgLabor" onclick="laborAdding(this)" />
+
+							</div>
+						</div>
+
+						<p class="lop">其它材料<span>(不限于工作证明、工牌、名片，可上传多张)</span></p>
+						<div id="uploaded_others">
+							<div class="addpic">
+								<img src="/HRzhicha/public/images/img/qiye11A4.png" class="fl" style="height: 1.58rem;width: 1.15rem;" id="smallImagOthers" mark="smallfileOthers" name="others_img" onclick="othersClick(this)" />
+								<img src="/HRzhicha/public/images/img/qiye13A4.png" class="fr mores" style="height: 1.58rem;width: 1.0rem;" name="addImgOthers" onclick="othersAdding(this)" />
+
+							</div>
+						</div>
+					</div>-->
+					<div class="main_rz2">
+						<a href="#" id="submit">提交</a>
+					</div>
+					<div class="font_testare">
+						<h4>规则声明:</h4>
+						<p>1，作为信息的实名上传者，您需要对信息的真实性负责，请确保信息真实客观的前提下谨慎填写。</p>
+						<p>2，如被上传个人对此信息有异议，可能会发起申诉，申诉后经过双方协商您有权修改信息的有效或下线。</p>
+						<p>3，如果双方不能达成协议，且相关方认为信息为不实信息，可能会引起法律纠纷。当申诉者有胜诉文书证明，平台将介入删除相关信息。</p>
+						<p>4，当您在系统的联系方式不能联系到您的时候（电话无法接通，且邮件信息5个工作日无人回复），我们收到异议申诉会直接删除信息。</p>
+						<p>5，发布人违反规则发布虚假信息，会进入本平台使用者黑名单。</p>
+						<p>6，创建信用社会，从自我做起，请尊守规则，尊重事实！</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="height: .98rem;"></div>
+		<footer id="footer">
+			<div>
+				<a href="@{front.home.HomeAction.home()}">
+					<img src="/HRzhicha/public/images/img/center_107.jpg" />
+					<p>查询</p>
+				</a>
+			</div>
+			<div>
+				<a href="@{front.home.UploadInformation.upload()}">
+					<img src="/HRzhicha/public/images/img/qiye_312.jpg" />
+					<p>上传</p>
+				</a>
+			</div>
+			<div>
+				<a href="@{front.account.AccountHome.home()}" id="accountHome">
+					<img src="/HRzhicha/public/images/img/qiye_313.jpg" />
+					<p>我的</p>
+				</a>
+			</div>
+		</footer>
+		<div class="fadeins s hide">
+			<div class="fadeins_top">
+				<h2>二代身份证上传技巧</h2>
+				<div class="photos">
+					<img src="/HRzhicha/public/images/img/ac_06.png" style="width: 2.37rem;" />
+				</div>
+				<p>1、上传身份证 <span>[人像面]</span> 信息，确保姓名<br />信息区域拍摄清晰。</p>
+				<p>2、材料仅用于存证，不对任何人展示。</p>
+				<p>3、仅支持jpg、png、gif 格式，上传文件大小需小于2MB。</p>
+			</div>
+			<div class="fadins_footer">
+				<ul>
+					<input type="file" class="upload_file" name="imgFile" id="smallfileId_card" mark="smallImagId_card" mark2="0" accept="image/*" capture='camera' style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);" />
+					<li>拍照</li>
+					<input type="file" class="upload_file" name="imgFile" id="smallfileId_card1" mark="smallImagId_card" mark2="0" accept="image/*" style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);" />
+					<li>从手机相册选择</li>
+					<li onclick="closer0()">取消</li>
+				</ul>
+			</div>
+		</div>
+		<div class="fadeins s8 hide">
+			<div class="fadeins_top">
+				<h2>二代身份证上传技巧</h2>
+				<div class="photos">
+					<img src="/HRzhicha/public/images/img/ac_03.png" style="width: 2.37rem;" />
+				</div>
+				<p>1、上传身份证 <span>[国徽面]</span> 信息，确保姓名<br />信息区域拍摄清晰。</p>
+				<p>2、材料仅用于存证，不对任何人展示。</p>
+				<p>3、仅支持jpg、png、gif 格式，上传文件大小需小于2MB。</p>
+			</div>
+			<div class="fadins_footer">
+				<ul>
+					<input type="file" class="upload_file" name="imgFile" id="smallfileId_card2" mark="smallImagId_card2" mark2="8" accept="image/*" capture='camera' style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);" />
+					<li>拍照</li>
+					<input type="file" class="upload_file" name="imgFile" id="smallfileId_card3" mark="smallImagId_card2" mark2="8" accept="image/*" style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);" />
+					<li>从手机相册选择</li>
+					<li onclick="closer8()">取消</li>
+				</ul>
+			</div>
+		</div>
+		<!--<div class="fadeins s1 hide">
+			<div class="fadeins_top">
+				<h2>劳动合同上传技巧</h2>
+				<div class="photos">
+					<img src="/HRzhicha/public/images/img/infos_06.png" style="width: 4.74rem;" />
+				</div>
+				<p>1、上传身至少包括
+					<Span>[主体人姓名、身份证号、企<br />业名称以及双方签字盖章]</Span> 页面，确保拍摄清晰。</p>
+				<p>2、材料仅用于存证，不对任何人展示。</p>
+				<p>3、仅支持jpg、png、gif 格式，上传文件大小需小于2MB。</p>
+			</div>
+			<div class="fadins_footer">
+				<ul>
+					<input type="file" class="upload_file" name="imgFile" id="smallfileLabor" mark="smallImagLabor" mark2="1" mark3="input1" accept="image/*" capture='camera' style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);" />
+					<li>拍照</li>
+					<input type="file" class="upload_file" name="imgFile" id="smallfileLabor1" mark="smallImagLabor" mark2="1" mark3="input2" accept="image/*" style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);" />
+					<li>从手机相册选择</li>
+					<li onclick="closer1()">取消</li>
+				</ul>
+			</div>
+		</div>-->
+		<!--<div class="fadeins s2 hide">
+			<div class="fadeins_top">
+				<h2>其他材料上传技巧</h2>
+				<div class="photos">
+					<img src="/HRzhicha/public/images/img/qiye_314.png" style="width: 2.16rem;" />
+				</div>
+				<p>1、其他证明材料可以在此处上传，确保拍摄清晰。</p>
+				<p>2、材料仅用于存证，不对任何人展示。</p>
+				<p>3、仅支持jpg、png、gif 格式，上传文件大小需小于2MB。</p>
+			</div>
+			<div class="fadins_footer">
+				<ul>
+					<input type="file" class="upload_file" name="imgFile" id="smallfileOthers" mark="smallImagOthers" mark2="2" mark3="input3" accept="image/*" capture='camera' style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);" />
+					<li>拍照</li>
+					<input type="file" class="upload_file" name="imgFile" id="smallfileOthers1" mark="smallImagOthers" mark2="2" mark3="input4" accept="image/jpg,image/gif,image/png" style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);" />
+					<li>从手机相册选择</li>
+					<li onclick="closer2('.s2','.s2 .fadins_footer')">取消</li>
+				</ul>
+			</div>
+		</div>-->
+		<!--<div class="pro_fade" style="display: none">
+			<div class="fade_mid">
+				<p id="error"></p>
+				<p id="uploads"></p>
+				<div class="img_cet">
+					<img src="/HRzhicha/public/images/img/tost6.png" id="ejectImg" />
+				</div>
+				<div class="btn_grow">
+					<div class="fl">
+						<a href="@{front.home.HomeAction.home()}">返回首页</a>
+					</div>
+					#{if user.authentication_status==4||user.authentication_status==0}
+					<div class="fr">
+						<a href="@{front.account.AccountHome.authenticationPage()}">去认证</a>
+					</div>
+					#{/if} #{if user.authentication_status==1||user.authentication_status==2||user.authentication_status==3}
+					<div class="fr" id="home">
+						<a href="@{front.account.AccountHome.home()}">返回用户中心</a>
+					</div>
+					#{/if}
+				</div>
+			</div>
+		</div>-->
+		<div class="shuru" id="shuru">
+			<div class="shuru_box" id="shuru_box">
+				<!-- 	<p>您的输入有误或不完善，请修改后再提交！</p> -->
+				<p id="P"></p>
+				<div style="color: #6e3cff" id="sure">（<span class="gs">3</span>S）</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			//注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+			layui.use('element', function() {
+				var element = layui.element;
+
+				//…
+			});
+		</script>
+
+		<script>
+			new Picker(document.querySelector('.bb'), {
+				format: 'Y',
+				date: '2048-10-24 05:12:02.056',
+				text: {
+					title: '请选择年份',
+				},
+			});
+			new Picker(document.querySelector('.aa'), {
+				format: 'MM',
+				text: {
+					title: '请选择月份',
+				},
+			});
+			$(' .navbar li').click(function() {
+				var m = $(this).index();
+				$(this).addClass('on').siblings().removeClass('on');
+				$('.main_fade').eq(m).show().siblings().hide();
+			})
+			$('.aa').click(function() {
+				$('.s').show();
+				$('.s .fadins_footer').animate({
+					'bottom': 0
+				})
+			})
+			$('.bb').click(function() {
+				$('.s8').show();
+				$('.s8 .fadins_footer').animate({
+					'bottom': 0
+				})
+			})
+
+			function closer8() {
+				$('.s8').fadeOut();
+				$('.s8 .fadins_footer').animate({
+					'bottom': '-3.99rem'
+				})
+			}
+
+			function closer0() {
+				$('.s').fadeOut();
+				$('.s .fadins_footer').animate({
+					'bottom': '-3.99rem'
+				})
+			}
+
+			function closer1() {
+				$('.s1').fadeOut();
+				$('.s1 .fadins_footer').animate({
+					'bottom': '-3.99rem'
+				})
+			}
+
+			function closer2() {
+				$('.s2').fadeOut();
+				$('.s2 .fadins_footer').animate({
+					'bottom': '-3.99rem'
+				})
+			}
+
+			function laborClick(labor) { //劳动合同图片上传框
+				$("input[mark3='input1']").attr("mark", labor.id);
+				$("input[mark3='input1']").attr("id", $(labor).attr("mark" + "1"));
+				$("input[mark3='input2']").attr("mark", labor.id);
+				$("input[mark3='input2']").attr("id", $(labor).attr("mark" + "1"));
+				$('.s1').show();
+				$('.s1 .fadins_footer').animate({
+					'bottom': 0
+				})
+			}
+
+			function othersClick(labor) { //其它图片上传框
+				$("input[mark3='input3']").attr("mark", labor.id);
+				$("input[mark3='input3']").attr("id", $(labor).attr("mark" + "1"));
+				$("input[mark3='input4']").attr("mark", labor.id);
+				$("input[mark3='input4']").attr("id", $(labor).attr("mark" + "1"));
+				$('.s2').show();
+				$('.s2 .fadins_footer').animate({
+					'bottom': 0
+				})
+			}
+			$('.ul_cost li').click(function() {
+				$(this).addClass('on').siblings().removeClass('on');
+				$("li[name='inforJust']").each(function() {
+					$(this).removeClass('on');
+				});
+
+			})
+			$('.ul_costs li').click(function() {
+				$(this).addClass('on').siblings().removeClass('on');
+			})
+			$('.ul_costss li').click(function() {
+				$(this).addClass('on').siblings().removeClass('on');
+				$("li[name='inforNeg']").each(function() {
+					$(this).removeClass('on');
+				});
+			})
+
+			function uploadImages(element) {
+				var mobileType = getIos();
+				if(mobileType) {
+					element.removeAttribute("capture");
+				}
+				var fileElementId = element.id;
+				var path = $(element).val();
+				var imageElementId = $(element).attr("mark");
+				var num = $(element).attr("mark2");
+				if(path == "") {
+					$("#shuru").show();
+					$("#shuru_box").children("div").html("确定");
+					$("#P").html("请选择上传的图片");
+					return false;
+				}
+				$.ajaxFileUpload({
+					url: http_path + "/FileUpload/uploadImage",
+					secureuri: false,
+					fileElementId: fileElementId,
+					dataType: 'text',
+					success: function(data) {
+						data = $.evalJSON(data);
+						if(data.code < 0) {
+							return;
+						}
+						$("#" + imageElementId).attr("src", data.filename);
+						if(num == 0) {
+							closer0();
+						} else if(num == 8) {
+							closer8();
+						} else if(num == 1) {
+							closer1();
+						} else if(num == 2) {
+							closer2();
+						}
+					},
+					error: function(data, status, e) {
+						$("#shuru").show();
+						$("#shuru_box").children("div").html("确定");
+						$("#P").html("上传图片失败");
+						return false;
+					}
+				})
+			}
+
+			function getIos() { //判断是否是ios设备  true 是  false 否
+				var ua = navigator.userAgent.toLowerCase();
+				if(ua.match(/iPhone\sOS/i) == "iphone os") {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			$("#sure").click(function() {
+				$("#shuru").hide();
+			});
+		</script>
+	</body>
+	<script type="text/javascript">
+		$("#occur_time_year").change(function() {
+			$("#occur_time_month").val("");
+		});
+
+		$(document).ready(function() {
+			$("#li1").addClass("on");
+			var authentication_status = $ {
+				user.authentication_status
+			};
+			if(authentication_status != 2) {
+				$("#error").text("完成企业认证,即可上传");
+				$("#ejectImg").attr("src", "/HRzhicha/public/images/img/tost3.png")
+				$(".pro_fade").css("display", "flex");
+
+			}
+		});
+		var j = 0;
+
+		function laborAdding(ht) {
+			j += 1;
+			var html = "<div class='addpic' style='margin-top:5%'><input type='hidden' name='image_filenameLabor' id='image_filename" + j + "'/><img src='/HRzhicha/public/images/img/qiye11A4.png' class='fl' id='smallImagLabor" + j + "' mark='smallfileLabor" + j + "' name='labor_img' onclick='laborClick(this)' style='height: 1.58rem;width: 1.15rem;'/>" +
+				"<img src='/HRzhicha/public/images/img/qiye13A4.png' class='fr ld' style='height: 1.58rem;width: 1.0rem;’ name='addImgLabor'  onclick='laborAdding(this)'/>" +
+				"</div>"
+			$("#uploaded_labor").append(html);
+			ht.src = "/HRzhicha/public/ima ges/img/qiye14A4.png";
+			ht.name = "removeLabor";
+			ht.onclick = null;
+			ht.onclick = function() {
+				laborRemove(this);
+			}
+		}
+
+		function laborRemove(obj) { //laborImg删除方法
+			obj.parentNode.remove();
+		}
+		var k = 0;
+
+		function othersAdding(ht) {
+			k += 1;
+			var htm l = "<div class='addpic' style='margin-top:5%'><input type='hidden' name='image_filenameOthers' id='image_filename" + k + "'/><img src='/HRzhicha/public/images/img/qiye11A4.png' class='fl' id='smallImagOthers" + k + "' mark='smallfileLabor" + k + "' name='others_img' onclick='laborClick(this)' style='height: 1.58rem;width: 1.15rem;'/>" +
+				"<img src='/HRzhicha/public/images/img/qiye13A4.png' class='fr ld' style='height: 1.58rem;width: 1.0rem;’ name='addImgOthers'  onclick='othersAdding(this)'/>" +
+				"</div>"
+			$("#uploaded_others").append(html);
+			ht.src = "/HRzhicha/public/images/img/qiye14A4.png";
+			ht.name = "removeOthers";
+			ht.onclick = null;
+			ht.onclick = function() {
+				othersRemove(this);
+			}
+		}
+
+		function othersRemove(obj) { //othersImg删除方法
+			obj.parentNode.remove();
+		}
+	</script>
+	<script type="text/javascript">
+		$(".main_rz2").click(function() {
+			var id_src = "";
+			$("img[name='id_card_img']").each(function() {
+				id_src = id_src + $(this).attr("src") + ",";
+			});
+			id_src = id_src.substring(0, id_src.length - 1);
+
+			var labor_src = "";
+			$("img[name='labor_img']").each(function() {
+				labor_src = labor_src + $(this).attr("src") + ",";
+			});
+			labor_src = labor_src.substring(0, labor_src.length - 1);
+
+			var others_src = "";
+			$("img[name='others_img']").each(function() {
+				if($(this).attr("src") == "/HRzhicha/public/images/img/qiye11A4.png") {
+					others_src = others_src + 0 + ",";
+				} else {
+					others_src = others_src + $(this).attr("src") + ",";
+				}
+
+			});
+			others_src = others_src.substring(0, others_src.length - 1);
+			if($("#name").val() == "") {
+				$("#shuru").show();
+				$("#shuru_box").children("div").html("确定");
+				$("#P").html("请输入姓名");
+				return false;
+			}
+			if($("#id_number").val() == "") {
+				$("#shuru").show();
+				$("#shuru_box").children("div").html("确定");
+				$("#P").html("请输入身份证号");
+				return false;
+			}
+			var idcardReg = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+			if(!idcardReg.test($("#id_number").val())) {
+				$("#shuru").show();
+				$("#shuru_box").children("div").html("确定");
+				$("#P").html("身份证格式有误");
+				return false;
+			}
+			if($("#event_description").val() == "") {
+				$("#shuru").show();
+				$("#shuru_box").children("div").html("确定");
+				$("#P").html("请如实描述事件经过");
+				return false;
+			}
+
+			if($("#occur_time_year").val() == "") {
+				$("#shuru").show();
+				$("#shuru_box").children("div").html("确定");
+				$("#P").html("请选择事件发生年份");
+				return false;
+			}
+			if($("#occur_time_month").val() == "") {
+				$("#shuru").show();
+				$("#shuru_box").children("div").html("确定");
+				$("#P").html("请选择事件发生月份");
+				return false;
+			}
+			if($("#occur_time_year").val() == new Date().getFullYear()) {
+				if($("#occur_time_month").val() > new Date().getMonth() + 1) {
+					$("#shuru").show();
+					$("#shuru_box").children("div").html("确定");
+					$("#P").html("选择月份已超出当前时间，请重新选择");
+					return false;
+				}
+			}
+
+			if($("#smallImagId_card").attr("src") == "/HRzhicha/public/images/img/ac_11.jpg") {
+				$("#shuru").show();
+				$("#shuru_box").children("div").html("确定");
+				$("#P").html("请上传身份证(人像面)照片信息");
+				return false;
+			}
+			if($("#smallImagId_card2").attr("src") == "/HRzhicha/public/images/img/ac_13.jpg") {
+				$("#shuru").show();
+				$("#shuru_box").children("div").html("确定");
+				$("#P").html("请上传身份证(国徽面)照片信息");
+				return false;
+			}
+			var result = true;
+			$("img[name='labor_img']").each(function() {
+				if($(this).attr("src") == "/HRzhicha/public/images/img/qiye_11.jpg") {
+					$("#shuru").show();
+					$("#shuru_box").children("div").html("确定");
+					$("#P").html("请核实劳动合同照片信息");
+					result = false;
+					return false;
+				}
+			});
+			if(result != true) {
+				return false;
+			}
+			var otherResult = true;
+			$("img[name='others_img']").each(function() {
+				if($(this).attr("src") == "/HRzhicha/public/images/img/qiye_11.jpg") {
+					$("#shuru").show();
+					$("#shuru_box").children("div").html("确定");
+					$("#P").html("请核实其它材料照片信息");
+					otherResult = false;
+					return false;
+				}
+			});
+			if(otherResult != true) {
+				return false;
+			}
+			var time = $("#occur_time_year").val() + $("#occur_time_month").val();
+			var negative_type_id = $("li[mark2='li'].on").attr("mark");
+			$.ajax({
+				url: "@{front.home.UploadInformation.submitNegativeInfor()}",
+				type: "POST",
+				data: {
+					name: $("#name").val(),
+					id_number: $("#id_number").val(),
+					negative_type_id: negative_type_id,
+					event_description: $("#event_description").val(),
+					time: time,
+					status: $("li[name='status'].on").val(),
+					id_src: id_src,
+					labor_src: labor_src,
+					others_src: others_src
+				},
+				success: function(data) {
+					if(data.code != 0) {
+						$("#error").text("失败,系统好像开了点小差");
+						$("#ejectImg").attr("src", "/HRzhicha/public/images/img/tost_11.png")
+						$(".pro_fade").css("display", "flex");
+					} else {
+						$("#error").text("上传成功,等待审核");
+						$("#uploads").text("（1个工作日内审核）");
+						$("#ejectImg").attr("src", "/HRzhicha/public/images/img/tost6.png")
+						$(".pro_fade").css("display", "flex");
+					}
+				}
+			});
+
+		});
+	</script>
+
+</html>

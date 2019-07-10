@@ -1,0 +1,104 @@
+<div class="xn_c_content">
+  <div class="xf_ht_tablelist">
+    <!-- 搜索 -->
+    #{form @memberUserManager(), id:'submit'}
+    <input type="hidden" id="currPage" name="currPage"/>
+    <input type="hidden" id="pageSize" name="pageSize"/>
+    <div class="xf_ht_search">
+      <div class="xf_ht_search_l">
+        <span id="div_0" onClick="conditonSearch(0)">默认排序</span>
+        <span id="div_1" onClick="conditonSearch(1)">累计充值金额 <a id="div_a_1">↑</a></span>
+        <span id="div_3" onClick="conditonSearch(3)">累计投标金额 <a id="div_a_3">↑</a></span>
+        <span id="div_5" onClick="conditonSearch(5)">累计投标数量 <a id="div_a_5">↑</a></span>
+        <span id="div_7" onClick="conditonSearch(7)">累计借款金额 <a id="div_a_7">↑</a></span>
+        <span id="div_9" onClick="conditonSearch(9)">累计借款标数量 <a id="div_a_9">↑</a></span>
+        <span id="div_11" onClick="conditonSearch(11)">信用等级 <a id="div_a_11">↑</a></span>
+        <span id="div_13" onClick="conditonSearch(13)">累计审核科目数 <a id="div_a_13">↑</a></span>
+      </div>
+    </div>
+    <div class="xf_ht_search_inon">
+      <div class="xf_ht_search_r">
+        <div class="xf_ht_search_xl">
+          <span class="search_timesp">订单号：</span>
+          <input name="vip_payment_number" type="text" class="search_w" id="vip_payment_number" value="${page.conditions?.vip_payment_number}" />
+        </div>
+        <div class="xf_ht_search_xl">
+          <span class="search_timesp">真实姓名：</span>
+          <input name="reality_name" type="text" class="search_w" id="reality_name" value="${page.conditions?.reality_name}" />
+        </div>
+         <div class="xf_ht_search_xl">
+          <span class="search_timesp">手机号：</span>
+          <input name="mobile" type="text" class="search_w" id="mobile" value="${page.conditions?.mobile}" />
+        </div>
+        <div class="xf_ht_search_xl">
+          <span class="search_timesp">发生时间：</span>
+          <input name="beginTime" type="text" id="startDate" class="search_time" onclick="laydate()" style="cursor: pointer" value="${page?.conditions?.beginTime}" />
+          <span class="search_timesp">--</span>
+          <input name="endTime" type="text" id="endDate" class="search_time" onclick="laydate()" style="cursor: pointer" value="${page?.conditions?.endTime}" />
+        </div>
+        <div class="xf_ht_search_xl">
+          <input type="button" class="search_button" onclick="searchSubmit();" value="搜 索" />
+        </div>
+      </div>
+    </div>
+    #{/form}
+    <!-- 列表内容 -->
+    <div class="xn_c_content_top">
+      #{table class:"xn_c_content_list1",cellspacing:"0",cellpadding:"0",border:"0",tr_class_even:"xn_tr_bj",width:"1700px"}
+        #{tr}
+          #{th}序号#{/th}
+          #{th}交易时间#{/th}
+          #{th}订单号#{/th}
+          #{th}手机号#{/th}
+          #{th}真实姓名#{/th}
+          #{th}原到期日#{/th}
+          #{th}购买期限#{/th}
+          #{th}新到期日#{/th}
+          #{th}类型#{/th}
+        #{/tr}
+        #{list page?.page}
+        #{tr tr_index:_index}
+          #{td}${(page?.currPage - 1) * page?.pageSize + _index}#{/td}
+          #{td}${_?.time?.format('yyyy-MM-dd')}#{/td}
+          #{td}${_?.vip_payment_number}#{/td}
+          #{td}${_?.mobile}#{/td}
+          #{td}#{if _?.authentication_status==1}${_?.reality_name}#{/if}#{if _?.authentication_status==2}${_?.company_name}#{/if}#{/td}
+          #{td}${_?.vip_time?.format('yyyy-MM-dd')}#{/td}
+           #{td}${_?.vip_period}#{if _?.vip_period_unit==-1}年#{/if}#{if _?.vip_period_unit==0}月#{/if}#{if _?.vip_period_unit==1}日#{/if}#{/td}
+          #{td}${_?.vip_expirationTime?.format('yyyy-MM-dd')}#{/td}
+             #{td}#{if _?.status==0}开通#{/if}#{if _?.status==1}续费#{/if}#{/td}
+        #{/tr}
+        #{/list}
+      #{/table}
+    </div>
+    <!-- 列表底部 -->
+    <div class="xn_c_content_bottom">
+      <div class="page_warp">
+        #{page funMethod:"allUserShow", currPage:page.currPage,totalCount:page.totalCount,pageSize:page.pageSize,theme:2,style:4/}
+      </div>
+    </div>
+  </div>
+</div>
+<div id="zjjkr"></div>
+<div id="zjjjj"></div>
+<script type="text/javascript">
+
+
+$(function(){  
+  /* 高亮显示 */
+  highLight(2);
+ 
+});
+
+function allUserShow(currPage, pageSize){
+  $("#currPage").val(currPage);
+  $("#pageSize").val(pageSize);
+  $("#submit").submit();
+}
+
+function searchSubmit(){
+  $("#submit").submit();
+}
+
+
+</script>

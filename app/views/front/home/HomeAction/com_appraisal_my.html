@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>我的点评</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" type="image/png" href="@{' /HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href=" /HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href=" /HRzhicha/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href=" /HRzhicha/public/stylesheets/css/refactorStyle.css" />
+
+		<script type="text/javascript" src=" /HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src=" /HRzhicha/public/javascripts/js/js.js"></script>
+
+	</head>
+
+	<body class="ggg">
+		<div class="pay_tits">
+			<img src=" /HRzhicha/public/images/img/reach_03.jpg" onclick="out()" />
+			<p>我的点评</p>
+		</div>
+		<div class="infoa">
+			<div class="com_appraisal_nex1 myAppraisalbox">
+				<ul>
+					<li>
+						<div class="myAppraisal">
+							<div class="myAppraisalImg fl">
+								<img src=" /HRzhicha/public/images/img/com_01.png" />
+							</div>
+							<div class="myAppraisaltxt fl">
+								<p>深圳市大疆创新科技有限公司</p>
+								<span class="myAppraisalTime">
+								58分钟前
+							</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="app_bot">
+							恶意攻击企业
+						</div>
+
+						<div class="bot_tit bot_tit_red">
+							审核未通过
+						</div>
+
+					</li>
+					<li>
+						<div class="myAppraisal">
+							<div class="myAppraisalImg fl">
+								<img src=" /HRzhicha/public/images/img/com_01.png" />
+							</div>
+							<div class="myAppraisaltxt fl">
+								<p>南京青山互娱网络科技有限公司</p>
+								<span class="myAppraisalTime">
+								58分钟前
+							</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="app_bot">
+							五险一金齐全、工作环境好。
+						</div>
+
+						<div class="bot_tit bot_tit_yellow">
+							待审核
+						</div>
+
+					</li>
+					<li>
+						<div class="myAppraisal">
+							<div class="myAppraisalImg fl">
+								<img src=" /HRzhicha/public/images/img/com_01.png" />
+							</div>
+							<div class="myAppraisaltxt fl">
+								<p>广州油菜花信息科技有限公司</p>
+								<span class="myAppraisalTime">
+								58分钟前
+							</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="app_bot">
+							交通方便、工作环境好。
+						</div>
+
+						<div class="bot_tit bot_tit_blue">
+							审核通过
+						</div>
+
+					</li>
+					<li>
+						<div class="myAppraisal">
+							<div class="myAppraisalImg fl">
+								<img src=" /HRzhicha/public/images/img/com_01.png" />
+							</div>
+							<div class="myAppraisaltxt fl">
+								<p>迅付信息科技有限公司</p>
+								<span class="myAppraisalTime">
+								58分钟前
+							</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="app_bot">
+							人员流动性大、加班多。
+						</div>
+
+						<div class="bot_tit bot_tit_blue">
+							审核通过
+						</div>
+
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		var proposals = ['百度1', '百度2', '百度3', '百度4', '今日头条', '百度5', '百度6', '百度7', '呵呵呵呵呵呵呵', '百度', '新浪', 'a1', 'a2', 'a3', 'a4', 'b1', 'b2', 'b3', 'b4', '今日1', '百度1', '百度2', '百度3', '百度4', '百度5', '百度6', '百度7', '呵呵呵呵呵呵呵', '百度', '新浪', 'a1', 'a2', 'a3', 'a4', 'b1', 'b2', 'b3', 'b4', '今日1'];
+
+		$(document).ready(function() {
+			$('#search-form').autocomplete({
+				hints: proposals,
+				width: 300,
+				height: 30,
+				onSubmit: function(text) {
+					$('#message').html('Selected: <b>' + text + '</b>');
+				}
+			});
+		});
+		/*	*/
+	</script>
+	<script type="text/javascript">
+	</script>
+	<script type="text/javascript">
+	</script>
+
+</html>

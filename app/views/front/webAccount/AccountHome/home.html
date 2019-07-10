@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>我的账户-X职查</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/layui/css/layui.css'}" />
+		<link href="@{'/public/stylesheets/webcss/public.css'}" rel="stylesheet" type="text/css" />
+		<link href="@{'/public/stylesheets/webcss/style.css'}" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="@{'/public/javascripts/common.js'}"></script>
+	    <script type="text/javascript" src="@{'/public/javascripts/ajaxfileupload.js'}"></script>
+	    <script type="text/javascript" src="@{'/public/javascripts/index.js'}"></script>
+	    <script type="text/javascript" src="@{'/public/javascripts/jquery.json-2.4.min.js'}"></script>
+	</head>
+
+	<body class="bgf">
+	#{include "common/webHeader.html"/}
+		<div class="about_content">
+		<div class="fl">
+				<div class="page_menu">
+					<ul>
+						<li>
+							<a>首页</a>
+						</li>
+						<li>/</li>
+						<li>
+							<a>用户中心</a>
+						</li>
+						<li>/</li>
+						<li>
+							<a>我的账户</a>
+						</li>
+					</ul>
+				</div>
+				<!-- 左边导航区域 -->
+	#{include "front/webAccount/AccountHome/homeLeft.control"/}
+			</div>
+			
+			<div class="fr">
+				<div class="user_fr_top">
+					<div class="user_logos">
+						<!-- <img src="/public/images/webimg/icon_21.jpg"/> -->
+						<img src="${users?.photo}" id="smallImag"/>
+						<input  style="width: 6.10rem;line-height: 2.5rem;opacity: 0;position: absolute;margin-top: 1%;cursor: pointer;" 
+		             type="file"  name="imgFile" id="imgFile"  mark="smallImag" onchange="uploadImage(this);" />
+						<p>修改头像</p>
+					</div>
+					<div class="user_infos_go">
+						<h3>${users?.mobile}，欢迎您！</h3>
+						<div class="infos_icon_list">
+							#{if users?.email==null}<img src="/public/images/webimg/center_164.jpg"/>#{/if}
+							#{else}<img src="/public/images/webimg/userEmail.png"/>#{/else}
+							#{if mark==1}<img src="/public/images/webimg/center_161.jpg"/>#{/if}
+							#{if mark==0}<img src="/public/images/webimg/vvv.jpg"/>#{/if}
+							<img src="/public/images/webimg/userPhoto.png"/>
+							#{if users?.authentication_status==1||users?.authentication_status==2}<img src="/public/images/webimg/reuName.png"/>#{/if}
+							#{else}<img src="/public/images/webimg/center_163.jpg"/>#{/else}
+						</div>
+						<div class="x_b">
+							<div class="keyongx">
+								<p>可用X币：<span>${users?.balance}</span></p>
+								<div class="buysx"><a href="@{front.webAccount.AccountHome.xCharges()}">购买X币</a></div>
+							</div>
+							#{if mark==1}<div class="keyongx">
+								<p>您尚未开通VIP套餐！</p>
+								<div class="openx"><a href="@{front.webAccount.AccountHome.vipBuy()}">开通VIP</a></div>
+							</div>#{/if}
+							#{if mark==0}<span class="numbarser">您是VIP会员，尊享免费查询特权!<br />剩余查询（次）:<i>${currCount}</i></span>#{/if}
+						</div>
+						<ul class="ist_s">
+							<a href="@{front.webAccount.AccountHome.updata}">
+								<li><p>上传信息</p>
+								<span>发布一条奖励2X币</span>
+							</li></a>
+							<a href="@{front.webHome.HomeAction.search()}?name=&id_number=&mark=charge">
+								<li><p>查询信息</p>
+								<span>查询一条信息消费1X币</span>
+							</li></a>
+							<a href="@{front.webAccount.AccountHome.myUpdata}">
+								<li><p>管理信息</p>
+								<span>管理已经上传的信息</span>
+							</li></a>
+							<a href="@{front.webAccount.AccountHome.myQuery}">
+								<li><p>查询历史</p>
+								<span>查过的人免费再查</span>
+							</li></a>
+						</ul>
+						<ul class="ist_ss">
+							<li>
+								<p>${informations?.size()}条</p>
+								<span>我上传的信息</span>
+							</li>
+							<li>
+								<p>${currencys?.size()}条</p>
+								<span>我的查询历史</span>
+							</li>
+							<li>
+								<p>${myappealInfors?.size()}条</p>
+								<span>我收到的申诉</span>
+							</li>
+							<li>
+								<p>${appealInfors?.size()}条</p>
+								<span>我提交的申诉</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			</div>
+	
+	#{include "common/webBottom.html"/}
+		<!--[if !IE]><!-->
+		<!-- <script src="@{'/public/javascripts/webjs/jquery-2.1.1.min.js'}" type="text/javascript"></script> -->
+		<script type="text/javascript" src="@{'/public/stylesheets/layui/layui.js'}"></script>
+		<script type="text/javascript">
+		 $(function(){
+		       $("#li_1").addClass("on");
+		       $("#li_1").nextAll().removeClass("on");
+		       $("#img_1").attr("src","/public/images/webimg/left_center.jpg");
+		 })
+		 
+	function uploadImage(element) {
+		 var fileElementId=element.id;
+         var imageElementId=$(element).attr("mark");
+         var path = $("#" + fileElementId).val();
+		if(path == "") {
+			alert("请选择上传的图片");
+			return;
+		}
+		$.ajaxFileUpload({
+			url : http_path + "/FileUpload/uploadImageByPer",
+			secureuri : false,
+			fileElementId : fileElementId,
+			dataType : 'text',
+			success : function(data) {
+				data = $.evalJSON(data);
+				if (data.code < 0) {
+					alert(data.msg);
+					return;
+				}
+				$("#" + imageElementId).attr("src", data.filename);
+			},
+			error : function(data, status, e) {
+				alert("上传图片失败");
+			}
+		})
+}
+		</script>
+	</body>
+   
+</html>

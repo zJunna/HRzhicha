@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>处理申诉</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+		
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/refactorStyle.css" />
+		
+		
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+		 <script type="text/javascript" src="@{'/HRzhicha/public/javascripts/index.js'}"></script>
+	    <script type="text/javascript" src="@{'/HRzhicha/public/javascripts/jquery.json-2.4.min.js'}"></script>
+		<!--<script type="text/javascript" src="/HRzhicha/public/javascripts/js/pike.js" ></script>-->
+	</head>
+
+	<body class="ggg">
+		<div class="pay_tits">
+			<img src="/HRzhicha/public/images/img/reach_03.jpg"  onclick="javascript:history.back(-1);" />
+			<p>处理申诉</p>
+		</div>
+		<div class="infoa">
+			<div class="fade_list1">
+			
+			<div class="fa_info">
+				<p>信息详情</p>
+				<span name="company_name">姓      名：张立</span>
+				<span>身份证号：372284199012093547</span>
+				<span>信息类型：负面-职场信用</span>
+				<span>事件描述：盗窃公司财务</span>
+				<span>事件时间：2018-10</span>
+				<span>申诉信息：该公司捏造实事，已诉诸法律。</span>
+				
+			</div> 
+			<div class="ssinfo">
+				<div class="ss_tit">
+					<p>申诉详情</p>
+				</div>
+				
+				<ul class="ul_costs">
+						
+							<li  class="on onOne" name="status" value="1" style="width: 2.4rem;">
+								 <p>通过申诉  删除信息  </p>
+								<img src="/HRzhicha/public/images/img/infos_09.png"/>
+							</li>
+							<li class="onTwo" name="status" value="2" style="right: .1rem;">
+								<p>拒绝申诉  保留信息  </p>
+								<img src="/HRzhicha/public/images/img/infos_09.png"  style="right: .1rem;"/>
+							
+							</li>
+							
+						</ul>
+						<textarea placeholder="与事实不符" name="appeal_details" class="textarea "></textarea>
+						<p class="conts">认为所上传信息真实无误，拒绝本次申诉。申诉者每30天后可以再次发起申诉。</p>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<div class="buttons1"><a id="submit">确认</a></div>
+			<div class="font_testare">
+				<h4>规则声明:</h4>
+				<p>您通过上述两个方式处理后，此申诉即被处理完毕。如果您超过10日未未对申诉进行处理，系统会默认为拒绝申诉，但为了维护申诉人的应有</p>
+				
+			</div>
+		</div>
+		</div>
+		<div class="pro_fade" style="display:none">
+			<div class="fade_mid">
+				<p id="error"></p>
+				<div class="img_cet">
+					<img src="/HRzhicha/public/images/img/tost3.png"/>
+				</div>
+				<div class="btn_grow">
+					<div class="fl"><a href="">确认</a></div>
+					<div class="fr"><a href="">取消</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="pro_appeal" style="display:flex">
+			<div class="pro_appeal_mid">
+				<p>确认删除本消息吗!</p>
+				<div class="appeal_btn_grow">
+					<div class="fl">
+						确认
+					</div>
+					<div class="fr">
+						删除
+					</div>
+					
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="shuru" id="shuru">
+			<div class="shuru_box" id="shuru_box" >
+			<!-- 	<p>您的输入有误或不完善，请修改后再提交！</p> -->
+				<p id="P"></p>
+				<div style="color: #6e3cff" id="sure">（<span class="gs">3</span>S）</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$('.ul_costs li').click(function(){
+			$(this).addClass('on').siblings().removeClass('on');
+			});
+			
+	</script>
+	 <script type="text/javascript">
+  		
+	     $("#submit").click(function(){
+	     if($("[name='appeal_details']").val()==""){
+	          $("#shuru").show();
+					$("#shuru_box").children("div").html("确定");
+		   			$("#P").html("请选择上传的图片");
+					return false;
+	     }
+	    	 $.ajax({
+	     url:"@{front.home.HomeAction.appealSubmit()}",
+	     type:"POST",
+	     data:{
+	     negative_information_id:${negative_infor.id},
+	     appeal_details:$("[name='appeal_details']").val()
+	     },
+	     success:function(data){
+	     if(data.code<0){
+	      $("#error").html(data.msg);
+	      $(".pro_fade").css("display","flex");
+	     }else{
+	     $("#error").html("申诉成功，请等待处理。");
+	       $(".pro_fade").css("display","flex");
+	     }
+	     }
+	     }); 
+	     })
+  </script>
+
+</html>

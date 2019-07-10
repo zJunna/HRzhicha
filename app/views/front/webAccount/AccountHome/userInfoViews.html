@@ -1,0 +1,303 @@
+		<script type="text/javascript" src="@{'/public/javascripts/webjs/js.js'}"></script>
+<div class="fr_lable_item">
+								<p class="lab_p">姓名</p>
+								<div class="lab_item">
+									<div class="all_change"><input type="text" name="" id="" value="${information?.reality_name}" disabled="disabled"/></div>
+								</div>
+							</div>
+							<div class="fr_lable_item">
+								<p class="lab_p">性别</p>
+								<div class="lab_item">
+									<div class="select_box selegos" style="width: 160px;">
+									<p class="htmlw">#{if information?.inforSex==1}男#{/if}#{if information?.inforSex==2}女#{/if}</p>
+								</div>
+									<span>年龄</span>
+									<div class="select_box selegos" style="width: 160px;">
+									<p class="htmlw">${information?.inforAge}岁</p>
+								</div>
+								</div>
+							</div>
+							<div class="fr_lable_item">
+								<p class="lab_p">现居住地</p>
+								<div class="lab_item">
+									<div class="select_box selegos" style="width: 160px;">
+									  #{list provinces}
+									#{if _?.id==provinces_info?.id}
+									<p class="htmlw">${_?.name}</p>
+									#{/if}
+									#{/list}
+									#{if provinces_info?.id==null}<p class="htmlw">请选择</p>#{/if}
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id="provinces_id"> 
+												    <li name="provinces_name" value="0" >请选择</li>
+												#{list provinces}
+													<li name="provinces_name" value="${_?.id}" #{if _?.id==provinces_info?.id} class="on"#{/if}>${_?.name}</li>
+											#{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+								<div class="select_box selegos" style="width: 160px;margin-left: 5%;">
+									#{if citys_info!=null}
+									<p class="htmlw" id="city_name">${citys_info?.name}</p>
+									#{/if}
+									#{else}<p class="htmlw">请选择</p>#{/else}
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id="city_id"> 
+												    <li name="city_name" value="0" >请选择</li>
+												    #{list citys}
+													<li name="city_name" value="${_?.id}" #{if _?.id==citys_info?.id}  class="on" #{/if}>${_?.name}</li>
+														#{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+								</div>
+							</div>
+							<div class="fr_lable_item">
+								<p class="lab_p">民族</p>
+								<div class="lab_item">
+									<div class="select_box selegos" style="width: 160px;">
+									#{list operations}
+									#{if _?.id==information?.race_id}
+									<p class="htmlw">${_?.name}</p>
+									#{/if}
+									#{/list}
+									#{if information?.race_id==0}<p class="htmlw">请选择</p>#{/if}
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id=""> 
+												    <li name="race_name" value="0" >请选择</li>
+												#{list operations}
+											 #{if _?.group_id==10}
+													<li name="race_name" value="${_?.id}" #{if _?.id==information?.race_id} class="on"#{/if}>${_?.name}</li>
+													#{/if}
+											#{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+									<span>婚姻状况</span>
+									<div class="select_box selegos" style="width: 160px;">
+									#{list operations}
+									#{if _?.id==information?.marital_id}
+									<p class="htmlw">${_?.name}</p>
+									#{/if}
+									#{/list}
+									#{if information?.marital_id==0}<p class="htmlw">请选择</p>#{/if}
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id=""> 
+												    <li name="marital_name" value="0" >请选择</li>
+												#{list operations}
+											 #{if _?.group_id==1}
+													<li name="marital_name" value="${_?.id}" #{if _?.id==information?.marital_id} class="on"#{/if}>${_?.name}</li>
+													#{/if}
+											#{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+								</div>
+							</div>
+							<div class="fr_lable_item">
+								<p class="lab_p">身高 </p>
+								<div class="lab_item">
+									<div class="select_box selegos" style="width: 160px;">
+									#{list operations}
+									#{if _?.id==information?.height_id}
+									<p class="htmlw">${_?.name}cm</p>
+									#{/if}
+									#{/list}
+									#{if information?.height_id==0}<p class="htmlw">请选择</p>#{/if}
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id=""> 
+												    <li name="height_name" value="0" >请选择</li>
+												#{list operations}
+											 #{if _?.group_id==8}
+													<li name="height_name" value="${_?.id}" #{if _?.id==information?.height_id} class="on"#{/if}>${_?.name}cm</li>
+													#{/if}
+											#{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+									<span>体重</span>
+									<div class="select_box selegos" style="width: 160px;">
+									#{list operations}
+									#{if _?.id==information?.weight_id}
+									<p class="htmlw">${_?.name}kg</p>
+									#{/if}
+									#{/list}
+									#{if information?.weight_id==0}<p class="htmlw">请选择</p>#{/if}
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id=""> 
+												    <li name="weight_name" value="0" >请选择</li>
+												#{list operations}
+											 #{if _?.group_id==9}
+													<li name="weight_name" value="${_?.id}" #{if _?.id==information?.weight_id} class="on"#{/if}>${_?.name}kg</li>
+													#{/if}
+											#{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+								</div>
+							</div>
+							<div class="fr_lable_item">
+								<p class="lab_p">手机号</p>
+								<div class="lab_item">
+									<div class="all_change"><input type="text" name="" id="" value="${users?.mobile}"  disabled="disabled"/></div>
+									<em style="margin-left: 30%;right: inherit;color:#60C2F6;">已绑定</em>
+									<em id="updataMobile">前往修改手机号</em>
+								</div>
+							</div>
+							<div class="fr_lable_item">
+								<p class="lab_p">邮箱</p>
+								<div class="lab_item">
+								#{if users?.email==null}
+									<div class="all_change"><input type="text" name="" id="" value="" disabled="disabled" /></div>
+									<em id="setEmail">前往绑定邮箱</em>
+									#{/if}#{else}
+									<div class="all_change"><input type="text" name="" id="" value="${users?.email}" disabled="disabled"/></div>
+									<em style="margin-left: 40%;right: inherit;color:#60C2F6;">已绑定</em>
+									<em id="updataEmail">前往修改邮箱</em>
+									#{/else}
+								</div>
+							</div>
+							<div class="btn_regs">
+								<div class="sacr" id="submitInfo" style="cursor: pointer;">保存</div>
+								<div id="outInfo" style="cursor: pointer;">取消</div>
+							</div>
+							
+		<script type="text/javascript">
+		     $("#updataMobile").click(function(){
+		          url();
+		     })
+		     $("#updataEmail").click(function(){
+		          url();
+		     })
+		     $("#setEmail").click(function(){
+		          url();
+		     })
+		     function url(){
+		      location.href="@{front.webAccount.AccountHome.safelySetting()}";
+		     }
+            $("li[name='provinces_name']").each(function(){
+					$(this).click(function(){
+					getCity($(this).val());
+					})
+			});
+             function getCity(id){
+             var city_id="${information?.city_id}";
+			  if(id==""){
+			  var html="<li name='city_name' value='0'>请选择</li>";
+			  $("#city_id").append(html);
+			  }
+			  $.ajax({
+			  url:"@{front.webAccount.AccountHome.getCity()}",
+			  type:"POST",
+			  data:{
+			  parentid:id
+			  },
+			  success:function(data){
+			  var html="";
+			  html="<li name='city_name' value='0'>请选择</li>";
+			  for(var i in data){
+			  if(city_id==data[i].id){
+			   html+="<li name='city_name' value="+data[i].id+" class='on'>"+data[i].name+"</li>";
+			  }else{
+			  html+="<li name='city_name' value="+data[i].id+">"+data[i].name+"</li>";
+			  }
+			  }
+			  $("#city_name").html("请选择");
+			  $("#city_id").html("");
+			  $("#city_id").append(html); 
+			  $("li[name='city_name']").each(function(){
+					$(this).click(function(){
+					   $(this).addClass("on").siblings().removeClass('on');
+					   $("#city_name").html($(this).html());
+					})
+			});
+			  }
+			  });
+		 }
+           $("#submitInfo").click(function(){
+            var city_id="";
+              $("li[name='city_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					city_id=$(this).val();
+					}
+			});
+              var race_id=""
+              $("li[name='race_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					race_id=$(this).val();
+					}
+			});
+			 var marital_id=""
+              $("li[name='marital_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					marital_id=$(this).val();
+					}
+			});
+			 var height_id=""
+              $("li[name='height_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					height_id=$(this).val();
+					}
+			});
+			 var weight_id=""
+              $("li[name='weight_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					weight_id=$(this).val();
+					}
+			});
+			if(city_id==0){
+			  $("#errorMes").html("请选择所在地！");
+	  	  	  $("#error").css("display","block");
+			}
+			if(race_id==0){
+			  $("#errorMes").html("请选择民族！");
+	  	  	  $("#error").css("display","block");
+			}
+			if(marital_id==0){
+			  $("#errorMes").html("请选择婚姻状况！");
+	  	  	  $("#error").css("display","block");
+			}
+			if(height_id==0){
+			  $("#errorMes").html("请选择身高！");
+	  	  	  $("#error").css("display","block");
+			}
+			if(weight_id==0){
+			  $("#errorMes").html("请选择体重！");
+	  	  	  $("#error").css("display","block");
+			}
+				$.ajax({
+	  	  		url:"@{front.webAccount.AccountHome.addUserInfo()}",
+	  	  		type:"POST",
+	  	  		data:{
+	  	  		city_id:city_id,
+	  	  		race_id:race_id,
+	  	  		marital_id:marital_id,
+	  	  		height_id:height_id,
+	  	  		weight_id:weight_id
+	  	  		},
+	  	  		success:function(data){
+	  	  			if(data.code<0){
+	  	  			 $("#errorMes").html(data.msg);
+	  	  	  		 $("#error").css("display","block");
+	  	  			}else{
+	  	  			 location.reload();
+	  	  			}  	  			
+	  	  		}
+	  	  		});
+           })
+           $("#outInfo").click(function(){
+            location.reload();
+           })
+</script>					

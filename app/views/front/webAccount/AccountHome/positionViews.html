@@ -1,0 +1,290 @@
+		<script type="text/javascript" src="@{'/public/javascripts/webjs/js.js'}"></script>
+<div class="fr_lable_item" style="height: 42px">
+							<p class="lab_p">期望职位</p>
+							<div class="lab_item">
+								<div class="select_box selegos" style="width: 220px;">
+									<p class="htmlw" id="positions_id" mark="">请选择</p>
+										<div class="sele_covers" id="positionones" style="top: 50px;">
+											<div class="sele_cov_select"  style="width: 200px;">
+												<ul id="PositionOne" > 
+												#{list industries}
+													<li name="industry_name" id="${_?.id}" value="${_?.id}" onmouseover="myMouseOver(this)">${_?.industry_name}</li>
+												#{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+								<div class="select_box" style="width: 200px;border: inherit;font-size: 13px;color: #757575;padding-left: 10px;line-height: 40px;position: relative; "  >
+										<div class="sele_covers"   id="positiontwo" style="padding-left:5%;top: 30px;">
+											<div class="sele_cov_select" style="width: 200px;">
+												<ul id="PositionTwo" > 
+												
+												</ul>
+											</div>
+										</div>
+								</div>
+								<div class="select_box" style="width: 200px;border: inherit;font-size: 13px;color: #757575;padding-left: 10px;line-height: 40px;position: relative; " >
+										<div class="sele_covers"   id="positionthree" style="padding-left:30%;top: 30px;">
+											<div class="sele_cov_select" style="width: 200px;" >
+												<ul id="PositionThree" > 
+												
+												</ul>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="fr_lable_item">
+							<p class="lab_p">期望薪资</p>
+							<div class="lab_item">
+								<div class="select_box selegos" style="width: 160px;">
+								<p class="htmlw">请选择</p>
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id=""> 
+												    <li name="salary_expectation_name" value="0" class="on">请选择</li>
+												#{list operations}
+											 #{if _?.group_id==6}
+													<li name="salary_expectation_name" value="${_?.id}">${_?.name}</li>
+													#{/if}
+											#{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="fr_lable_item">
+							<p class="lab_p">工作地点</p>
+							<div class="lab_item">
+								<div class="select_box selegos" style="width: 160px;">
+								<p class="htmlw">请选择</p>
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id="workprovinces_id"> 
+												    <li name="workprovinces_name" value="0" class="on">请选择</li>
+												#{list provinces}
+													<li name="workprovinces_name" value="${_?.id}" >${_?.name}</li>
+											      #{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+								<div class="select_box selegos" style="width: 160px;margin-left: 5%;">
+								<p class="htmlw"  id="workcity">请选择</p>
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id="workcity_id"> 
+												    <li name="workcity_name" value="0"  class="on" >请选择</li>
+												</ul>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="fr_lable_item">
+							<p class="lab_p">目前状态</p>
+							<div class="lab_item">
+								<div class="select_box selegos" style="width: 160px;">
+								<p class="htmlw">请选择</p>
+										<div class="sele_covers">
+											<div class="sele_cov_select">
+												<ul id=""> 
+												    <li name="current_name" value="0" class="on">请选择</li>
+												#{list operations}
+											 #{if _?.group_id==3}
+													<li name="current_name" value="${_?.id}">${_?.name}</li>
+													#{/if}
+											#{/list}
+												</ul>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="btn_regs" style=" margin-top:60px;">
+							<div class="sacr" id="addPosition" style="cursor: pointer;">保存</div>
+							<div id="outPosition" style="cursor: pointer;">取消</div>
+						</div>
+						<script type="text/javascript">
+						$("#positions_id").click(function(){
+							if($("#positionones").css("display")=="block"||$("#positionones").css("display")=="flex"){
+							$("#positiontwo").css("display","none");
+							$("#positionthree").css("display","none");
+							}else{
+							$("#positionones").css("display","block");
+							}
+						})
+function myMouseOver(element) {
+       var id=element.value;
+        $("#positionthree").css("display","none"); 
+       $("#"+id).addClass('on').siblings().removeClass('on');
+        $.ajax({
+		 		url:"@{front.webAccount.AccountHome.ajaxPositionTwo()}",
+				data:{
+				industryeId:id
+				},
+				type:"POST",
+				dateType: "JSON",
+				success:function(data){
+				     var html="";
+					  for(var i in data){
+					  	if(data[i].id!=undefined){
+					  		html+="<li name='industryTwo_name' id="+data[i].id+"  value="+data[i].id+" onmouseover='myMouseOver1(this)'>"+data[i].industry_name+"</li>";					 	
+					  }
+					   $("#positionones").css("display","flex"); 
+					  $("#positiontwo").css("display","block"); 
+					  $("#PositionTwo").html("");
+					$("#PositionTwo").html(html);
+				}
+		 	}
+    });
+   };
+    function myMouseOver1(element) {
+       var id=element.value;
+       $("#"+id).addClass('on').siblings().removeClass('on');
+       $.ajax({
+		 		url:"@{front.webAccount.AccountHome.ajaxPositionThree()}",
+				data:{
+				positionId:id
+				},
+				type:"POST",
+				success:function(data){
+				     var html="";
+					  for(var i in data){
+					  	if(data[i].id!=undefined){
+					  	  html+="<li name='industryThree_name' id="+data[i].id+" value="+data[i].id+" onclick=addPos(this) >"+data[i].position_name+"</li>";
+					  	}
+					  }
+					  $("#positionones").css("display","flex"); 
+					  $("#positiontwo").css("display","block"); 
+					   $("#positionthree").css("display","block"); 
+					  $("#PositionThree").html("");
+					$("#PositionThree").html(html);
+				}
+		 	
+		 	});
+    }
+    
+    function addPos(element){
+     var id=element.value;
+      $("#"+id).addClass('on').siblings().removeClass('on');
+     var value=element.innerHTML;
+     var positions_id= id;
+     var positions_name=value;
+     $("#positions_id").attr("mark",positions_id);
+     $("#positions_id").html(positions_name);
+     $("#positionones").css("display","none"); 
+	$("#positiontwo").css("display","none"); 
+	 $("#positionthree").css("display","none"); 
+    }
+    
+    $("li[name='workprovinces_name']").each(function(){
+					$(this).click(function(){
+					getCity($(this).val());
+					})
+			});
+             function getCity(id){
+			  if(id==""){
+			  var html="<li name='workcity_name' value='0'>请选择</li>";
+			  $("#workcity_id").append(html);
+			  }
+			  $.ajax({
+				  url:"@{front.webAccount.AccountHome.getCity()}",
+				  type:"POST",
+				  data:{
+				  parentid:id
+				  },
+				  success:function(data){
+				  var html="";
+				  html="<li name='workcity_name' value='0'>请选择</li>";
+				  for(var i in data){
+				  html+="<li name='workcity_name' value="+data[i].id+">"+data[i].name+"</li>";
+				  }
+				  $("#workcity_name").html("请选择");
+				  $("#workcity_id").append(html); 
+						   $("li[name='workcity_name']").each(function(){
+							$(this).click(function(){
+							   $(this).addClass("on").siblings().removeClass('on');
+							   $("#workcity").html($(this).html());
+							})
+					     });
+				  }
+			  });
+		 };
+		  $("#workcity").click(function(){
+		  var val="";
+		  $("li[name='workprovinces_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					  val=$(this).val();
+					}
+			});
+		   		if(val==0){
+		   		  alert("请选择省份");
+		   		  return false;
+		   		}
+           });
+    $("#addPosition").click(function(){
+        var  position_id=$("#positions_id").attr("mark");
+        if($("#positions_id").html=="请选择"){
+        	$("#errorMes").html("请选择期望职位！");
+	  	  	$("#error").css("display","block");
+	  	  	return false;
+        }
+        var salary_expectation="";
+              $("li[name='salary_expectation_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					salary_expectation=$(this).val();
+					}
+			});
+	if(salary_expectation==0){
+			$("#errorMes").html("请选择期望薪资！");
+	  	  	$("#error").css("display","block");
+	  	  	return false;
+		}
+			 var workcity_id="";
+              $("li[name='workcity_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					workcity_id=$(this).val();
+					}
+			});
+			if(workcity_id==0){
+			$("#errorMes").html("请选择工作地点！");
+	  	  	$("#error").css("display","block");
+	  	  	return false;
+		}
+			 var current_status="";
+              $("li[name='current_name']").each(function(){
+					if($(this).attr("class")=="on"){
+					current_status=$(this).val();
+					}
+			});
+			if(current_status==0){
+			$("#errorMes").html("请选择目前状态！");
+	  	  	$("#error").css("display","block");
+	  	  	return false;
+		}
+			$.ajax({
+	  	  		url:"@{front.webAccount.AccountHome.addPositionl()}",
+	  	  		type:"POST",
+	  	  		data:{
+	  	  		position_id:position_id,
+	  	  		workcity_id:workcity_id,
+	  	  		salary_expectation:salary_expectation,
+	  	  		current_status:current_status
+	  	  		},
+	  	  		success:function(data){
+	  	  			if(data.code<0){
+	  	  			 $("#errorMes").html(data.msg);
+	  	  			 $("#error").css("display","block");
+	  	  			 return false;
+	  	  			}else{
+	  	  		location.reload();
+	  	  			}  	  			
+	  	  		}
+  	  		});
+    });
+		$("#outPosition").click(function(){
+		 location.reload();
+		});
+</script>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/public/stylesheets/footer.css" />
+		<script type="text/javascript" src="/public/javascripts/js/jquery.1.9.1.js" ></script>
+		<script type="text/javascript" src="/public/javascripts/js/js.js"></script>
+	</head>
+
+	<body class="ggg">
+	<div class="pro_fade" style="display: none">
+					<div class="fade_mid" >
+						<p id="error">绑定成功！</p>
+						<div class="img_cet">
+							<img src="/public/images/img/tost3.png" id="ejectImg"/>
+						</div>
+						<div class="btn_grow">
+							<div class="fl"><a href="@{front.home.HomeAction.home()}">返回首页</a></div>
+							<div class="fr"><a href="@{front.account.AccountHome.home()}">返回用户中心</a></div>
+						</div>
+					</div>
+		</div>
+	</body>
+<script type="text/javascript">
+             $(function(){
+             var code = getUrlParam('code');
+               $.ajax({
+			  	  		url:"@{wechat.account.WechatAccountHome.wechatCharge()}",
+			  	  		type:"POST",
+			  	  		data:{
+			  	  		code:code
+			  	  		},
+			  	  		success:function(data){
+			  	  		if(data.openid!=null){
+			  	  		localStorage.setItem("nickname",data.nickname);
+			  	  		conOpen(data.openid);
+			  	  		}else{
+			  	  		location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid='"+data.appid+"'"+
+  		"&redirect_uri=http://www.xzhicha.com/wechat/account/bindingCode&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect";
+			  	  		}
+			  	}
+			});
+             });
+              function getUrlParam(name) {
+		            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		            if (r != null) return unescape(r[2]); return null; //返回参数值
+               }
+                function conOpen(openid){
+                  $.ajax({
+			  	  		url:"@{wechat.account.WechatAccountHome.bindingOpen()}",
+			  	  		type:"POST",
+			  	  		data:{
+			  	  		openId:openid
+			  	  		},
+			  	  		success:function(data){
+			  	  		if(data.code<0){
+			  	  		     localStorage.setItem("openID",openid);
+			  	  		     $("#error").html(data.msg);
+			  	  		    $(".pro_fade").css("display","flex");
+			  	  		}else{
+			  	  		localStorage.setItem("openID",openid);
+			  	  		addOpen(openid);
+			  	  		}
+			  	}
+			}); 
+               }
+               function addOpen(openid){
+                  $.ajax({
+			  	  		url:"@{wechat.account.WechatAccountHome.addOpen()}",
+			  	  		type:"POST",
+			  	  		data:{
+			  	  		openId:openid
+			  	  		},
+			  	  		success:function(data){
+			  	  		if(data.code<0){
+			  	  		$("#error").html("绑定失败！");
+			  	  		}
+			  	  		$(".pro_fade").css("display","flex");
+			  	}
+			});
+               }
+</script>
+</html>

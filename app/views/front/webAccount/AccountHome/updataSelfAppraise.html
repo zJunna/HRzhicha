@@ -1,0 +1,55 @@
+
+<script type="text/javascript" src="@{'public/javascripts/kindeditor-4.1.7/kindeditor.js'}"></script>
+    <link rel="stylesheet" src="@{'public/javascripts/kindeditor-4.1.7/themes/default/default.css'}" />
+  <script charset="utf-8" src="@{'public/javascripts/kindeditor-4.1.7/kindeditor-min.js'}"></script>
+  <script charset="utf-8" src="@{'public/javascripts/kindeditor-4.1.7/lang/zh_CN.js'}"></script>
+  <script   type="text/javascript">  
+    var editor;
+    KindEditor.ready(function(K) {
+      editor = K.create('#self_appraise', {
+           cssPath :"@{'public/javascripts/kindeditor-4.1.7/plugins/code/prettify.css'}",
+           uploadJson : '@{FileUpload.uploadImage2()}',
+        allowFileManager : true,
+        allowUpload: true
+      });
+    });
+  </script>
+<div class="fr_lable_item1">
+							<p class="lab_p">自我评价</p>
+							<div class="lab_item1">
+								<textarea name="self_appraise" id="self_appraise" >${information?.self_appraise.raw()}</textarea>
+							</div>
+						</div>
+						<div class="btn_regs">
+							<div class="sacr" id="addSelf" style="cursor: pointer;">保存</div>
+							<div id="outSelf" style="cursor: pointer;">取消</div>
+						</div>
+						<script type="text/javascript">
+  $("#addSelf").click(function(){
+              if($("#self_appraise").val() == ""){
+			 $("#errorMes").html("请输入自我评价");
+	  	  	  $("#error").css("display","block");
+			return false;
+		 	}  
+            $.ajax({
+  	  		url:"@{front.webAccount.AccountHome.addSelfAppraise()}",
+  	  		type:"POST",
+  	  		data:{
+  	  		self_appraise: $("#self_appraise").val()
+  	  		},
+  	  		success:function(data){
+  	  			if(data.code<0){
+  	  			$("#errorMes").html(data.msg);
+	  	  	  	$("#error").css("display","block");
+	  	  	  	return false;
+  	  			}else{
+  	  			   location.reload();
+  	  			}  	  			
+  	  		}
+  	  		}); 
+         
+    }) 
+   $("#outSelf").click(function(){
+          location.reload();
+   })
+</script>

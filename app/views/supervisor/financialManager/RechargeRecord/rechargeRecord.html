@@ -1,0 +1,53 @@
+#{extends 'common/supervisor.html' /} #{set title:'会员X币账户列表' /}
+
+<div class="xn_c_contentwarp">
+	<div class="xn_c_contentlist">
+		#{include 'supervisor/financialManager/financialLeft.control'/}
+		<!--右-->
+		#{include 'supervisor/financialManager/RechargeRecord/rechargeRecordContent.control'/}
+	</div>
+</div>
+
+<!--弹出层-->
+<div id="kefu" style="display:none;"></div>
+<div class="xn_c_ban_jox xn_c_ban_jox_hyxq" id="xf_ht_fkzh_ttc"
+	style="display: none;"></div>
+<div class="xn_c_ban_jox xn_c_ban_jox_hyxq" id="edit_user_info"
+	style="display: none;"></div>
+<div class="xn_c_ban_jox xn_c_ban_jox_hyxq" id="edit_recommend_user"
+	style="display: none;"></div>
+<script type="text/javascript" src="@{'/public/javascripts/uuid.js'}"></script>
+<script type="text/javascript">
+	$("#close1").click(function() {
+		$("#xf_ht_fkzh_ttc").hide();
+	});
+
+	function updateBalance(userId) {//修改余额
+		$.ajax({
+			url : "@{supervisor.financialManager.RechargeRecord.updateBalance()}",
+			type : "POST",
+			data : {
+				"usersign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.msg);
+
+					return;
+				}
+				$("#xf_ht_fkzh_ttc").html(data);
+				$.layer({
+					type : 1,
+					area : [ '700px', '500px' ],
+					title : '修改余额',
+					page : {
+						dom : '#xf_ht_fkzh_ttc'
+					}
+				});
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+</script>

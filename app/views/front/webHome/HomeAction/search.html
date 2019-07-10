@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>员工职场信用查询-X职查</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="@{'/public/stylesheets/webcss/public.css'}" rel="stylesheet" type="text/css" />
+		<link href="@{'/public/stylesheets/webcss/style.css'}" rel="stylesheet" type="text/css" />
+		<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/layui/css/layui.css'}" />
+		<script type="text/javascript" src="/public/javascripts/js/jquery.1.9.1.js"></script>
+		<style type="text/css">
+			input:-webkit-autofill{
+    		-webkit-box-shadow:0 0 0 1000px white inset;
+   			 border:1px soldi #ccc!important;
+			}
+		</style>
+	</head>
+
+	<body>
+		#{include "common/webHeader.html"/}
+		<div class="box_seacher">
+			<div class="seacher_center">
+				<div class="search">
+				<div class="fl">
+					<div class="sea_inp">
+						<input type="text" class="first_input" placeholder="姓名" name="name" id="name" value="${name}" style="padding-left:10px;"/>
+						<input type="text" class="last_input" placeholder="身份证号" name="id_number" id="id_number" value="${id_number}" />
+						<input type="text" name="webError" id="webError" value="" style="margin-top: -64px;margin-left: 660px;width: 200px;color: red;font-size: 18px" readonly="readonly"/>
+					</div>
+					<input type="submit" name="" id="webSearch" value="搜索" />
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="usere_mids">
+			<div class="fl" id="div">
+				
+			</div>
+			<div class="fr" style="margin-bottom: 30px">
+				<img src="/public/images/webimg/banner_seach_03.jpg"/>
+			</div>
+		</div>
+	<div class="fade_po asx" style="display: none" id="deductionError">
+			<div class="fade_po_nbox">
+				<h2>此次查看将消耗1X币，是否查看？</h2>
+				<p id="freeTimes">剩余免费查询：次</p>
+				<p id="balanceX">您的X币余额：X币</p>
+				<div class="btn_ground">
+					<a href="#" class="closs" id="searchInfor" onclick="sure()">查看</a>
+					<a href="#" class="closss" id="searchCancel">取消</a>
+				</div>
+				<div class="readys_item">
+					<img src="/public/images/webimg/readys_03.jpg"/>
+					<span>我已得到信息主体的授权</span>
+				</div>
+			</div>
+	</div>
+	<div class="fade_po asx" style="display: none" id="noXError">
+			<div class="fade_po_nbox">
+				<h2>此次查看将消耗1X币，您的X币不足？</h2>
+				<p>剩余免费查询：0次</p>
+				<p>您的X币余额：0X币</p>
+				<div class="btn_ground">
+					<a href="#" class="closs">购买vip</a>
+					<a href="#" class="closss" id="buyVipCancel">取消</a>
+				</div>
+				<div class="readys_item">
+					<img src="/public/images/webimg/readys_03.jpg"/>
+					<span>我已得到信息主体的授权</span>
+				</div>
+			</div>
+	</div>
+	<div class="fade_po land_files" style="display: none" id="loginError">
+			<div class="land_filess">
+				<p>未登录，请先登录！</p>
+				<div class="btn_ground">
+					<a href="#" class="closs" id="willLogin">登录</a>
+					<a  class="closss" id="willCancel">取消</a>
+				</div>
+			</div>
+		</div>
+		<div class="fade_po land_files" style="display: none" id="realNameError">
+			<div class="land_filess">
+				<p>未实名认证，请先实名！</p>
+				<div class="btn_ground">
+					<a href="#" class="closs">去实名</a>
+					<a href="#" class="closss" id="realNameCancel">取消</a>
+				</div>
+			</div>
+		</div>
+		#{include "common/webBottom.html"/}
+		<div class="fade_po land_files" style="display: none" id="proError">
+			<div class="land_filess">
+				<p>系统错误,请联系客服处理！</p>
+				<div class="btn_ground">
+					<a href="@{front.webHome.HomeAction.home()}" class="closs" >回首页</a>
+					<a href="#" class="closss" id="proErrorCancel">取消</a>
+				</div>
+			</div>
+		</div>
+		<!--[if !IE]><!-->
+		<script src="@{'/public/javascripts/js/jquery-2.1.1.min.js'}" type="text/javascript"></script>
+		<!-- <![endif]-->
+
+		<!--[if lte IE 8]>
+        <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <![endif]-->
+
+		<!--[if gt IE 8]>
+        <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <![endif]-->
+		<script type="text/javascript" src="@{'/public/stylesheets/layui/layui.js'}"></script>
+		<script>
+</script>
+	</body>
+	<script type="text/javascript">
+		$("#willLogin").click(function(){
+			location.href="@{front.webHome.HomeAction.home()}?sign=login";
+		});
+		$("#willCancel").click(function(){
+			$("#loginError").css("display","none");
+		});
+		$("#buyVipCancel").click(function(){
+			$("#noXError").css("display","none");
+		});
+		$("#realNameCancel").click(function(){
+			$("#realNameError").css("display","none");
+		});
+		$("#searchCancel").click(function(){
+			$("#deductionError").css("display","none");
+		});
+		$("#proErrorCancel").click(function(){
+			$("#proError").css("display","none");
+		});
+	</script>
+	<script type="text/javascript">
+                   $(function(){
+                     var name=$("#name").val();
+                     var id_number=$("#id_number").val();
+                     searchInfor(name,id_number);
+                  })  
+                  
+                  function searchInfor(name,id_number){
+                         $.ajax({
+                           url : "@{front.webHome.HomeAction.searchViews()}",
+                           type : "POST",
+                           data : {
+                           name : name,
+                           id_number : id_number
+                           },
+                             success : function(data) {
+						     $("#div").html(data);
+						  },
+							   error : function() {
+								$("#proError").css("display","block");
+								return false;
+							}
+                         })
+                  }
+   </script>
+   <script type="text/javascript">
+		$("#webSearch").click(function(){
+		var name=$("#name").val();
+		var id_number=$("#id_number").val();
+		var idcardReg = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+		if(name==""&&id_number!=""){
+		   		$("#webError").val("请输入查询人姓名");
+		   		return false;
+		}
+		if(name!=""&&id_number==""){
+		   		$("#webError").val("请输入查询人身份证号");
+		   		return false;
+		}
+		if(name!=""&&id_number!=""){
+			//身份证正则表达式
+			if(idcardReg.test(id_number)) {
+				$("#webError").val("");
+		    		$.ajax({
+				url:"@{front.webHome.HomeAction.deductionJudgment}",
+				type:"POST",
+				data:{
+				name:name,
+				id_number:id_number
+				},
+				success:function(data){
+				     if(data.code==1){//未登录弹窗
+				     	$("#loginError").css("display","block");
+				     }
+				     if(data.code==2){//登陆未实名
+						$("#realNameError").css("display","block");
+						return false;
+					}
+					if(data.code==0){//免费查询(vip免费次数)
+					getFreeTimes();
+					getBalance();
+					$("#deductionError").css("display","block");
+					return false;
+					}
+					if(data.code==-1){//账户余额不足,余额不足弹窗
+						$("#noXError").css("display","block");
+ 						return false;
+					}
+					if(data.code==-2){//扣费查询
+						getFreeTimes();
+						getBalance();
+						$("#deductionError").css("display","block");
+						return false;
+					}
+					
+					if(data.code==3){//之前查询过该信息
+						sure();
+					}
+				}
+				});
+			}else{
+		   		$("#webError").val("身份证格式有误");
+		   		return false;
+			}
+		}
+		if(name==""&&id_number==""){
+			location.href="@{front.webHome.HomeAction.search()}?name="+name+"&id_number="+id_number+"&mark=charge";
+		}
+});
+
+function sure(){//扣费提示框确认
+				var name=$("#name").val();
+				var id_number=$("#id_number").val();
+				  $.ajax({
+					url:"@{front.webHome.HomeAction.balanceDiscrimination}",
+					type:"POST",
+					data:{
+					name:name,
+					id_number:id_number
+					},
+					success:function(data){
+						if(data.code<0){
+							$("#proError").css("display","block");
+	 						return false;
+						}else{
+							$("#deductionError").css("display","none");
+							searchInfor(name,id_number);
+						}
+					}
+					}); 
+					
+			};
+		function getFreeTimes(){
+			$.ajax({
+					url:"@{front.webHome.HomeAction.selectFreeTimes}",
+					type:"POST",
+					data:{
+					},
+					success:function(data){
+						$("#freeTimes").html("剩余免费查询："+data+"次");
+					}
+					}); 
+		}
+		function getBalance(){
+			$.ajax({
+					url:"@{front.webHome.HomeAction.selectBalance}",
+					type:"POST",
+					data:{
+					},
+					success:function(data){
+						$("#balanceX").html("您的X币余额："+data+"X币");
+					}
+					}); 
+		}
+  </script>
+</html>

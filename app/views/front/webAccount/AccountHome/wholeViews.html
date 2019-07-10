@@ -1,0 +1,51 @@
+<ul>
+							 #{list page?.page}
+							 <li name="infoLi" >
+								<div class="updata_fl">
+									<p class="numbs">编号：${_?.information_number}</p>
+									<div class="updata_user">
+										#{if _?.inforSex==1}
+										<img src="/public/images/img/reach_07.jpg" name="img" />
+										#{/if}
+										#{if _?.inforSex==2}
+										<img src="/public/images/img/index_21.jpg" name="img" />
+										#{/if}
+										<div>
+											<p>${_?.name}<span>#{if _?.inforSex==1}男 #{/if} #{if _?.inforSex==2}女#{/if}</span>
+											<span>${_?.inforAge}岁</span></p>
+											<em>${_?.id_number}</em>
+										</div>
+									</div>
+								</div>
+								<div class="updata_fr">
+									<p class="data_fr">发布时间：${_?.time.format('yyyy-MM-dd')}</p>
+									<div class="data_bot">
+										#{if _?.infor_status==1}<div class="icospan"style="background-color: #E2E2FF;color:#6e3cff;">${_?.negative_type_name}</div>#{/if}
+								       #{if _?.infor_status==2}<div class="icospan" >${_?.negative_type_name}</div>#{/if}
+										#{list apperInfors,as:'appinfor'}
+					    	            #{if _?.id==appinfor?.negative_information_id}
+					    	            <div class="reideo_spab">
+											<div class="re_bg"></div>
+											<p>申诉</p>
+										</div>
+										 #{/if}
+					                    #{/list}
+										#{if _?.status==2}<div class="reideo_spab">
+											<div class="re_bg1"></div>
+											<p>已下线</p>
+										</div>
+										#{/if}
+										<div class="data_btn">
+											<a href="@{front.webAccount.AccountHome.myUpdataEdit(_?.sign)}">编辑</a>
+										</div>
+										<div class="data_btn">
+											<a href="@{front.webAccount.AccountHome.myUpdataDetails(_?.sign)}" target="_blank" >查看详情</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							#{/list}
+						</ul>
+	
+	#{page funMethod:"wholeInfo",currPage:page.currPage,pageSize:page.pageSize,totalCount:page.totalCount,theme:2,style:5/}
+	

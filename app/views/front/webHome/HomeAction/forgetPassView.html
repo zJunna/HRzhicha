@@ -1,0 +1,116 @@
+<div class="land_box" style="margin-top: 2%;display: none;" id="forgetPasswordDiv">
+		<h5 style="margin-bottom: 80px;font-size: 48px">查找账号</h5>
+		<div class="land_lable">
+			<input type="text" placeholder="请输入注册手机号/邮箱" name="forgetMobile" id="forgetMobile" value="" />
+		</div>
+		<div class="land_lable">
+			<input type="text" placeholder="输入图形验证码" name="forgetYanzhengma" id="forgetYanzhengma" value="" />
+			<img id="forgetImg" src="/public/images/登录页面-02_r2_c2.gif" style="position:absolute;width: 8rem;height:3.7rem;border-radius:0.4rem;right: 0px;top: -1%" >
+	        <input type="hidden" name="forgetRandomID" id="forgetRandomID" /><br/>
+		</div>
+		<div class="land_lable">
+			<input type="text" placeholder="请输入收到的验证码" name="forgetMobileCode" id="forgetMobileCode" value="" />
+			<p class="sends" id="forgetCodeTimes" onclick="forgetsendCode();">发送验证码</p>
+			<img src="/public/images/webimg/pass_07.jpg" style="right: 130px;" class="cleahs hide" />
+		</div>
+		<div class="seng" id="nextButton">下一步</div>
+		<p class="wangjis">长时间未收到，您可以重新发送验证码或<a href="#">联系客服</a>?</p>
+		<p class="gsaw" id="forgetErrorInfo"></p>
+</div>
+
+<script type="text/javascript">
+$(function(){
+	    var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+		$.post(setCode({}),function(data){
+			var arr=eval(data);
+			var img = arr.img;
+			$("#forgetImg").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img);	
+			$("#forgetRandomID").val(img);
+		});
+	});
+//改变验证码(登录)
+	$("#forgetImg").click(function(){
+		var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+		$.post(setCode({}),function(data){
+		var arr=eval(data);
+		var img = arr.img;
+		$("#forgetImg").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img)	
+		$("#forgetRandomID").val(img);
+		});
+	});	
+</script>
+<script type="text/javascript">
+		var remain = 60;
+		function countDown3() {
+		  if (remain == 0) {
+		    remain = 60;
+		    $("#forgetCodeTimes").html("点击发送");
+		    $("#forgetCodeTimes").attr("onclick", "forgetsendCode();");
+		    return;
+		  }
+		  $("#forgetCodeTimes").html("" + remain-- + "秒后重发");
+		  setTimeout("countDown3()",1000);
+		}
+			
+		function forgetsendCode(){
+			var mobile = $("#forgetMobile").val();
+			$.ajax({
+			  url:"@{front.webHome.RegisterAndLogin.codeVerification()}",
+			  type:"POST",
+			  dataType:"JSON",
+			  data:{
+			  	  mobile:$("#forgetMobile").val(),
+				  code:$("#forgetYanzhengma").val(),
+				  randomID:$("#forgetRandomID").val()
+			  },
+			  success:function(data){
+			       if(data.code<0){
+			        	 $("#forgetErrorInfo").html(data.msg);
+			        	 	var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+							$.post(setCode({}),function(data){
+							var arr=eval(data);
+							var img = arr.img;
+							$("#forgetImg").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img)	
+							$("#forgetRandomID").val(img);
+							});
+			        	 return false;
+			       }else{
+				       	var verifyMobileUserByLogin = #{jsAction @verifyMobileUserByLogin(':mobile')/}
+				$.post(verifyMobileUserByLogin({mobile:mobile}),function(data){
+				    if(data.error.code < 0){
+					    $("#forgetErrorInfo").html(data.error.msg);
+					    return false;
+				    }else{
+				    
+				    	$("#forgetErrorInfo").html("");
+						countDown3();
+						$("#forgetCodeTimes").attr("onclick", "void(0);");
+					}
+				},'json'); 
+			       }
+			  }
+		  });
+		    }
+</script>
+<script type="text/javascript">
+	$("#nextButton").click(function(){
+		if($("#forgetMobile").val() == ''){
+					$("#errorInfo").html("请输入手机号码"); 
+					return false;
+		 }
+	 	/* 
+		验证验证码
+		*/
+		var verifySmsCodeForReg = #{jsAction @verifySmsCodeForReg(':mobile',':smsCode')/}
+	  		$.post(verifySmsCodeForReg({mobile:$("#forgetMobile").val().trim(),smsCode:$("#forgetMobileCode").val()}),function(data){
+			   if(data.code<0){
+		    	  $("#forgetErrorInfo").html(data.msg);
+			   }else{
+			   		$("#forgetErrorInfo").html("");
+			   		$("#forgetPasswordDiv").css("display","none");
+					$("#allDiv").css("display","block");
+			   		$("#setNewPassDiv").css("display","block");
+	  			 }
+  		});
+	});
+</script>

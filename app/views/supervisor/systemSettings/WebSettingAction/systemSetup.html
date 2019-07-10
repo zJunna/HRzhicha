@@ -1,0 +1,113 @@
+#{extends 'common/supervisor.html' /}
+#{set title:'系统设置' /} 
+<div class="xn_c_contentwarp">
+  <div class="xn_c_contentlist">
+    #{include "supervisor/systemSettings/common/leftBar.control"/}
+    <div class="xn_c_content">
+      <div class="xf_content_add">
+        <div class="xfht_t_j_y_2">
+          <!--右上-->
+          <div class="xf_ht_obu_fklm">
+                                      系统设置
+          </div>
+          <form action="@{supervisor.systemSettings.WebSettingAction.systemSetup()}" method="post" id="paramSetBind">
+	          <div class="xf_htgl_jgone">
+	          <div class="xf_htgl_xt_tableone">
+	            <table border="0" cellspacing="0" cellpadding="0" class="xf_htgl_jg_tableone_table" style="margin-left:25%;">
+	            <tr>
+	              <td width="149" align="right" valign="top">网站名称：</td>
+	              <td>
+	             <input type="text" id="company_name" name="company_name" value="${backstageSet?.companyName}" style="width: 200px;height: 30px;"  />
+	              </td>
+	            </tr>
+	            </table>
+	          </div>
+	          </div>
+     	
+	          <div class="xf_htgl_jgone">
+	          <div class="xf_htgl_xt_tableone">
+	            <table border="0" cellspacing="0" cellpadding="0" class="xf_htgl_jg_tableone_table" style="margin-left:25%;">
+	           <tr>
+	              <td width="149" align="right" valign="top">客服电话：</td>
+	              <td>
+	             <input type="text" id="platform_telephone" name="platform_telephone" value="${backstageSet?.platformTelephone}" style="width: 200px;height: 30px;"  />
+	              </td>
+	            </tr>
+	            </table>
+	          </div>
+	          </div>
+	          <div class="xf_htgl_jgone">
+	          <div class="xf_htgl_xt_tableone">
+	            <table border="0" cellspacing="0" cellpadding="0" class="xf_htgl_jg_tableone_table" style="margin-left:25%;">
+	           <tr>
+	              <td width="149" align="right" valign="top">客服QQ：</td>
+	              <td>
+	             <input type="text" id="company_qq1" name="company_qq1"  value="${backstageSet?.companyQQ1}" style="width: 200px;height: 30px;"  />
+	              </td>
+	            </tr>
+	            </table>
+	          </div>
+	          </div>
+	          <div class="xf_htgl_jgone">
+	          <div class="xf_htgl_xt_tableone">
+	            <table border="0" cellspacing="0" cellpadding="0" class="xf_htgl_jg_tableone_table" style="margin-left:25%;">
+	           <tr>
+	              <td width="149" align="right" valign="top">微信二维码：</td>
+	              <td>
+	            #{img src:"${backstageSet?.wechatCode}", class:"xf_ht_pro_jkbimg",id:"smallImag"}#{/img}
+                  <input type="hidden" name="wechat_code" id="wechat_code"  value="${backstageSet?.wechatCode}"/>
+				  <span style="position: relative;/*top: 25px;*/">
+		            <input type='button' class='upload_btn' value='上传' style="display:inline-block; margin:30px 0;float:left;"/> 
+		            <input type="file" class="upload_file" name="imgFile" id="smallfile" onchange="uploadImage('smallfile','smallImag');" style="top: 30px;*top:40px !important;left: -70px;" />
+		          </span>
+	              </td>
+	            </tr>
+	            </table>
+	          </div>
+	          </div>
+	          <div class="xf_htgl_jgsix_hyg">
+	          <input id="saveBind" class="xf_ht_tcc_button_ok" type="button" value="保存">
+	          </div>
+	          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	 $(function() {
+	    /* 高亮显示 */
+	    showHighLight(3,3,13);
+	  });
+  
+	$(function () {
+		var msg = "${flash.info}";
+		if (msg != '' && msg != 'undefined') {
+				alert(msg);
+		}
+	})
+ 	$("#saveBind").click(function () {
+ 		if ($("#company_name").val().trim() == '') {
+ 			alert("网站名称不能为空");
+ 			return false;
+ 		}
+ 		
+ 		if ($("#platform_telephone").val().trim() == '') {
+			alert("客服电话不能为空");
+			return false;
+		}
+		if ($("#company_qq1").val().trim() == '') {
+			alert("客服QQ不能为空");
+			return false;
+		}
+		if($("#smallImag").attr("src")== ""){
+			alert("微信二维码不能为空");
+			return false;
+	      }		
+	      var code=$("#smallImag").attr("src");   
+	       $("#wechat_code").val(code);
+ 		$("#paramSetBind").submit();
+ 	})
+ </script>
+ 

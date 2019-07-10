@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>申诉</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+		 <script type="text/javascript" src="@{'/HRzhicha/public/javascripts/index.js'}"></script>
+	    <script type="text/javascript" src="@{'/HRzhicha/public/javascripts/jquery.json-2.4.min.js'}"></script>
+		
+	</head>
+
+	<body class="ggg">
+		<div class="pay_tits">
+			<img src="/HRzhicha/public/images/img/reach_03.jpg"  onclick="javascript:history.back(-1);" />
+			<p>申诉</p>
+		</div>
+		<div class="infoa">
+			<div class="fade_list1">
+			
+			<div class="fa_info">
+				<p>基本信息</p>
+				<span name="company_name">申诉对象：山东********公司</span>
+				<span>信息编号：19542</span>
+				<span>企业名称：深圳市大疆创新科技有限公司</span>
+				<span>信用代码：914403007954257495</span>
+			</div>
+			<div class="ssinfo">
+				<div class="ss_tit">
+					<p>申诉详情</p>
+				</div>
+				<textarea placeholder="拒绝申诉" name="appeal_details"></textarea>
+			</div>
+			<p class="conts">此申诉详情会展示在信息详情页面，请客观填写，有攻击性词汇会被系统过滤。</p>
+			<div class="buttons1"><a id="submit">提交</a></div>
+			<div class="font_testare">
+				<h4>规则声明:</h4>
+				<p>1、个人只能对涉及本人的信息进行申诉，申诉前需要完成个人实名认证。</p>
+				<p>2、信息为发布人实名发布，只有发布人有权限处理本信息，请和发布人友好沟通。</p>
+				<p>3、申诉后，平台会对您的申诉信息进行初步审核，无异常后会通知发布人，并告知申诉人发布人的联系方式。</p>
+				<p>4、如过有法律文书证明信息为虚假侵权信息，平台会介入处理本信息。</p>
+				<p>5、如果发布人留的联系方式无法联系对方（电话无法接通，且邮件信息5个工作日无人回复），平台会介入处理本信息。</p>
+			</div>
+		</div>
+		</div>
+		<div class="pro_fade" style="display: none">
+			<div class="fade_mid">
+				<p id="error"></p>
+				<div class="img_cet">
+					<img src="/HRzhicha/public/images/img/tost3.png"/>
+				</div>
+				<div class="btn_grow">
+					<div class="fl"><a href="@{front.home.HomeAction.home()}">返回首页</a></div>
+					<div class="fr"><a href="@{front.account.AccountHome.home()}">返回用户中心</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="shuru" id="shuru">
+			<div class="shuru_box" id="shuru_box" >
+			<!-- 	<p>您的输入有误或不完善，请修改后再提交！</p> -->
+				<p id="P"></p>
+				<div style="color: #6e3cff" id="sure">（<span class="gs">3</span>S）</div>
+			</div>
+		</div>
+	</body>
+	 <script type="text/javascript">
+  		
+	     $("#submit").click(function(){
+	     if($("[name='appeal_details']").val()==""){
+	          $("#shuru").show();
+					$("#shuru_box").children("div").html("确定");
+		   			$("#P").html("请选择上传的图片");
+					return false;
+	     }
+	    	 $.ajax({
+	     url:"@{front.home.HomeAction.appealSubmit()}",
+	     type:"POST",
+	     data:{
+	     negative_information_id:${negative_infor.id},
+	     appeal_details:$("[name='appeal_details']").val()
+	     },
+	     success:function(data){
+	     if(data.code<0){
+	      $("#error").html(data.msg);
+	      $(".pro_fade").css("display","flex");
+	     }else{
+	     $("#error").html("申诉成功，请等待处理。");
+	       $(".pro_fade").css("display","flex");
+	     }
+	     }
+	     }); 
+	     })
+  </script>
+
+</html>

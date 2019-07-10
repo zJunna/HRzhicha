@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>信息查询</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta name="renderer" content="webkit">
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/refactorStyle.css" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+		<!--<script type="text/javascript" src="/HRzhicha/public/javascripts/js/menuFixed1.js"></script>-->
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.scrollTo.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<style type="text/css">
+			.active {
+				background: red;
+			}
+		</style>
+		<script type="text/javascript">
+			/*导航的名：class、*/
+			/*内容的id: infoView  creditRecordView stockRightView  recruitInfoView 
+			 * 		  intellPropertyView   newsInfoView contactInfoView  commentView
+			 */
+
+			$(function() {
+				var cont1 = $("#infoView").offset().top - 290; //获取模块距页面顶部的距离，由于有固定定位的导航栏，所以减100
+				var cont2 = $("#creditRecordView").offset().top - 290;
+				var cont3 = $("#stockRightView").offset().top - 290;
+				var cont4 = $("#recruitInfoView").offset().top - 290;
+				var cont5 = $("#intellPropertyView").offset().top - 290;
+				var cont6 = $("#newsInfoView").offset().top - 300;
+				var cont7 = $("#contactInfoView").offset().top - 300;
+				var cont8 = $("#commentView").offset().top - 300;
+
+				$('#a1').click(function() {
+					$('html,body').animate({
+						scrollTop: $('#infoView').offset().top - 290
+					}, 400);
+				}); //点击滑动到模块位置 由于有导航栏减91
+				$('#a2').click(function() {
+					$('html,body').animate({
+						scrollTop: $('#creditRecordView').offset().top - 290
+					}, 400);
+				});
+				$('#a3').click(function() {
+					$('html,body').animate({
+						scrollTop: $('#stockRightView').offset().top - 290
+					}, 400);
+				});
+				$('#a4').click(function() {
+					$('html,body').animate({
+						scrollTop: $('#recruitInfoView').offset().top - 290
+					}, 400);
+				});
+
+				$('#a5').click(function() {
+					$('html,body').animate({
+						scrollTop: $('#intellPropertyView').offset().top - 290
+					}, 400);
+				});
+				$('#a6').click(function() {
+					$('html,body').animate({
+						scrollTop: $('#newsInfoView').offset().top - 300
+					}, 400);
+				});
+
+				$('#a7').click(function() {
+					$('html,body').animate({
+						scrollTop: $('#contactInfoView').offset().top - 300
+					}, 400);
+				});
+				$('#a8').click(function() {
+					$('html,body').animate({
+						scrollTop: $('#commentView').offset().top - 300
+					}, 400);
+				});
+
+				window.onscroll = function() {
+					var t = document.documentElement.scrollTop || document.body.scrollTop; //获取距离页面顶部的距离
+
+					if(t >= cont1 && t <= cont2) { //到顶部的距离介于两者之间时
+						$("#a1").addClass("on"); //添加class,改变对应导航栏颜色
+					} else {
+
+						$("#a1").removeClass("on");
+
+					}
+					if(t >= cont2 && t <= cont3) {
+						$("#a1").removeClass("on");
+						$("#a2").addClass("on");
+					} else {
+
+						$("#a2").removeClass("on");
+
+					}
+
+					if(t >= cont3 && t <= cont4) {
+						$("#a2").removeClass("on");
+						$("#a3").addClass("on");
+					} else {
+
+						$("#a3").removeClass("on");
+
+					}
+					/*if (   t >=  cont4   ) {
+		 $("#a4").addClass("active");
+	 } else {
+		 
+		  $("#a4").removeClass("active");
+		 
+	 } */
+					if(t >= cont4 && t <= cont5) {
+						$("#a4").addClass("on");
+					} else {
+
+						$("#a4").removeClass("on");
+
+					}
+					if(t >= cont5 && t <= cont6) {
+						$("#a5").addClass("on");
+					} else {
+
+						$("#a5").removeClass("on");
+
+					}
+					if(t >= cont6 && t <= cont7) {
+						$("#a6").addClass("on");
+					} else {
+
+						$("#a6").removeClass("on");
+
+					}
+					if(t >= cont7 && t <= cont8) {
+						$("#a7").addClass("on");
+					} else {
+
+						$("#a7").removeClass("on");
+
+					}
+					if(t >= cont8) {
+						$("#a8").addClass("on");
+					} else {
+
+						$("#a8").removeClass("on");
+
+					}
+				}
+
+			})
+		</script>
+	</head>
+
+	<body class="ggg">
+		<div class="pay_tits" id="pay_tits" style="position: fixed;">
+			<img src="/HRzhicha/public/images/img/reach_03.jpg" onclick="out()" />
+			<p>信息详情</p>
+		</div>
+
+		<div class="main_content main_content_com" style="" id="div">
+			<div class="topHeight" id="topHeight" style="background:#FAFAFA; margin-top: .9rem;height: 5rem;position: fixed;width: 6.9rem;z-index: 9999999999999999999999999999;">
+
+				<div class="com_main_listr " style="position: fixed;width: 6.9rem;z-index: 999;margin-top: .29rem;">
+					<ul>
+
+						<li>
+							<div class="com_main_img fl">
+								<img src="/HRzhicha/public/images/img/com_01.png" />
+							</div>
+							<div class="fl com_main_text">
+
+								<p class="com_main_title" style="line-height: .34rem;width: 4rem;">
+									深圳市大疆创新科技有限公司科技有限公司
+								</p>
+
+								<div class="com_main_txtx">
+									<div class="txtx1">
+										<p>法人</p>
+										<span>罗镇华</span>
+									</div>
+									<div class="txtx2">
+										<p>注册资本</p>
+										<span>3000亿</span>
+									</div>
+									<div class="txtx3">
+										<p>成立日期</p>
+										<span>2010-12-07</span>
+									</div>
+
+								</div>
+								<p class="com_url_add">
+									公司地址：www.dji.com
+								</p>
+
+							</div>
+
+							<div class="clear"></div>
+
+							<div class="com_right_btn">
+								存续
+							</div>
+
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+
+				<div class="com_navbar_list  nav" id="" style="position: fixed;top: 3.8rem;z-index: 9999;width: 6.9rem;height: auto;">
+					<div class="navbar">
+						<ul class="" id="fixtab">
+							<li id="a1" class="">
+								基本信息
+							</li>
+							<li id="a2">
+								信用记录
+							</li>
+							<li id="a3">
+								股权关系
+							</li>
+							<li id="a4">
+								招聘信息
+							</li>
+							<li id="a5">
+								知识产权
+							</li>
+							<li id="a6">
+								新闻资讯
+							</li>
+							<li id="a7">
+								联系方式
+							</li>
+							<li id="a8">
+								公司评价
+							</li>
+						</ul>
+						<div class="clear">
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="" style="margin-top: 4rem;">
+
+			</div>
+			<div style="">
+
+				<div class="main_com_tab_detail" id="main_com_tab_detail" style="position: absolute;top: 5.6rem;width: 6.9rem;">
+
+					<div class="fade_list">
+
+						<div class="fade_list_detail fade_detail_credit box" id="infoView">
+
+							<h3>基本信息</h3>
+							<div class="padding_table">
+
+								<table border="" cellspacing="0" cellpadding="0">
+									<colgroup>
+										<col width="35%">
+										<col width="65%">
+									</colgroup>
+									<tbody>
+										<tr>
+											<td>
+												统一社会信用码
+											</td>
+											<td>914403007954257495</td>
+										</tr>
+
+										<tr>
+											<td>
+												注册资本
+											</td>
+											<td>3000万元人民币</td>
+										</tr>
+										<tr>
+											<td>
+												公司类型
+											</td>
+											<td>有限责任公司(台港澳法人独资)</td>
+										</tr>
+										<tr>
+											<td>
+												核准日期
+											</td>
+											<td>2018-11-15</td>
+										</tr>
+										<tr>
+											<td>
+												法人/负责人
+											</td>
+											<td>罗镇华</td>
+										</tr>
+										<tr>
+											<td>
+												营业期限
+											</td>
+											<td>2006-11-06 至 2031-07-11</td>
+										</tr>
+
+										<tr>
+											<td>
+												所属行业
+											</td>
+											<td>批发和零售业</td>
+										</tr>
+										<tr>
+											<td>
+												注册地址
+											</td>
+											<td>深圳市南山区高新南四道18号 创维半导体设计大厦西座14层</td>
+										</tr>
+										<tr>
+											<td>
+												经营范围
+											</td>
+											<td>航空电子设备、自动控制设备、无人驾驶航空器、无线电数据传输系统、电子元器什、计算机软件的生产(由分公司经营)及其应用的技术开发</td>
+										</tr>
+
+									</tbody>
+
+								</table>
+							</div>
+
+						</div>
+
+						<div class="fade_list_detail fade_detail_credit box" id="creditRecordView">
+							<h2>信用记录</h2>
+
+							<h3>负面记录</h3>
+
+							<div class="credit_negative">
+
+								<ul class="showMoreNChildren1" pagesize="1">
+
+									<li>
+										<div class="border_bot">
+
+											<div class="credit_main_img fl">
+												<img src="/HRzhicha/public/images/img/com_01.png" />
+											</div>
+											<div class="fl credit_main_text">
+
+												<p class="credit_main_title">
+													深圳市大疆创新科技有限公司
+												</p>
+												<p class="credit_main_title">914403007954257495</p>
+
+												<div class="credit_main_txtx">
+													<div class="txtx">
+														<p>上传者</p>
+														<p>上海希杰***有限公司</p>
+													</div>
+													<div class="txtx">
+														<p>发布时间</p>
+														<p>2019-02-06</p>
+													</div>
+
+												</div>
+
+											</div>
+
+											<div class="clear"></div>
+
+											<div class="credit_right_btn">
+												拖欠工资
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="border_bot">
+											<div class="credit_main_img fl">
+												<img src="/HRzhicha/public/images/img/com_01.png" />
+											</div>
+											<div class="fl credit_main_text">
+
+												<p class="credit_main_title">
+													深圳市大疆创新科技有限公司
+												</p>
+												<p class="credit_main_title">914403007954257495</p>
+
+												<div class="credit_main_txtx">
+													<div class="txtx">
+														<p>上传者</p>
+														<p>上海希杰***有限公司</p>
+													</div>
+													<div class="txtx">
+														<p>发布时间</p>
+														<p>2019-02-06</p>
+													</div>
+
+												</div>
+
+											</div>
+
+											<div class="clear"></div>
+
+											<div class="credit_right_btn">
+												拖欠工资
+											</div>
+										</div>
+									</li>
+
+								</ul>
+								<!--<div class="expand_more1 expand_more">
+									展开更多信息
+								</div>-->
+
+							</div>
+
+							<h3>正面记录</h3>
+
+							<div class="credit_negative">
+
+								<ul class="showMoreNChildren2" pagesize="1">
+
+									<li>
+										<div class="border_bot">
+											<div class="credit_main_img fl">
+												<img src="/HRzhicha/public/images/img/com_01.png" />
+											</div>
+											<div class="fl credit_main_text">
+
+												<p class="credit_main_title">
+													深圳市大疆创新科技有限公司
+												</p>
+												<p class="credit_main_title">914403007954257495</p>
+
+												<div class="credit_main_txtx">
+													<div class="txtx">
+														<p>上传者</p>
+														<p>上海希杰***有限公司</p>
+													</div>
+													<div class="txtx">
+														<p>发布时间</p>
+														<p>2019-02-06</p>
+													</div>
+
+												</div>
+
+											</div>
+
+											<div class="clear"></div>
+
+											<div class="credit_right_btn credit_r_btn">
+												培训众多
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="border_bot">
+											<div class="credit_main_img fl">
+												<img src="/HRzhicha/public/images/img/com_01.png" />
+											</div>
+											<div class="fl credit_main_text">
+
+												<p class="credit_main_title">
+													深圳市大疆创新科技有限公司
+												</p>
+												<p class="credit_main_title">914403007954257495</p>
+
+												<div class="credit_main_txtx">
+													<div class="txtx">
+														<p>上传者</p>
+														<p>上海希杰***有限公司</p>
+													</div>
+													<div class="txtx">
+														<p>发布时间</p>
+														<p>2019-02-06</p>
+													</div>
+
+												</div>
+
+											</div>
+
+											<div class="clear"></div>
+
+											<div class="credit_right_btn credit_r_btn">
+												培训众多
+											</div>
+										</div>
+									</li>
+									<div class="expand_more2 expand_more " style="display: block!important;">
+										展开更多信息
+									</div>
+								</ul>
+
+							</div>
+
+						</div>
+
+						<div class="fade_list_detail fade_equity box" id="stockRightView">
+
+							<div class="fade_equity_detail">
+								<h2>股权关系</h2>
+								<h3>股东信息</h3>
+								<div class="fade_equity_table">
+
+									<table border="" cellspacing="0" cellpadding="0">
+										<colgroup>
+											<col width="30%">
+											<col width="70%">
+										</colgroup>
+										<tbody>
+											<tr>
+												<td>
+													股东
+												</td>
+												<td>智翔科技有限公司</td>
+											</tr>
+
+											<tr>
+												<td>
+													认缴出资
+												</td>
+												<td>-</td>
+											</tr>
+											<tr>
+												<td>
+													实际出资
+												</td>
+												<td>3000</td>
+											</tr>
+											<tr>
+												<td>
+													3000
+												</td>
+												<td>100%</td>
+											</tr>
+
+										</tbody>
+
+									</table>
+								</div>
+								<div class="expand_more expand_more3">
+									展开更多信息
+								</div>
+							</div>
+							<div class="fade_equity_detail">
+								<!--<h2>股权关系</h2>-->
+								<h3>对外投资</h3>
+								<div class="fade_equity_table">
+
+									<table border="" cellspacing="0" cellpadding="0">
+										<colgroup>
+											<col width="30">
+											<col width="70">
+										</colgroup>
+										<tbody>
+											<tr>
+												<td>
+													被投资企业
+												</td>
+												<td>南京迈疆智能科技有限公司</td>
+											</tr>
+
+											<tr>
+												<td>
+													法人
+												</td>
+												<td>陈尧</td>
+											</tr>
+											<tr>
+												<td>
+													企业所在地
+												</td>
+												<td>江苏</td>
+											</tr>
+											<tr>
+												<td>
+													持股比例
+												</td>
+												<td>持股比例</td>
+											</tr>
+											<tr>
+												<td>
+													投资日期
+												</td>
+												<td>2016-03-01</td>
+											</tr>
+										</tbody>
+
+									</table>
+								</div>
+								<div class="expand_more expand_more4">
+									展开更多信息
+								</div>
+							</div>
+							<div class="fade_equity_detail">
+								<!--<h2>股权关系</h2>-->
+								<h3>分支机构</h3>
+								<div class="fade_equity_table">
+
+									<table border="" cellspacing="0" cellpadding="0">
+										<colgroup>
+											<col width="30%">
+											<col width="70%">
+										</colgroup>
+										<tbody>
+											<tr>
+												<td>
+													企业名称
+												</td>
+												<td>南京迈疆智能科技有限公司</td>
+											</tr>
+
+											<tr>
+												<td>
+													关系
+												</td>
+												<td>分公司</td>
+											</tr>
+											<tr>
+												<td>
+													法人
+												</td>
+												<td>陈尧</td>
+											</tr>
+											<tr>
+												<td>
+													注册资本
+												</td>
+												<td>-</td>
+											</tr>
+											<tr>
+												<td>
+													成立日期
+												</td>
+												<td>2016-03-01</td>
+											</tr>
+										</tbody>
+
+									</table>
+								</div>
+								<div class="expand_more expand_more5">
+									展开更多信息
+								</div>
+							</div>
+						</div>
+
+						<div class="fade_list_detail fade_equity box" id="recruitInfoView">
+							<div class="fade_equity_detail">
+								<!--<h2>招聘信息</h2>-->
+								<h3>招聘信息</h3>
+								<div class="fade_equity_table">
+
+									<table border="" cellspacing="0" cellpadding="0">
+										<colgroup>
+											<col width="30%">
+											<col width="70%">
+										</colgroup>
+										<tbody>
+											<tr>
+												<td>
+													股东
+												</td>
+												<td>智翔科技有限公司</td>
+											</tr>
+
+											<tr>
+												<td>
+													认缴出资
+												</td>
+												<td>-</td>
+											</tr>
+											<tr>
+												<td>
+													实际出资
+												</td>
+												<td>3000</td>
+											</tr>
+											<tr>
+												<td>
+													3000
+												</td>
+												<td>100%</td>
+											</tr>
+
+										</tbody>
+
+									</table>
+								</div>
+								<div class="expand_more expand_more6">
+									展开更多信息
+								</div>
+							</div>
+						</div>
+
+						<div class="fade_list_detail fade_equity box" id="intellPropertyView">
+
+							<div class="fade_equity_detail">
+								<h2>知识产权</h2>
+								<h3>商标信息</h3>
+								<div class="fade_equity_table">
+
+									<table border="" cellspacing="0" cellpadding="0">
+										<colgroup>
+											<col width="30%">
+											<col width="70%">
+										</colgroup>
+										<tbody>
+											<tr>
+												<td>
+													商标
+												</td>
+												<td>-</td>
+											</tr>
+
+											<tr>
+												<td>
+													商标名称
+												</td>
+												<td>大疆</td>
+											</tr>
+											<tr>
+												<td>
+													商标状态
+												</td>
+												<td>受理通知书发文</td>
+											</tr>
+											<tr>
+												<td>
+													申请时间
+												</td>
+												<td>2018-10-25</td>
+											</tr>
+
+										</tbody>
+
+									</table>
+								</div>
+								<div class="expand_more expand_more7">
+									展开更多信息
+								</div>
+							</div>
+							<div class="fade_equity_detail ">
+								<!--<h2>专利信息</h2>-->
+								<h3>专利信息</h3>
+								<div class="fade_equity_table">
+
+									<table border="" cellspacing="0" cellpadding="0">
+										<colgroup>
+											<col width="30%">
+											<col width="70&">
+										</colgroup>
+										<tbody>
+											<tr>
+												<td>
+													专利名称
+												</td>
+												<td>一种飞行器及其信号线保护组件</td>
+											</tr>
+
+											<tr>
+												<td>
+													专利类型
+												</td>
+												<td>发明授权</td>
+											</tr>
+											<tr>
+												<td>
+													申请号
+												</td>
+												<td>201610415566X</td>
+											</tr>
+											<tr>
+												<td>
+													发布日期
+												</td>
+												<td>2018-11-27</td>
+											</tr>
+
+										</tbody>
+
+									</table>
+								</div>
+								<div class="expand_more expand_more6">
+									展开更多信息
+								</div>
+							</div>
+
+						</div>
+
+						<div class="fade_list_detail fade_equity box" id="newsInfoView">
+							<div class="fade_equity_detail">
+								<!--<h2>新闻资讯</h2>-->
+								<h3>新闻资讯</h3>
+								<div class="fade_new">
+
+									<div class="fade_new_div">
+
+										<div class="new_txt_time">
+											<p>道通智能诉大疆侵权</p>
+											<span>2018-09-28</span>
+										</div>
+
+										<div class="new_text">
+											在8月30日，美国AutelRoboticsUSALLCofBothell,Washington依据《美国1930年关税法》第
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="fade_new">
+
+									<div class="fade_new_div">
+
+										<div class="new_txt_time">
+											<p>道通智能诉大疆侵权</p>
+											<span>2018-09-28</span>
+										</div>
+										<div class="new_text">
+											在8月30日，美国AutelRoboticsUSALLCofBothell,Washington依据《美国1930年关税法》第
+										</div>
+
+									</div>
+
+								</div>
+								<div class="expand_more expand_more9">
+									展开更多信息
+								</div>
+							</div>
+						</div>
+
+						<div class="fade_list_detail fade_equity box" id="contactInfoView">
+							<div class="fade_equity_detail">
+								<!--	<h2>联系方式</h2>-->
+								<h3>联系方式</h3>
+								<div class="fade_equity_table">
+
+									<table border="" cellspacing="0" cellpadding="0">
+										<colgroup>
+											<col width="30%">
+											<col width="70%">
+										</colgroup>
+										<tbody>
+											<tr>
+												<td>
+													联系人
+												</td>
+												<td>汪**</td>
+											</tr>
+
+											<tr>
+												<td>
+													电话号码
+												</td>
+												<td>0755-83067370</td>
+											</tr>
+											<tr>
+												<td>
+													QQ号码
+												</td>
+												<td>-</td>
+											</tr>
+											<tr>
+												<td>
+													邮箱
+												</td>
+												<td>82872123@163.com</td>
+											</tr>
+											<tr>
+												<td>
+													地址
+												</td>
+												<td>深圳市南山区高新南四道18号 创维半导体设计大厦西座14层</td>
+											</tr>
+											<tr id='wuuwu'>
+												<td>
+													来源
+												</td>
+												<td>英才网</td>
+											</tr>
+
+										</tbody>
+
+									</table>
+								</div>
+								<div class="expand_more expand_more10">
+									<!--展开更多信息-->
+									<div class="fenye">
+										<p>共<span>2</span>页</p>
+										<p>当前第<span>1</span>页</p>
+										<div class="ttts">首页</div>
+										<div>下一页</div>
+										<div class="on">上一页</div>
+										<div>尾页</div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+						<div class="fade_list_detail fade_equity box" id="commentView">
+							<div class="fade_equity_detail com_appraisal" style="padding-bottom: .34rem;">
+								<!--<h2>公司</h2>-->
+								<div class="com_appraisal_head">
+									<h3 class="fl">公司评价</h3>
+									<div class="com_appraisal_head_img fr">
+										<img src="/HRzhicha/public/images/img/dp1@2x.png" class="fl" />
+										<span class="fl">去点评</span>
+										<div class="clear"></div>
+									</div>
+									<div class="clear"></div>
+								</div>
+
+								<div class="fade_new">
+
+									<div class="fade_new_div ">
+
+										<div class="appraisal_txt">
+											<div class="fl appraisal_txt_round">
+												<img src="/HRzhicha/public/images/img/nan@2x.png" />
+											</div>
+											<div class="fl appraisal_txt_name">
+												匿名用户
+											</div>
+											<div class="clear"></div>
+										</div>
+
+										<div class="appraisal_text">
+											公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="fade_new">
+
+									<div class="fade_new_div ">
+
+										<div class="appraisal_txt">
+											<div class="fl appraisal_txt_round">
+												<img src="/HRzhicha/public/images/img/nv@2x.png" />
+											</div>
+											<div class="fl appraisal_txt_name">
+												匿名用户
+											</div>
+											<div class="clear"></div>
+										</div>
+
+										<div class="appraisal_text">
+											公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+										</div>
+
+									</div>
+
+								</div>
+								<div class="fade_new">
+
+									<div class="fade_new_div ">
+
+										<div class="appraisal_txt">
+											<div class="fl appraisal_txt_round">
+												<img src="/HRzhicha/public/images/img/nv@2x.png" />
+											</div>
+											<div class="fl appraisal_txt_name">
+												匿名用户
+											</div>
+											<div class="clear"></div>
+										</div>
+
+										<div class="appraisal_text">
+											公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+										</div>
+
+									</div>
+
+								</div>
+								<div class="fade_new">
+
+									<div class="fade_new_div ">
+
+										<div class="appraisal_txt">
+											<div class="fl appraisal_txt_round">
+												<img src="/HRzhicha/public/images/img/nv@2x.png" />
+											</div>
+											<div class="fl appraisal_txt_name">
+												匿名用户
+											</div>
+											<div class="clear"></div>
+										</div>
+
+										<div class="appraisal_text">
+											公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+										</div>
+
+									</div>
+
+								</div>
+								<div class="fade_new">
+
+									<div class="fade_new_div ">
+
+										<div class="appraisal_txt">
+											<div class="fl appraisal_txt_round">
+												<img src="/HRzhicha/public/images/img/nv@2x.png" />
+											</div>
+											<div class="fl appraisal_txt_name">
+												匿名用户
+											</div>
+											<div class="clear"></div>
+										</div>
+
+										<div class="appraisal_text">
+											公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+										</div>
+
+									</div>
+
+								</div>
+								<div class="fade_new">
+
+									<div class="fade_new_div ">
+
+										<div class="appraisal_txt">
+											<div class="fl appraisal_txt_round">
+												<img src="/HRzhicha/public/images/img/nv@2x.png" />
+											</div>
+											<div class="fl appraisal_txt_name">
+												匿名用户
+											</div>
+											<div class="clear"></div>
+										</div>
+
+										<div class="appraisal_text">
+											公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+										</div>
+
+									</div>
+
+								</div>
+								<div class="fade_new">
+
+									<div class="fade_new_div ">
+
+										<div class="appraisal_txt">
+											<div class="fl appraisal_txt_round">
+												<img src="/HRzhicha/public/images/img/nv@2x.png" />
+											</div>
+											<div class="fl appraisal_txt_name">
+												匿名用户
+											</div>
+											<div class="clear"></div>
+										</div>
+
+										<div class="appraisal_text">
+											公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+										</div>
+
+									</div>
+
+								</div>
+								<div class="fade_new">
+
+									<div class="fade_new_div ">
+
+										<div class="appraisal_txt">
+											<div class="fl appraisal_txt_round">
+												<img src="/HRzhicha/public/images/img/nv@2x.png" />
+											</div>
+											<div class="fl appraisal_txt_name">
+												匿名用户
+											</div>
+											<div class="clear"></div>
+										</div>
+
+										<div class="appraisal_text">
+											公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+										</div>
+
+									</div>
+
+								</div>
+								<div class="fade_new">
+
+									<div class="fade_new_div ">
+
+										<div class="appraisal_txt">
+											<div class="fl appraisal_txt_round">
+												<img src="/HRzhicha/public/images/img/nv@2x.png" />
+											</div>
+											<div class="fl appraisal_txt_name">
+												匿名用户
+											</div>
+											<div class="clear"></div>
+										</div>
+
+										<div class="appraisal_text">
+											公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+										</div>
+
+									</div>
+
+								</div>
+								<div class="fade_new">
+
+									<div class="fade_new_div ">
+
+										<div class="appraisal_txt">
+											<div class="fl appraisal_txt_round">
+												<img src="/HRzhicha/public/images/img/nv@2x.png" />
+											</div>
+											<div class="fl appraisal_txt_name">
+												匿名用户
+											</div>
+											<div class="clear"></div>
+										</div>
+
+										<div class="appraisal_text">
+											公司人员很稳定，流动性不大。公司管理很人性化eeee很愿意推荐朋友到这里来工作，可以学习...
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="expand_more expand_more9">
+									展开更多信息
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		</script>
+		<script type="text/javascript">
+			$('.fenye div').click(function() {
+				$(this).addClass('on').siblings().removeClass('on')
+			})
+		</script>
+
+		<script>
+		</script>
+
+		<script type="text/javascript">
+		</script>
+	</body>
+
+</html>

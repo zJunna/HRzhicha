@@ -1,0 +1,801 @@
+/*底部导航*/
+
+footer {
+	height: 0.98rem;
+	border-top: 1px solid #cbcbcb;
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+	background: #fff;
+	bottom: 0;
+	left: 0;
+	z-index: 9999999;
+}
+
+footer div {
+	width: 25%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	float: left;
+	display: flex;
+}
+
+footer div img {
+	width: 0.49rem;
+	height: 0.48rem;
+	margin-bottom: 0.08rem;
+}
+
+footer div p {
+	font-size: 0.18rem;
+	color: #383552;
+	text-align: center;
+}
+
+.clear {
+	clear: both;
+}
+
+.gray {
+	height: .2rem;
+	background: #F9F9F9;
+}
+
+
+/*悬浮按钮*/
+
+.xhome_circle {
+	width: 1rem;
+	height: 1rem;
+	background: rgba(110, 60, 255, 1);
+	box-shadow: 0 .06rem 0.11rem .01rem rgba(187, 187, 255, 1);
+	border-radius: 50%;
+	font-size: .22rem;
+	font-weight: bold;
+	color: rgba(255, 255, 255, 1);
+	line-height: 1rem;
+	text-align: center;
+	position: fixed;
+	bottom: 1.4rem;
+	right: .3rem;
+}
+
+
+/*.ggg {
+	background: #FFFFFF;
+}*/
+
+
+/*搜索框弹窗*/
+
+.seach_pop {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 99999999999999999;
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.seach_pop .seach_pop_c {
+	width: 6.9rem;
+	box-sizing: border-box;
+	background: #fff;
+	border-radius: .2rem;
+	margin: 0 .3rem;
+	padding: 0 .3rem .5rem;
+}
+
+.seach_pop .seach_pop_c h3 {
+	font-size: .34rem;
+	font-weight: bold;
+	color: rgba(110, 60, 255, 1);
+	line-height: .44rem;
+	margin: .5rem 0 .5rem 0;
+	text-align: center;
+}
+
+.seach_pop .seach_pop_c .xname {
+	width: 100%;
+	height: .8rem;
+	float: left;
+	position: relative;
+}
+
+.seach_pop .seach_pop_c .xname input {
+	width: 5.63rem;
+	height: .8rem;
+	background: #F8F8F8;
+	border: none;
+	float: left;
+	border-radius: .2rem;
+	padding-left: .67rem;
+}
+
+.seach_pop .seach_pop_c .xname .xname_img {
+	width: .26rem;
+	height: .26rem;
+	position: absolute;
+	top: .27rem;
+	left: .2rem;
+}
+
+.seach_pop .seach_pop_c .xname1 {
+	margin-bottom: .2rem;
+}
+
+.seach_pop .seach_pop_c .xname2 {
+	margin-bottom: .6rem;
+}
+
+.seach_pop .seach_pop_c .xseach_btn {
+	width: 6.3rem;
+	height: .80rem;
+	background: rgba(110, 60, 255, 1);
+	box-shadow: 0 .02rem .04rem 0 rgba(110, 255, 60, 0.35);
+	border-radius: .4rem;
+	font-size: .3rem;
+	font-weight: bold;
+	color: rgba(250, 250, 250, 1);
+	line-height: .8rem;
+	text-align: center;
+}
+
+.seach_pop .xdel_img {
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	/*background: #000000;*/
+	z-index: 9999999;
+	position: fixed;
+	bottom: 1.4rem;
+	right: .3rem;
+}
+
+.seach_pop .xdel_img img {
+	width: 1rem;
+	height: 1rem;
+}
+
+
+/*搜索框*/
+
+.xhome_content {
+	padding: 0 .3rem .3rem;
+	background: #FFFFFF;
+}
+
+.xseach {
+	padding-bottom: .12rem;
+	width: 6.9rem;
+	height: .64rem;
+	padding: .3rem .3rem .12rem .3rem;
+}
+
+.xseach .xseach_inp {
+	float: left;
+	position: absolute;
+}
+
+.xseach .xseach_inp .xInp {
+	float: left;
+	width: 6.13rem;
+	line-height: .64rem;
+	border: none;
+	background: #F8F8F8;
+	border-radius: .32rem;
+	padding-left: .77rem;
+	font-size: .28rem;
+	font-weight: 400;
+	color: #63617D;
+}
+
+.xseach .xseach_inp .xsimg {
+	width: .26rem;
+	height: 26;
+	position: absolute;
+	top: .19rem;
+	left: .3rem;
+}
+
+.xseach .xseach_inp .xsimg2 {
+	width: .32rem;
+	height: .32rem;
+	position: absolute;
+	top: .16rem;
+	right: .4rem;
+}
+
+
+/*菜单列表*/
+
+.xnav {
+	padding: .3rem 0;
+}
+
+.xnav ul li {
+	width: 25%;
+	/*height: 100%;*/
+	align-items: center;
+	justify-content: center;
+	float: left;
+	display: flex;
+}
+
+.xnav ul li a:active {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.xnav ul li img {
+	width: .7rem;
+	height: .7rem;
+	margin: auto;
+}
+
+.xnav ul li p {
+	font-size: .24rem;
+	font-weight: 500;
+	color: rgba(99, 97, 125, 1);
+	line-height: .44rem;
+	margin-top: .3rem;
+}
+
+.xnav ul li:nth-of-type(1),
+.xnav ul li:nth-of-type(2),
+.xnav ul li:nth-of-type(3),
+.xnav ul li:nth-of-type(4) {
+	margin-bottom: .4rem;
+}
+
+
+/*swiper*/
+
+.xswiper {
+	/*background: yellow;*/
+	height: 1.8rem;
+	margin-bottom: .54rem;
+}
+
+.xswiper .swiper-container {
+	height: 1.8rem;
+}
+
+.xswiper .swiper-slide img {
+	border-radius: .2rem;
+	height: 100%;
+}
+
+
+/*头条信息*/
+
+.xnew {}
+
+.zhicha1 {
+	width: 1.5rem;
+	float: left;
+	margin-top: .08rem;
+}
+
+.zhicha1 span {
+	font-size: .24rem;
+	font-weight: bold;
+	color: rgba(99, 97, 125, 1);
+	line-height: .24rem;
+	float: left;
+}
+
+.zhicha1 img {
+	width: .31rem;
+	height: .28rem;
+	float: left;
+	margin-left: .1rem;
+}
+
+.xnews .xnews_list {
+	height: .4rem;
+	overflow: hidden;
+}
+
+.xnews .xnews_list .swiper-container {
+	height: .4rem;
+}
+
+.xnews .xnews_list .swiper-slide {
+	height: .4rem;
+	font-size: .24rem;
+	font-weight: 400;
+	color: #63617D;
+	line-height: .4rem;
+	margin-left: .1rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-webkit-text-overflow: ellipsis;
+	-moz-text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+/*信用服务*/
+
+.xnext {
+	background: #FFFFFF;
+	padding: .3rem;
+}
+
+.xnext .xcredit_service {}
+
+.xnext .xcredit_service .xcredit_service_txt h2 {
+	font-size: .32rem;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 1);
+	line-height: .34rem;
+	padding-bottom: .4rem;
+}
+
+.xnext .xcredit_service .xcredit_service_img {
+	width: 100%;
+	height: 1.4rem;
+	margin-bottom: .4rem;
+}
+
+.xnext .xcredit_service .xcredit_service_img div {
+	width: 2.18rem;
+	height: 1.4rem;
+	align-items: center;
+	justify-content: center;
+	float: left;
+	display: flex;
+}
+
+.xnext .xcredit_service .xcredit_service_img div:nth-of-type(2) {
+	margin: 0 .176rem;
+}
+
+.xnext .xcredit_service .xcredit_service_img div img {
+	width: 100%;
+	height: 100%;
+	border-radius: .1rem;
+}
+
+
+/*行业资讯*/
+
+.xindustry_news {}
+
+.xindustry_news .xindustry_news_txt h2 {
+	font-size: .32rem;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 1);
+	line-height: .34rem;
+	padding-bottom: .4rem;
+}
+
+.xindustry_news .xnews_list {}
+
+.xindustry_news .xnews_list ul li {
+	border-bottom: .01rem solid #EEEEEE;
+	padding: .4rem 0 .21rem 0;
+	position: relative;
+}
+
+.xindustry_news .xnews_list ul li:nth-of-type(1) {
+	border-top: .01rem solid #EEEEEE;
+}
+
+.xindustry_news .xnews_list ul li .title_p {
+	font-size: .24rem;
+	font-weight: 500;
+	color: rgba(102, 102, 102, 1);
+	line-height: .30rem;
+	/*margin-top: .4rem;*/
+	margin-bottom: .29rem;
+}
+
+.xindustry_news .xnews_list ul li .xnews_list_txt {
+	width: 4rem;
+	overflow: hidden;
+	float: left;
+}
+
+.xindustry_news .xnews_list ul li .xnews_list_txt p {
+	font-size: .28rem;
+	font-weight: bold;
+	color: rgba(69, 69, 69, 1);
+	line-height: .40rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.xindustry_news .xnews_list ul li .xnews_list_txt .xnews_time {
+	font-size: .22rem;
+	font-weight: 500;
+	color: rgba(102, 102, 102, 1);
+	line-height: .30rem;
+	display: block;
+	position: absolute;
+	bottom: .21rem;
+	left: 0;
+}
+
+.xindustry_news .xnews_list ul li .xnews_list_img {
+	width: 2.16rem;
+	height: 1.4rem;
+	float: right;
+}
+
+.xindustry_news .xnews_list ul li .xnews_list_img img {
+	width: 2.16rem;
+	height: 1.4rem;
+	border-radius: .1rem;
+}
+
+
+/*学历验证*/
+
+.pay_tits1 {
+	background: #FFFFFF;
+	left: 0;
+	top: 0;
+	z-index: 9999999999999999999;
+	width: 100%;
+	overflow: hidden;
+	height: 0.9rem;
+	position: relative;
+}
+
+.pay_tits1 img {
+	width: 0.24rem;
+	position: absolute;
+	left: 0.38rem;
+	top: 50%;
+	margin-top: -.21rem;
+}
+
+.pay_tits1 p {
+	font-size: 0.34rem;
+	color: #403F3F;
+	text-align: center;
+	line-height: 0.9rem;
+}
+
+
+/*个人查询---学历验证、社保、银行逾期、涉诉信息、网贷黑名单、不良记录、被执行人、失信人的样式。公用样式开始。*/
+
+.education_banner {
+	height: 4rem;
+	position: absolute;
+}
+
+.education_banner img {
+	height: 4rem;
+}
+
+.education_seach {
+	width: 6.3rem;
+	background: #FFFFFF;
+	padding: 0 .3rem .3rem;
+	border-radius: .2rem;
+	z-index: 9999;
+	position: absolute;
+	top: 4.4rem;
+	left: .3rem;
+	right: .3rem;
+}
+
+.education_seach h2 {
+	font-size: .34rem;
+	font-weight: bold;
+	color: rgba(110, 60, 255, 1);
+	line-height: .44rem;
+	padding-top: .7rem;
+	padding-bottom: .5rem;
+	text-align: center;
+}
+
+.education_seach .education_seach_inp {
+	width: 100%;
+	float: left;
+	position: relative;
+}
+
+.education_seach .education_seach_inp .esinp {
+	width: 5.63rem;
+	height: .8rem;
+	background: #F8F8F8;
+	border: none;
+	float: left;
+	border-radius: .2rem;
+	padding-left: .67rem;
+}
+
+.education_seach .education_seach_inp img {
+	width: .26rem;
+	height: .26rem;
+	position: absolute;
+	top: .27rem;
+	left: .2rem;
+}
+
+.education_seach .education_seach_inp .esinp1 {
+	margin-bottom: .2rem;
+}
+
+.education_seach .education_seach_inp .esinp2 {
+	margin-bottom: .6rem;
+}
+
+.education_seach .education_seach_ss {
+	width: 100%;
+	height: .8rem;
+	background: #6E3CFF;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: .8rem;
+	border-radius: .4rem;
+	font-size: .3rem;
+	font-weight: bold;
+	margin-bottom: .49rem;
+}
+
+.education_seach .education2_ss {
+	width: 6.3rem;
+	height: .8rem;
+	background: #F8F8F8;
+	border-radius: .2rem;
+	margin-bottom: .6rem;
+	font-size: .3rem;
+	font-weight: bold;
+	color: #7D7D7D;
+	line-height: .8rem;
+	text-align: center;
+}
+
+.education_seach p {
+	font-size: .22rem;
+	font-weight: 400;
+	color: rgba(153, 153, 153, 1);
+	line-height: .44rem;
+	text-align: center;
+}
+
+
+/*个人查询---学历验证、社保、银行逾期、涉诉信息、网贷黑名单、不良记录、被执行人、失信人的样式。公用样式结束。*/
+
+
+/*职查头条页样式开始*/
+
+.job_review {
+	padding: 0 .3rem .3rem;
+}
+
+.job_review ul li {
+	padding: .41rem 0 0.21rem 0;
+	border-bottom: .01rem solid #EEEEEE;
+	position: relative;
+}
+
+.job_review ul li .job_txt {
+	width: 4rem;
+	overflow: hidden;
+	float: left;
+}
+
+.job_review ul li .job_txt div {
+	font-size: .28rem;
+	font-weight: bold;
+	color: rgba(69, 69, 69, 1);
+	line-height: .40rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.job_review ul li .job_txt span {
+	font-size: .22rem;
+	font-weight: 500;
+	color: rgba(102, 102, 102, 1);
+	line-height: .30rem;
+	display: block;
+	position: absolute;
+	bottom: .21rem;
+	left: 0;
+}
+
+.job_review ul li .job_img {
+	width: 2.16rem;
+	height: 1.4rem;
+	float: right;
+}
+
+.job_review ul li .job_img img {
+	width: 2.16rem;
+	height: 1.4rem;
+	border-radius: .1rem;
+}
+
+
+/*职查头条页样式结束*/
+
+
+/*职查头条详情页*/
+
+.job_review_details {}
+
+.job_review_details h1 {
+	font-size: .40rem;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 1);
+	line-height: .58rem;
+	padding: .4rem 0 .6rem 0;
+}
+
+.job_review_details .job_details_logo {
+	margin-bottom: .6rem;
+}
+
+.job_review_details .job_details_logo .logo_img {
+	width: .64rem;
+	height: .64rem;
+}
+
+.job_review_details .job_details_logo .logo_text {
+	margin-left: .3rem;
+}
+
+.job_review_details .job_details_logo .logo_text span {
+	display: block;
+}
+
+.job_review_details .job_details_logo .logo_text span:nth-of-type(1) {
+	font-size: .28rem;
+	font-weight: 500;
+	color: rgba(69, 69, 69, 1);
+	line-height: .3rem;
+	margin-bottom: .18rem;
+}
+
+.job_review_details .job_details_logo .logo_text span:nth-of-type(2) {
+	font-size: .22rem;
+	font-weight: 500;
+	color: rgba(158, 158, 158, 1);
+	line-height: .3rem;
+}
+
+.job_review_details .job_review_text {
+	font-size: .34rem;
+	font-weight: 500;
+	color: rgba(69, 69, 69, 1);
+}
+
+.job_review_details .job_review_text p {
+	font-size: .34rem;
+	font-weight: 500;
+	color: rgba(69, 69, 69, 1);
+	line-height: .56rem;
+	margin-bottom: .6rem;
+}
+
+
+/*被执行人-查询列表、失信人-查询列表*/
+
+.xexecuted_number {
+	padding: .27rem .3rem;
+	font-size: .26rem;
+	font-weight: 500;
+	color: rgba(155, 155, 187, 1);
+	line-height: .3rem;
+}
+
+.xexecuted_number i {
+	color: #FC5E65;
+}
+
+.xexecuted_list {
+	padding-bottom: .7rem;
+}
+
+.xexecuted_list ul li {
+	padding: .4rem .3rem;
+	background: #FFFFFF;
+	margin-bottom: .2rem;
+	position: relative;
+}
+
+.xexecuted_list ul li h2 {
+	font-size: .3rem;
+	font-weight: bold;
+	color: rgba(110, 60, 255, 1);
+	line-height: .3rem;
+	margin-bottom: .28rem;
+}
+
+.xexecuted_list ul li p {
+	font-size: .28rem;
+	font-weight: 500;
+	color: rgba(69, 69, 69, 1);
+	line-height: .46rem;
+}
+
+.xexecuted_list ul li p span {
+	color: #777777;
+}
+
+.xexecuted_list ul li .right_img {
+	width: .14rem;
+	height: .24rem;
+	position: absolute;
+	right: .5rem;
+	top: 50%;
+}
+
+.xexecuted_list ul li .right_img img {
+	width: .14rem;
+	height: .24rem;
+}
+
+
+/*失信人-查询详情*/
+
+.xuntrustworthy_person_details {
+	padding-bottom: .7rem;
+}
+
+.xuntrustworthy_person_details ul {
+	background: #FFFFFF;
+	margin: .2rem 0;
+	padding: 0 .3rem;
+}
+
+.xuntrustworthy_person_details ul li {
+	padding: .31rem 0;
+	font-size: .28rem;
+	font-weight: 500;
+	color: rgba(51, 51, 51, 1);
+	line-height: .29rem;
+}
+
+.xuntrustworthy_person_details .li_border li {
+	border-bottom: .01rem solid #EEEEEE;
+}
+
+.xuntrustworthy_person_details .li_border li:nth-last-child(1) {
+	border-bottom: none;
+}
+
+.xuntrustworthy_person_details ul li span {
+	color: #777777;
+}
+
+/*未查询到信息*/
+.xseach_nofound{
+	
+}
+
+.xseach_nofound h2{
+	font-size:.3rem;
+font-weight:500;
+color:rgba(99,97,125,1);
+line-height:.3rem;
+margin-top: 1.17rem;
+text-align: center;
+}
+
+
+.xseach_nofound img{
+	width: 2.2rem;
+	height: 1.7rem;
+	margin:.4rem auto ;
+}
+

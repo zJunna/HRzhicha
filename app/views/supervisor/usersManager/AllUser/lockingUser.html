@@ -1,0 +1,21 @@
+<!-- 锁定账号弹窗 -->
+<div class="xf_ht_jr_obu_width">
+  <div class="xf_ht_damem_hy_box">
+    
+    <div class="xf_ht_damem_hy_bott xf_ht_damem_hy_bott6">
+      <div class="xf_ht_damem_hy_bott_ta3" style="margin-left:50px;border-color: #FFFFFF;">
+       <span style="display: inline-block;width: 100px;text-align: right;">手机号：</span>
+       <input type="text" id="usermobile" name="usermobile" value="${users?.mobile}" style="margin-left: 30px;width: 280px;height: 30px;"/><br/><br/>
+        <span style="display: inline-block;width: 100px;text-align: right;">实名：</span>
+       <input type="text" id="user_reality_name" name="user_reality_name" value="${users?.reality_name}" style="margin-left: 30px;width: 280px;height: 30px;"/><br/><br/>
+        <span style="display: inline-block;width: 100px;text-align: right;">实名证件号：</span>
+       <input type="text" id="id_number" name="id_number" value="${users?.id_number}" style="margin-left: 30px;width: 280px;height: 30px;"/>
+      </div>
+     <input class="xf_ht_tcc_button_ok" type="button" id="sumbit" onClick="locking('${sign}');" value="锁定" style="margin-left: 200px;margin-top: 30px;width: 103px;height: 32px;">
+      <input class="xf_ht_tcc_button_on" type="button" onClick="cancleLocking('${sign}')" value="解锁" style="margin-top: 30px;">
+     <input type="hidden" id="userId" name="userId" value="${sign}" />
+    </div>
+  
+    </div>
+  </div>
+</div>

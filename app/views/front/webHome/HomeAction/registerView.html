@@ -1,0 +1,208 @@
+<div class="land_box" style="margin-top: 2%;display: none" id="registerDiv">
+	<img src="/public/images/webimg/lo_1.png" class="logo" />
+	<h5 style="font-size: 34px">注册</h5>
+	<div class="land_lable">
+		<input type="text" placeholder="请输入手机号" name="registerMobile" id="registerMobile" value="" />
+	</div>
+	<div class="land_lable">
+		<input type="text" placeholder="请输入图片验证码" name="registerYanzhengma" id="registerYanzhengma" value="" />
+		<img id="img" src="/public/images/登录页面-02_r2_c2.gif" style="position:absolute;width: 8rem;height:3.7rem;border-radius:0.4rem;right: 0px;top: -1%" >
+                 <input type="hidden" name="randomID" id="randomID" /><br/>
+	</div>
+	<div class="land_lable">
+		<input type="text" placeholder="请输入验证码" id="yanzhengma" value="" name="yanzhengma"/>
+		<p class="sends" id="codeTimes" onclick="sendCode();">发送验证码</p>
+	</div>
+	<div class="land_lable">
+		<input type="password"  placeholder="设置密码（6-16位字母数字组合）" name="registerPassword"  value="" id="registerPassword"/>
+		<img src="/public/images/webimg/pass_10.jpg" class="show_word" id="registerEyes"/>
+		<img src="/public/images/webimg/pass_07.jpg" class="cleahs hide" id="registerClear"/>
+	</div>
+	<div class="x_xy">
+		<div id="tick"><img src="/public/images/webimg/pass_19.jpg" class="hide" style="display: none"/></div>
+		<p>注册代表您已同意<span id="agreement">《X职查平台使用协议》</span></p>
+	</div>
+	<div class="land_btner" id="registerButton">注册</div>
+	<p class="name_good">已有账号？
+		<a href="#" id="goLogin">去登陆</a>
+	</p>
+	<p class="gsaw" id="errorInfo"></p>
+</div> 
+
+<div class="land_box" style="margin-top: -35%;display: none;background: #e5e5e5;width: 60%;height: 60%;padding-top: 10px;" id="divAgree">
+	<div style="width:98%;height:98%;margin-left: 1%;background: #FAFAFA;">
+	    #{include "common/registerWebAgree.html"/}
+	</div>
+</div> 
+<script type="text/javascript">
+	//改变验证码(注册)
+	$("#img").click(function(){
+		var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+		$.post(setCode({}),function(data){
+		var arr=eval(data);
+		var img = arr.img;
+		$("#img").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img)	
+		$("#randomID").val(img);
+		});
+	});
+	$(function(){
+	    var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+		$.post(setCode({}),function(data){
+			var arr=eval(data);
+			var img = arr.img;
+			$("#img").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img);	
+			$("#randomID").val(img);
+		});
+	});
+</script>	
+<script type="text/javascript">
+			$("#registerPassword").bind('input propertychange', function() {
+				
+				var bal = $(this).val();
+				if(bal != '') {
+					$('#registerClear').show()
+				} else {
+					$('#registerClear').hide()
+				}
+			})
+			$('#registerClear').click(function() {
+				$('#registerPassword').val('')
+			})
+			$('#registerEyes').click(function() {
+				if($(this).hasClass('a')) {
+					$(this).removeClass('a')
+					$('#registerPassword').attr('type', 'password')
+					$(this).attr('src', '/public/images/webimg/pass_10.jpg')
+				} else {
+					$(this).addClass('a')
+					$('#registerPassword').attr('type', 'text')
+					$(this).attr('src', '/public/images/webimg/pass_13.jpg')
+				}
+			})
+			 $("#registerButton").click(function(){
+				if($("#registerMobile").val() == ''){
+					$("#errorInfo").html("请输入手机号码"); 
+					return false;
+		 		} 
+		 
+		 		if($("#registerMobile").val()!=""){
+			    	if(!(/^1[34578]\d{9}$/.test($("#registerMobile").val()))){
+				    	 $("#errorInfo").html("请输入正确的手机号码"); 
+				     	   return false; 
+				    }
+	    		}
+	    		
+	    		if($("#registerYanzhengma").val() == ''){
+					$("#errorInfo").html("请输入验证码"); 
+						return false;
+		 		}
+		 		
+		 		var password=$("#registerPassword").val();
+		 		
+			  	if (password == "") {
+					$("#errorInfo").html("请设置密码");
+					return false;
+				}else if (password.length < 6){
+					$("#errorInfo").html("密码长度为6-16个字符");
+					return false;
+				}else if (password.length > 16){
+					$("#errorInfo").html("密码长度为6-16个字符");
+					return false;
+				}else if (!/^([^\s'‘’]{6,20})$/.test(password)){
+					$("#errorInfo").html("密码由6-16位字符组成(不含')");
+					return false;
+				}
+		 		
+		 		if($("#tick").hasClass("a")){
+		 			$("#errorInfo").html(""); 
+  				}else{
+  					$("#errorInfo").html("请仔细阅读X职查平台使用协议");
+  					return false;
+  				}
+			/* 
+			验证验证码
+			*/
+			var verifySmsCodeForReg = #{jsAction @verifySmsCodeForReg(':mobile',':smsCode')/}
+		  		$.post(verifySmsCodeForReg({mobile:$("#registerMobile").val().trim(),smsCode:$("#yanzhengma").val()}),function(data){
+				   if(data.code<0){
+			    	  $("#errorInfo").html(data.msg);
+				   }else{
+				   		$("#errorInfo").html("");
+				   	 	$.ajax({
+				   	 		url:"@{front.webHome.RegisterAndLogin.registering()}",
+				   	 		type:"POST",
+			  				dataType:"JSON",
+			  				data:{
+			  					mobile:$("#registerMobile").val(),
+			  					password:$("#registerPassword").val()
+			  				},
+			  				success:function(data){
+			  					if(data.code==0){
+			  						location.href="@{front.webHome.HomeAction.home()}";
+			  					}else{
+			  						$("#errorInfo").html(data.msg);
+			  					}
+			  				}
+				   	 	});
+		  			 }
+	  		});
+			});
+</script>
+<script type="text/javascript">
+		var remain = 60;
+		function countDown() {
+		  if (remain == 0) {
+		    remain = 60;
+		    $("#codeTimes").html("点击发送");
+		    $("#codeTimes").attr("onclick", "sendCode();");
+		    return;
+		  }
+		  $("#codeTimes").html("" + remain-- + "秒后重发");
+		  setTimeout("countDown()",1000);
+		}
+			
+		function sendCode(){
+			var mobile = $("#registerMobile").val();
+			$.ajax({
+			  url:"@{front.webHome.RegisterAndLogin.codeVerification()}",
+			  type:"POST",
+			  dataType:"JSON",
+			  data:{
+			  	  mobile:$("#registerMobile").val(),
+				  code:$("#registerYanzhengma").val(),
+				  randomID:$("#randomID").val()
+			  },
+			  success:function(data){
+			       if(data.code<0){
+			        	 $("#errorInfo").html(data.msg);
+			        	 	var setCode = #{jsAction @front.webHome.RegisterAndLogin.setCode()/}
+							$.post(setCode({}),function(data){
+							var arr=eval(data);
+							var img = arr.img;
+							$("#img").attr("src","@{front.webHome.RegisterAndLogin.getImg()}?id="+img)	
+							$("#randomID").val(img);
+							});
+			        	 return false;
+			       }else{
+				       	var verifyMobile = #{jsAction @verifyMobile(':mobile')/}
+				$.post(verifyMobile({mobile:mobile}),function(data){
+				    if(data.error.code < 0){
+					    $("#errorInfo").html(data.error.msg);
+					    return false;
+				    }else{
+				    	$("#errorInfo").html("");
+						countDown();
+						$("#codeTimes").attr("onclick", "void(0);");
+					}
+				},'json'); 
+			       }
+			  }
+		  });
+		    }
+		   $("#agreement").click(function(){
+		    $("#divAgree").css("display","block");
+		    })
+		    $("#black").click(function(){
+		    $("#divAgree").css("display","none");
+		    })
+  </script>

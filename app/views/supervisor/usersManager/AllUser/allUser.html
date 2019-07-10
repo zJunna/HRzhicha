@@ -1,0 +1,217 @@
+#{extends 'common/supervisor.html' /} #{set title:'全部会员列表' /}
+
+<div class="xn_c_contentwarp">
+	<div class="xn_c_contentlist">
+		#{include 'supervisor/usersManager/userLeft.control'/}
+		<!--右-->
+		#{include 'supervisor/usersManager/AllUser/allUserContent.control'/}
+	</div>
+</div>
+<!--弹出层-->
+<div id="kefu" style="display:none;"></div>
+<div class="xn_c_ban_jox xn_c_ban_jox_hyxq" id="xf_ht_fkzh_ttc"
+	style="display: none;"></div>
+<div class="xn_c_ban_jox xn_c_ban_jox_hyxq" id="edit_user_info"
+	style="display: none;"></div>
+<div class="xn_c_ban_jox xn_c_ban_jox_hyxq" id="edit_recommend_user"
+	style="display: none;"></div>
+
+<script type="text/javascript">
+	$("#close1").click(function() {
+		$("#xf_ht_fkzh_ttc").hide();
+	});
+
+	var g_users_type = "all_users";
+
+	function details(userId) {//个人认证详情
+		$.ajax({
+			url : "@{supervisor.usersManager.AllUser.detail()}",
+			type : "POST",
+			data : {
+				"sign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.msg);
+
+					return;
+				}
+				$("#xf_ht_fkzh_ttc").html(data);
+				$.layer({
+					type : 1,
+					area : [ '700px', '400px' ],
+					title : '个人认证详情',
+					page : {
+						dom : '#xf_ht_fkzh_ttc'
+					}
+				});
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+
+	function companyDetails(userId) {//企业认证详情
+		$.ajax({
+			url : "@{supervisor.usersManager.AllUser.companyDetails()}",
+			type : "POST",
+			data : {
+				"sign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.msg);
+
+					return;
+				}
+				$("#xf_ht_fkzh_ttc").html(data);
+				$.layer({
+					type : 1,
+					area : [ '700px', '700px' ],
+					title : '企业认证详情',
+					page : {
+						dom : '#xf_ht_fkzh_ttc'
+					}
+				});
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+
+	function updateUserInfor(userId) {//修改用户信息
+		$.ajax({
+			url : "@{supervisor.usersManager.AllUser.updateUserInfor()}",
+			type : "POST",
+			data : {
+				"sign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.msg);
+
+					return;
+				}
+				$("#xf_ht_fkzh_ttc").html(data);
+				$.layer({
+					type : 1,
+					area : [ '700px', '500px' ],
+					title : '修改用户信息',
+					page : {
+						dom : '#xf_ht_fkzh_ttc'
+					}
+				});
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+
+	function addUserInfor() {//保存用户信息
+		var name = $("#username").val();
+		var mobile = $("#usermobile").val();
+		var password = $("#userpassword").val();
+		var confirmPassword = $("#confirmPassword").val();
+		var email = $("#useremail").val();
+		var userId = $("#userId").val();
+		if (name == "") {
+			alert("用户名不能为空");
+			return false;
+		}
+		if (mobile == "") {
+			alert("手机号不能为空");
+			return false;
+		}
+		if (password == "") {
+			alert("请设置密码");
+			return false;
+		} 
+		if (confirmPassword == "") {
+			alert("请输入密码确认");
+			return false;
+		} else if (confirmPassword != $("#userpassword").val()) {
+			alert("两次输入的密码不一致");
+			return false;
+		}
+		$.ajax({
+			url : "@{supervisor.usersManager.AllUser.addUserInfor()}",
+			type : "POST",
+			data : {
+				"name" : name,
+				"mobile" : mobile,
+				"password" : password,
+				"email" : email,
+				"userId" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.error.msg);
+					return;
+				}
+				alert(data.error.msg);
+				parent.location.reload();
+			}
+		});
+	}
+	
+	function lockingUser(userId) {//锁定账号
+		$.ajax({
+			url : "@{supervisor.usersManager.AllUser.lockingUser()}",
+			type : "POST",
+			data : {
+				"sign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.msg);
+
+					return;
+				}
+				$("#xf_ht_fkzh_ttc").html(data);
+				$.layer({
+					type : 1,
+					area : [ '700px', '500px' ],
+					title : '锁定账号',
+					page : {
+						dom : '#xf_ht_fkzh_ttc'
+					}
+				});
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+	function locking(id){//锁定
+  if(confirm("确定锁定？")){
+    var lockUser = #{jsAction @lockUser(':sign')/}
+    $.post(lockUser({sign:id}),function(data){
+      var arr=eval(data);
+          
+      if(arr.error.code < 0){
+        alert(arr.error.msg);
+      }
+      alert(arr.error.msg);
+      location.reload();
+    });
+  }
+}
+function cancleLocking(id){//解锁
+  if(confirm("确定解锁？")){
+    var cancleLocking = #{jsAction @cancleLocking(':sign')/}
+    $.post(cancleLocking({sign:id}),function(data){
+      var arr=eval(data);
+          
+      if(arr.error.code < 0){
+        alert(arr.error.msg);
+      }
+      alert(arr.error.msg);
+      location.reload();
+    });
+  }
+}
+	
+</script>

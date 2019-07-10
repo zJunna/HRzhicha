@@ -1,0 +1,112 @@
+#{extends 'common/supervisor.html' /}
+#{set title:'VIP会员列表' /}
+
+<div class="xn_c_contentwarp">
+  <div class="xn_c_contentlist"> 
+    #{include 'supervisor/usersManager/userLeft.control'/}
+    <!--右-->
+    #{include 'supervisor/usersManager/VIPUser/vipUserContent.control'/} 
+  </div>
+</div>
+<!--弹出层-->
+<div class="xn_c_ban_jox xn_c_ban_jox_hyxq" id="xf_ht_fkzh_ttc" style="display: none;"></div>
+<script type="text/javascript">
+/* 高亮显示 */
+(10, 5, 'lab_usr_', null);
+
+$("#close1").click(function(){
+  $("#xf_ht_fkzh_ttc").hide();
+});
+
+var g_users_type = "vip_users";
+
+function details(userId) {//VIP个人认证详情
+		$.ajax({
+			url : "@{supervisor.usersManager.VIPUser.detail()}",
+			type : "POST",
+			data : {
+				"sign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.msg);
+
+					return;
+				}
+				$("#xf_ht_fkzh_ttc").html(data);
+				$.layer({
+					type : 1,
+					area : [ '700px', '400px' ],
+					title : 'VIP个人认证详情',
+					page : {
+						dom : '#xf_ht_fkzh_ttc'
+					}
+				});
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+
+	function companyDetails(userId) {//VIP企业认证详情
+		$.ajax({
+			url : "@{supervisor.usersManager.VIPUser.companyDetails()}",
+			type : "POST",
+			data : {
+				"sign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.msg);
+
+					return;
+				}
+				$("#xf_ht_fkzh_ttc").html(data);
+				$.layer({
+					type : 1,
+					area : [ '700px', '700px' ],
+					title : 'VIP企业认证详情',
+					page : {
+						dom : '#xf_ht_fkzh_ttc'
+					}
+				});
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+    
+    function updateVipTime(userId) {//修改VIP时间
+		$.ajax({
+			url : "@{supervisor.usersManager.VIPUser.updateVipTime()}",
+			type : "POST",
+			data : {
+				"sign" : userId
+			},
+			success : function(data) {
+				if (data.code < 0) {
+					alert(data.msg);
+
+					return;
+				}
+				$("#xf_ht_fkzh_ttc").html(data);
+				$.layer({
+					type : 1,
+					area : [ '700px', '400px' ],
+					title : '修改VIP时间',
+					page : {
+						dom : '#xf_ht_fkzh_ttc'
+					}
+				});
+			},
+			error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+	}
+    
+
+
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>关于我们-X职查</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="@{'/HRzhicha/public/stylesheets/webcss/public.css'}" rel="stylesheet" type="text/css" />
+		<link href="@{'/HRzhicha/public/stylesheets/webcss/style.css'}" rel="stylesheet" type="text/css" />
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+	</head>
+
+	<body class="bgf">
+		#{include "common/webHeader.html"/}
+		<div class="about_content">
+		#{include "front/webHome/HomeAction/companyLeft.control"/}
+			<div class="fr">
+				<div class="about_fr_title" style="background-image:url('/public/images/webimg/about_us.png')">
+					<p>公司介绍</p>
+					<span>互联网信息共享与查询平台</span>
+				</div>
+				<div class="about_font_box">
+					<p>X职查是山东准安互联网科技有限公司开发与运营的互联网信息共享与查询平台。</p>
+					<p>X职查平台是为了促进职场信用环境而开发，它允许用人单位把员工在工作过程中产生的违反职业道德或法律的事件或在工作过程中亮点在系统内共享。这样用人单位在录用员工之前就有一个背景调查工具。由于这种互通有无共享惩戒工具的存在，使得人们在职业生涯过程中格外重视自己的职业道德从而从长期上能够净化职场环境。平台一站式解决职场信用查询问题，营造诚信招聘氛围，为企业提供决策支持，提升人力资源管理效率，帮助企业规避用工风险。</p>
+					<p>我们相信，人性是自私的，人的行为需要善意的约束。通过这种多人共享的约束形式，我们坚信将对整个社会信用环境的改善起到积极的作用。</p>
+					<p>为了让平台有序运行，我们设计了权责明晰的交互机制，比如无论是上传者还是查询者都需要进行实名认证（包括企业用户和个人用户），以保证信息的真实、客观、来源明确、可追溯。平台积极向中国人民银行发布的征信业务规范看齐，比如设立不良信息5年的有效期，查询前需要查询者确认获得查询授权。平台还开发了申诉机制，以保证当上传的信息存在失实、恶意诽谤等情况时有纠偏和反惩戒机制。</p>
+					<p>科技在进步，人们的生活、生产方式也在剧烈改变，在互联网经济时代，信息交互的效率尤为重要，国家征信行业也在逐步市场化，行业迫切依靠民间企业的力量满足市场需求。平台在研发与运营的过程中也得到了地方相关政府部门如青岛市经信委、青岛市工商局、中国人民银行青岛市分行领导的认可与支持。创造价值、回报社会是我们最根本的动力。</p>
+					<p>我们追求的效果，就是通过“众包”的形式，共建一个高效的信用信息共享系统，为整个信用社会的进步贡献力量。</p>
+					<span>我们的使命:通过互联网的方式促进信用社会的进步。</span>
+					<span>我们的愿景:成为被广泛认可的互联网信用信息交互平台。</span>
+					<span>我们的价值观:真实、高效、负责。</span>
+				</div>
+			</div>
+		</div>
+			#{include "common/webBottom.html"/}
+		<!--[if !IE]><!-->
+		<script src="@{'/public/javascripts/js/jquery-2.1.1.min.js'}" type="text/javascript"></script>
+	</body>
+	<script type="text/javascript">
+		  $(document).ready(function(){
+		  	$("li[name='leftLi1']").addClass("on");
+		  });
+	</script>
+</html>

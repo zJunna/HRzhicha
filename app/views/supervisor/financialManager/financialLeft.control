@@ -1,0 +1,37 @@
+<div class="xn_c_content_left">
+  <div class="xn_c_content_leftul">
+    <ul>
+      <li>
+        <div class="xn_c_li_head_one" id="lab_1">
+          <a class="xn_c_li_head_a" href="@{supervisor.financialManager.MemberFlowManager.memberFlowManager()}">会员X币流水管理</a>
+        </div>
+      </li>
+      <li>
+        <div class="xn_c_li_head_one" id="lab_2">
+          <a class="xn_c_li_head_a" href="@{supervisor.financialManager.MemberUserManager.memberUserManager()}">会员X币账户管理</a>
+        </div>
+      </li>
+      <!--<li>
+        <div class="xn_c_li_head_one" id="lab_3">
+          <a class="xn_c_li_head_a" href="@{supervisor.financialManager.VIPRenewRecord.renewRecord()}">VIP续费记录</a>
+        </div>
+      </li>-->
+      <li>
+        <div class="xn_c_li_head_one" id="lab_4">
+          <a class="xn_c_li_head_a" href="@{supervisor.financialManager.RechargeRecord.rechargeRecord()}">X币购买记录</a>
+        </div>
+      </li>
+       <li>
+        <div class="xn_c_li_head_one" id="lab_5">
+          <a class="xn_c_li_head_a" href="@{supervisor.financialManager.AuditVIPRecord.auditVIPRecord()}">VIP消费记录</a>
+        </div>
+      </li>
+      
+    </ul>
+  </div>
+  
+  <div class="xn_c_con_leftbutton">
+    <div class="xn_c_con_enimg">导航点击</div>
+  </div>
+</div>
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_mg_bill.js'}"></script>

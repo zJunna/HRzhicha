@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>我的上传-X职查</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="shortcut icon" type="image/png" href="@{'../../../../../public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="@{'../../../../../public/stylesheets/layui/css/layui.css'}" />
+		<link href="@{'../../../../../public/stylesheets/webcss/public.css'}" rel="stylesheet" type="text/css" />
+		<link href="@{'../../../../../public/stylesheets/webcss/style.css'}" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="../../../../../public/javascripts/js/jquery.1.9.1.js"></script>
+	</head>
+
+	<body class="bgf">
+	#{include "common/webHeader.html"/}
+		<div class="about_content">
+			<div class="fl">
+				<div class="page_menu">
+					<ul>
+						<li>
+							<a href="#">首页</a>
+						</li>
+						<li>/</li>
+						<li>
+							<a href="#">用户中心</a>
+						</li>
+						<li>/</li>
+						<li>
+							<a href="#">我的上传</a>
+						</li>
+					</ul>
+				</div>
+				<!-- 左边导航区域 -->
+	#{include "front/webAccount/AccountHome/homeLeft.control"/}
+			</div>
+			<div class="fr" style="padding: 0 40px 52px 40px;">
+				<div class="navbar_items">
+					<ul>
+						<li class="on" id="informa">全部(${informations.size()})</li>
+						<li id="effective">有效(${effectiveInformations.size()})</li>
+						<li id="offline">下线(${offlineInformations.size()})</li>
+						<li id="problem">申诉(${problemInformations.size()})</li>
+					</ul>
+				</div>
+				<div class="updata_fade">
+					<div class="updata_item" id="infor">
+						
+					</div>
+					<div class="updata_item hide" id="infor1">
+						
+					</div>
+					<div class="updata_item hide" id="infor2">
+					
+					</div>
+					<div class="updata_item hide" id="infor3">
+					
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		#{include "common/webBottom.html"/}
+		<!--[if !IE]><!-->
+		<script src="@{'/public/javascripts/webjs/jquery-2.1.1.min.js'}" type="text/javascript"></script>
+		<script type="text/javascript" src="@{'/public/stylesheets/layui/layui.js'}"></script>
+		<script>
+			$('.list_pages div').click(function() {
+				$(this).addClass('on').siblings().removeClass('on')
+			})
+			$('.navbar_items ul li').click(function() {
+				var n = $(this).index();
+				$('.updata_fade .updata_item').eq(n).show().siblings().hide()
+				$(this).addClass('on').siblings().removeClass('on')
+			})
+			$('.fade_boxss ul li').click(function() {
+				$(this).addClass('on').siblings().removeClass('on')
+			})
+		</script>
+		<script type="text/javascript">
+		 $(function(){
+		       $("#li_3").addClass("on");
+		       $("#li_3").prevAll().removeClass("on");
+		       $("#li_3").nextAll().removeClass("on");
+		       $("#img_3").attr("src","/public/images/webimg/left_center2.jpg");
+		        var pageSize = 10;
+	      		var currPage = 1;
+		       wholeInfo(currPage, pageSize);
+		 })
+		 function wholeInfo(currPage, pageSize){
+		        $.ajax({
+		     	url : "@{front.webAccount.AccountHome.wholeViews}",
+			    type : "POST",
+			    data : {
+			     	"currPage" : currPage, "pageSize":pageSize
+			     },
+			    success : function(data) {
+				     $("#infor").html(data);
+			     },
+			   error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+		 }
+		 
+		  $("#informa").click(function(){
+		    wholeInfo(1,10);
+		 })
+		 $("#effective").click(function(){
+		    effectiveInfo(1,10);
+		 })
+		  function effectiveInfo(currPage, pageSize){
+		        $.ajax({
+		     	url : "@{front.webAccount.AccountHome.effectiveViews}",
+			    type : "POST",
+			    data : {
+			     	"currPage" : currPage, "pageSize":pageSize
+			     },
+			    success : function(data) {
+				     $("#infor1").html(data);
+			     },
+			   error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+		 }
+		 $("#offline").click(function(){
+		    offlineInfo(1,10);
+		 })
+		  function offlineInfo(currPage, pageSize){
+		        $.ajax({
+		     	url : "@{front.webAccount.AccountHome.offlineViews}",
+			    type : "POST",
+			    data : {
+			     	"currPage" : currPage, "pageSize":pageSize
+			     },
+			    success : function(data) {
+				     $("#infor2").html(data);
+			     },
+			   error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+		 }
+		 $("#problem").click(function(){
+		    problemInfo(1,10);
+		 })
+		  function problemInfo(currPage, pageSize){
+		        $.ajax({
+		     	url : "@{front.webAccount.AccountHome.problemViews}",
+			    type : "POST",
+			    data : {
+			     	"currPage" : currPage, "pageSize":pageSize
+			     },
+			    success : function(data) {
+				     $("#infor3").html(data);
+			     },
+			   error : function() {
+				alert("对不起，出现错误!");
+			}
+		});
+		 }
+		</script>
+	</body>
+
+</html>

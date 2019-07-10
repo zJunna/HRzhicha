@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>实名认证</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" type="image/png" href="@{'/HRzhicha/public/images/favicon.ico'}" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/HRzhicha/public/stylesheets/css/refactorStyle.css" />
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/jquery.1.9.1.js"></script>
+		<script type="text/javascript" src="/HRzhicha/public/javascripts/js/js.js"></script>
+		<script type="text/javascript" src="@{'/HRzhicha/public/javascripts/common.js'}"></script>
+	    <script type="text/javascript" src="@{'/HRzhicha/public/javascripts/ajaxfileupload.js'}"></script>
+	    <script type="text/javascript" src="@{'/HRzhicha/public/javascripts/index.js'}"></script>
+	    <script type="text/javascript" src="@{'/HRzhicha/public/javascripts/jquery.json-2.4.min.js'}"></script>
+	    
+	</head>
+
+	<body class="gggs" style="height: 1050px">
+		<div class="pay_tits">
+			<img src="/HRzhicha/public/images/img/reach_03.jpg"  onclick="back();" />
+				<p id="title">实名认证</p>
+		</div>
+		<div class="main_conter" id="all" >
+			<div class="main_navbar">
+				<p class="on"  name="onCom">认证企业用户</p>
+				<p   name="onCom">个人用户</p>
+			</div>
+			
+			<div class="main_fade">
+				<div class="main_slides ">
+					<div class="main_change main_change_img">
+						<h2>企业基本信息</h2>
+						<div class="main_lables">
+							<input type="text" placeholder="企业名称" name="comName" id="comName" value="" />
+						</div>
+						<div class="main_lables">
+							<input type="text" placeholder="企业信用代码" name="comCreditCode" id="comCreditCode" value="" />
+						</div>
+						<p class="lop">地区</p>
+						<div class="qi">
+							<div>
+								<input type="text" placeholder="省" name="province" id="province" value="" />
+								<img src="/HRzhicha/public/images/img/qiye_07.jpg" />
+							</div>
+							<div>
+								<input type="text" placeholder="市" name="city" id="city" value="" />
+								<img src="/HRzhicha/public/images/img/qiye_07.jpg" />
+							</div>
+						</div>
+						<p class="lop">企业营业执照</p>
+						<div class="adddata">
+							<p id="updateP" style="height: 1.58rem;width: 6.3rem;margin-right: 0;"><!--<img src="/HRzhicha/public/images/img/acg_03.jpg" style="width: 0.5rem"/>-->上传营业执照</p>
+							<!--<img src="/HRzhicha/public/images/webimg/updata_38.jpg" class="fl" name="businessLicense_img" style="height: 1.58rem;width: 1.15rem;position: absolute;opacity:0.0;border-radius:.1rem" id="businessLicense" />-->
+							
+						</div>
+					</div>
+					<div class="main_change">
+						<h2>企业授权人信息</h2>
+						<div class="main_lables">
+							<input type="text" placeholder="HR联系人" name="hrName" id="hrName" value="" />
+						</div>
+						<div class="main_lables">
+							<input type="text" placeholder="联系电话" name="hrMobile" id="hrMobile" value="" />
+						</div>
+						<p class="lop">HR工作证明<span>(可上传工作证明、工牌、名片任意一种)</span></p>
+						<div id="hrWorkDiv">
+							<div class="addpic">
+								<input type="hidden" name="image_filenameHr" id="image_filename" />
+								<img src="/HRzhicha/public/images/img/qiye11A4.png" class="fl" style="height: 2.06rem;width: 2.06rem;" onclick="hrWorkClick(this)" id="hrWork" mark="smallfileHrWork"  name="hrCertificate"/>
+								<img src="/HRzhicha/public/images/img/qiye11A4.png" class="fl" style="height: 2.06rem;width: 2.06rem;" onclick="hrWorkClick(this)" id="hrWork" mark="smallfileHrWork"  name="hrCertificate"/>
+								<div class="" style="position: relative;">
+									<img src="/HRzhicha/public/images/img/qiye13A4.png" class="fr" style="height:2.06rem;width: 2.06rem;margin-right: 0;"name="addImg" onclick="imgAdding(this)"/>
+									<span style="position: absolute;bottom: .25rem;left: 25%;">上传文件</span>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<p class="footer_fonts">请确保注册手机号和联系电话能够联系到您，否则上传的信息可能被删除</p>
+					<div class="main_rz">
+						<a href="#" id="comAuthenticate">认证</a>
+					</div>
+				</div>
+				<div class="main_slides hide" id="main_user">
+					
+					<div class="main_change">
+						<h2>个人基本信息</h2>
+						<div class="main_lables">
+							<input type="text" placeholder="姓名" name="perName" id="perName" value="" />
+						</div>
+						<div class="main_lables">
+							<input type="text" placeholder="身份证号" name="id_number" id="id_number" value="" />
+						</div>
+						<p class="lop">地区</p>
+						<div class="qi">
+							<div>
+								<input type="text" placeholder="省" name="perProvince" id="perProvince" value="" />
+								<img src="/HRzhicha/public/images/img/qiye_07.jpg" />
+							</div>
+							<div>
+								<input type="text" placeholder="市" name="perCity" id="perCity" value="" />
+								<img src="/HRzhicha/public/images/img/qiye_07.jpg" />
+							</div>
+						</div>
+					</div>
+					<p class="footer_fonts">个人认证需要您的姓名、身份证号、手机号实名信息三者一致，否则认证无法通过。</p>
+					<div class="main_rz1" style="margin-top:0.4rem">
+						<a href="#" id="perAuthenticate">认证</a>
+					</div>
+					
+				</div>
+			</div>
+		
+			
+		</div>
+		  <div id="comProvince" style="display: none" class="list_dq"></div> 
+		  <div id="comCity" style="display: none" class="list_dq"></div> 
+		  <div id="perProvinceDiv" style="display: none" class="list_dq"></div> 
+		  <div id="perCityDiv" style="display: none" class="list_dq"></div> 
+		
+		<div class="fadeins s hide">
+			<div class="fadeins_top">
+				<h2>营业执照上传技巧</h2>
+				<div class="photos">
+					<img src="/HRzhicha/public/images/img/qiye_311.png" style="width: 2.16rem;"/>
+				</div>
+				<p>1、确保 <span>[公司名称、统一社会信用代码] </span>信息<br />区域拍摄清晰。</p>			
+				<p>2、企业营业期限有效。</p>
+				<p>3、信息仅用于身份验证。</p>
+			</div>
+			<div class="fadins_footer">
+				<ul>
+				<input type="file" class="upload_file" name="imgFile" id="smallfileBusinessLicense" mark="businessLicense" accept="image/*" capture='camera' style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);" />
+					<li>拍照</li>
+				<input type="file" class="upload_file" name="imgFile" id="smallfileBusinessLicense1" mark="businessLicense" accept="image/*" style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);" />
+					<li>从手机相册选择</li>
+					<li onclick="closer()">取消</li>
+				</ul>
+			</div>
+		</div>
+		<div class="fadeins s1 hide">
+			<div class="fadeins_top">
+				<h2>工作证明上传技巧</h2>
+				<div class="photos">
+					<img src="/HRzhicha/public/images/img/qiye_314.png" style="width: 2.16rem;"/>
+				</div>
+				<p>1、确保公司/职位、姓名信息区域拍摄清晰。</p>			
+				<p>2、<span>[材料将仅对平台可见]</span>  如含联系方式等<br />
+隐私信息,建议  [手指挡住局部以拍摄] 。</p>
+				<p>3、信息仅用于身份验证。</p>
+			</div>
+			<div class="fadins_footer">
+				<ul>
+					<input type="file" class="upload_file" name="imgFile" id="smallfileHrWork" mark="hrWork" mark2="1" mark3="input1" accept="image/jpg,image/gif,image/png" capture='camera' style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);"/>
+					<li>拍照</li>
+					<input type="file" class="upload_file" name="imgFile" id="smallfileHrWork1" mark="hrWork" mark2="1" mark3="input2" accept="image/jpg,image/gif,image/png" style="height: .88rem;width: 100%;opacity: 0;position: absolute;" onchange="uploadImages(this);"/>
+					<li>从手机相册选择</li>
+					<li onclick="closer1()">取消</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="shuru" id="shuru">
+			<div class="shuru_box" id="shuru_box" >
+			<!-- 	<p>您的输入有误或不完善，请修改后再提交！</p> -->
+				<p id="P"></p>
+				<div style="color: #6e3cff" id="sure">（<span class="gs">3</span>S）</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+		   $(function(){
+		   $(".pro_fade").css("display","flex"); 
+		     $(".pro_fade").css("background","#9E9E9E");
+		     $(".img_cet").css("display","block");
+		     $("#error").html("认证提醒！");  
+		     $("#ejectImg").attr("src","/HRzhicha/public/images/img/renzheng.png");
+		       $(".img_cet").css("display","flex");
+		      $("#ejectImg").css("width","5.9rem");
+		   
+		      }); 
+		      $("#company").click(function(){
+		              $(".pro_fade").css("display","none");
+		             $(".pro_fade").css("background","rgba(0, 0, 0, 0.1)");
+		      });
+		        $("#user").click(function(){
+		             $(".pro_fade").css("display","none");
+		             $(".pro_fade").css("background","rgba(0, 0, 0, 0.1)");
+		             $("#all").children().children("p[name='onCom']").removeClass("on");
+		             $("#all").children().children("p[name='onUser']").addClass("on");
+		             $(".main_slides ").css("display","none");
+		             $("#main_user").css("display","block");
+		      });
+		      
+		</script>
+	
+		
+		<script>
+			$('.main_conter .main_navbar p').click(function(){
+				var m = $(this).index();
+				$(this).addClass('on').siblings().removeClass('on');
+				$('.main_fade .main_slides').eq(m).show().siblings().hide();
+			})
+			$("#businessLicense").click(function(){
+				$('.s').show();
+				$('.s .fadins_footer').animate({
+					'bottom': 0
+				})
+			})
+			function closer1(){
+				$('.s1').fadeOut();
+				$('.s1 .fadins_footer').animate({
+					'bottom': '-3.99rem'
+				})
+			}
+			function hrWorkClick(hr){
+				$("input[mark3='input1']").attr("mark",hr.id);
+				$("input[mark3='input1']").attr("id",$(hr).attr("mark"+"1"));
+				$("input[mark3='input2']").attr("mark",hr.id);
+				$("input[mark3='input2']").attr("id",$(hr).attr("mark"+"1"));
+				$('.s1').show();
+				$('.s1 .fadins_footer').animate({
+					'bottom': 0
+				})
+			}
+			$("#sure").click(function(){
+				$("#shuru").hide();
+			});
+		</script>
+	</body>
+	<script type="text/javascript">
+		$("#province").click(function(){
+  	  		$.ajax({
+  	  		url:"@{front.account.AccountHome.getComProvince()}",
+  	  		type:"POST",
+  	  		data:{
+  	  		},
+  	  		success:function(data){
+  	  			$("#comProvince").html(data);
+  	  			$("#all").css("display","none");
+  	  			$("#comProvince").css("display","block");
+  	  		}
+  	  		});
+  	  });
+  	  	 $("#city").click(function(){
+  	  		$.ajax({
+  	  		url:"@{front.account.AccountHome.getComProvince()}",
+  	  		type:"POST",
+  	  		data:{
+  	  		},
+  	  		success:function(data){
+  	  			$("#comProvince").html(data);
+  	  			$("#all").css("display","none");
+  	  			$("#comProvince").css("display","block");
+  	  		}
+  	  		});
+  	  });
+  	   $("#perProvince").click(function(){
+  	  		$.ajax({
+  	  		url:"@{front.account.AccountHome.getPerProvince()}",
+  	  		type:"POST",
+  	  		data:{
+  	  		},
+  	  		success:function(data){
+  	  			$("#perProvinceDiv").html(data);
+  	  			$("#all").css("display","none");
+  	  			$("#perProvinceDiv").css("display","block");
+  	  		}
+  	  		});
+  	  });
+  	   $("#perCity").click(function(){
+  	  		$.ajax({
+  	  		url:"@{front.account.AccountHome.getPerProvince()}",
+  	  		type:"POST",
+  	  		data:{
+  	  		},
+  	  		success:function(data){
+  	  			$("#perProvinceDiv").html(data);
+  	  			$("#all").css("display","none");
+  	  			$("#perProvinceDiv").css("display","block");
+  	  		}
+  	  		});
+  	  });
+	
+	</script>
+	<script type="text/javascript">
+	function uploadImages(element){
+		var mobileType=getIos();
+		if(mobileType){
+		element.removeAttribute("capture");
+		}
+		var fileElementId=element.id;
+		var path = $(element).val();
+		var imageElementId=$(element).attr("mark");
+		var num=$(element).attr("mark2");
+		if(path == "") {
+				$("#shuru").show();
+				$("#shuru_box").children("div").html("确定");
+		   		$("#P").html("请选择上传的图片");
+		   		return false;
+		}
+		if(imageElementId=="businessLicense"){
+		$("#updateP").html("");
+		}
+		$.ajaxFileUpload({
+			url : http_path + "/FileUpload/uploadImage",
+			secureuri : false,
+			fileElementId : fileElementId,
+			dataType : 'text',
+			success : function(data) {
+				data = $.evalJSON(data);
+				if (data.code < 0) {
+					return;
+				}
+				$("#"+imageElementId).attr("src", data.filename);
+				if(imageElementId=="businessLicense"){
+					$("#"+imageElementId).css("opacity",1);
+					closer();
+				}
+				if(num==1){
+				closer1();
+				}
+			},
+			error : function(data, status, e) {
+				$("#shuru").show();
+				$("#shuru_box").children("div").html("确定");
+		   		$("#P").html("上传图片失败");
+		   		return false;
+			}
+		})
+	}
+			//判断是否是ios设备  true 是  false 否
+	  function getIos() {
+	            var ua=navigator.userAgent.toLowerCase();
+	            if (ua.match(/iPhone\sOS/i) == "iphone os") {
+	                return true;
+	            }else {
+	                return false;
+	            }
+	        }
+	        function closer(){
+				$('.s').fadeOut();
+				$('.s .fadins_footer').animate({
+					'bottom': '-3.99rem'
+				})
+			}	
+	</script>
+
+	<script type="text/javascript">
+		 var a = 0;
+		function imgAdding(ht){
+			a+=1;
+			var html="<div class='addpic' style='margin-top:5%'><input type='hidden' name='image_filenameHr' id='image_filename"+a+"'/><img src='/HRzhicha/public/images/img/qiye11A4.png' class='fl' id='hrWork"+a+"' mark='smallfileHrWork"+a+"' onclick='hrWorkClick(this)' style='height: 1.58rem;width: 1.15rem;' name='hrCertificate'/>"
+							+"<img src='/HRzhicha/public/images/img/qiye13A4.png' class='fr' style='height: 1.58rem;width: 1.0rem;' name='addImg' onclick='imgAdding(this)'/>"
+							+"</div>"
+		$("#hrWorkDiv").append(html);
+		ht.src="/HRzhicha/public/images/img/qiye14A4.png";
+	 	ht.name="removeOthers";
+	 	ht.onclick=null;
+	 	ht.onclick=function(){
+		 		othersRemove(this); 
+		 	}
+	   }
+   function othersRemove(obj){//Img删除方法
+    obj.parentNode.remove();
+  }
+	</script>
+	<script type="text/javascript">
+$(".main_rz").click(function(){
+	  var comName=$("#comName").val();
+	  var comCreditCode=$("#comCreditCode").val();
+	  var comCiyt_id=$("#city").attr("mark");
+	  var hrName=$("#hrName").val();
+	  var hrMobile=$("#hrMobile").val();
+	  var businessLicense=$("#businessLicense").attr("src");
+	    if(comName==""){
+		$("#shuru").show();
+		$("#shuru_box").children("div").html("确定");
+   		$("#P").html("请正确填写企业名称");
+		return false;
+		}
+	  if(comCreditCode==""){
+		$("#shuru").show();
+		$("#shuru_box").children("div").html("确定");
+   		$("#P").html("请正确填写企业信用代码");
+		return false;
+		}
+	   if(comCiyt_id==undefined){
+		$("#shuru").show();
+		$("#shuru_box").children("div").html("确定");
+   		$("#P").html("请选择企业所在地");
+		return false;
+		}
+	    if(businessLicense==""){
+	    $("#shuru").show();
+		$("#shuru_box").children("div").html("确定");
+   		$("#P").html("请上传企业营业执照照片信息");
+	    return false;
+	    }
+	    if(hrName==""){
+	    $("#shuru").show();
+		$("#shuru_box").children("div").html("确定");
+   		$("#P").html("请正确填写企业HR联系人");
+		return false;
+	    }
+	    if(hrMobile==""){
+	    $("#shuru").show();
+		$("#shuru_box").children("div").html("确定");
+   		$("#P").html("请正确填写企业联系电话");
+		return false;
+	    } 
+	    var result = true;
+		$("img[name='hrCertificate']").each(function(){
+			if($(this).attr("src")=="/HRzhicha/public/images/img/qiye_11.jpg"){
+			$("#shuru").show();
+			$("#shuru_box").children("div").html("确定");
+   			$("#P").html("请核实HR工作证明照片信息");
+			result=false;
+			return false;
+			}
+		});
+		if (result!=true){
+	 	   return false;
+		}
+	  	var hrCertificate="";
+	  	$("img[name='hrCertificate']").each(function(){
+	  		hrCertificate=hrCertificate+$(this).attr("src")+",";
+		});
+		hrCertificate=hrCertificate.substring(0,hrCertificate.length-1);
+		   $.ajax({
+			  url:"@{front.account.AccountHome.companyAuthentication()}",
+			  type:"POST",
+			  dataType:"JSON",
+			  data:{
+				  comName:comName,
+				  comCreditCode:comCreditCode,
+				  comCiyt_id:comCiyt_id,
+				  businessLicense:businessLicense,
+				  hrName:hrName,
+				  hrMobile:hrMobile,
+				  hrCertificate:hrCertificate
+			  },
+			  success:function(data){
+			  	if(data.code!=0){
+			  		$("#error").text("认证失败,系统好像开了点小差");
+					$("#ejectImg").attr("src","/HRzhicha/public/images/img/tost_11.png")
+					 $(".pro_fade").css("display","flex"); 
+					
+					  $("#ejectImg").css("width","2.23rem");
+					$("#company").children("a[name='acom']").attr("href","@{front.home.HomeAction.home()}");
+					$("#company").children("a[name='acom']").html("返回首页");
+					$("#user").children("a[name='auser']").attr("href","@{front.account.AccountHome.home()}");
+					$("#user").children("a[name='auser']").html("返回用户中心");
+			  	}else{
+			  		$("#error").text("认证完成,待人工审核");
+			  		$("#shenhe").text("（1个工作日内审核）");
+					$("#ejectImg").attr("src","/HRzhicha/public/images/img/tost6.png")
+					 $(".pro_fade").css("display","flex"); 
+					 $("#ejectImg").css("width","2.23rem");
+					$("#company").children("a[name='acom']").attr("href","@{front.home.HomeAction.home()}");
+					$("#company").children("a[name='acom']").html("返回首页");
+					$("#user").children("a[name='auser']").attr("href","@{front.account.AccountHome.home()}");
+					$("#user").children("a[name='auser']").html("返回用户中心");
+			  	}
+			  }
+		  });
+  });
+  
+  $(".main_rz1").click(function(){
+  var perName=$("#perName").val();
+  var id_number=$("#id_number").val();
+  var perCity=$("#perCity").attr("mark");
+  if(perName==""){
+  	$("#shuru").show();
+	$("#shuru_box").children("div").html("确定");
+  	$("#P").html("请正确填写姓名");
+  	return false;
+  }
+  if(id_number==""){
+  	$("#shuru").show();
+	$("#shuru_box").children("div").html("确定");
+  	$("#P").html("请正确填写身份证号");
+  	return false;
+  }
+  if(perCity==undefined){
+  	$("#shuru").show();
+	$("#shuru_box").children("div").html("确定");
+  	$("#P").html("请选择所在地");
+  	return false;
+  }
+   $.ajax({
+  url:"@{front.account.AccountHome.personalAuthentication()}",
+  type:"POST",
+  dataType:"JSON",
+  data:{
+  perName:perName,
+  id_number:id_number,
+  city_id:perCity
+  },
+  success:function(data){
+  	if(data.code<0){
+  		$("#error").text("认证失败！请核实个人信息");
+		$("#ejectImg").attr("src","/HRzhicha/public/images/img/tost_11.png")
+		 $(".pro_fade").css("display","flex");
+		 $("#ejectImg").css("width","2.23rem");
+		$("#company").children("a[name='acom']").attr("href","@{front.home.HomeAction.home()}");
+	    $("#company").children("a[name='acom']").html("返回首页");
+		$("#user").children("a[name='auser']").attr("href","@{front.account.AccountHome.home()}");
+		$("#user").children("a[name='auser']").html("返回用户中心");
+  	}else{
+  	$("#error").text("认证成功！");
+		$("#ejectImg").attr("src","/HRzhicha/public/images/img/tost6.png")
+		 $(".pro_fade").css("display","flex"); 
+		 $("#ejectImg").css("width","2.23rem");
+  		$("#company").children("a[name='acom']").attr("href","@{front.home.HomeAction.home()}");
+		$("#company").children("a[name='acom']").html("返回首页");
+		$("#user").children("a[name='auser']").attr("href","@{front.account.AccountHome.home()}");
+		$("#user").children("a[name='auser']").html("返回用户中心");
+  	}
+  }
+  }); 
+  });
+  function back(){
+  location.href="@{front.account.AccountHome.home()}";
+  }
+	</script>
+</html>
